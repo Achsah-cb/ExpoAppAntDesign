@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "ExpoAppAntDesign",
+    "slug": "ExpoAppAntDesign",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "",
+      "resizeMode": "contain",
+      "backgroundColor": "##fff5bf"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "",
+        "backgroundColor": "##fff5bf"
+      }
+    },
+    "web": {
+      "favicon": ""
+    }
+  }
+}
