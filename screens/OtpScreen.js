@@ -34,19 +34,22 @@ const OtpScreen = ({ navigation }) => {
   };
 
   const handleVerify = () => {
+    navigation.navigate('Name');
     console.log('OTP Entered:', otp.join(''));
   };
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back-outline" size={24} color="#000" />
+        <Icon name="arrow-back-outline" size={30} color="#000" />
       </TouchableOpacity>
 
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBar} />
       </View>
-
+      </View>
+      
       <Text style={styles.title}>Verification Code</Text>
       <Text style={styles.subtitle}>Please enter code we just sent to</Text>
       <Text style={styles.phoneNumber}>+91 99292 77633</Text>

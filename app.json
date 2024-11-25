@@ -10,15 +10,31 @@
     "splash": {
       "image": "",
       "resizeMode": "contain",
-      "backgroundColor": "##fff5bf"
+      "backgroundColor": "##fff5bf",
+      "plugins": [
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos to let you share them with your friends."
+          }
+        ]
+      ]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to allow you to select images."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
-        "backgroundColor": "##fff5bf"
+        "backgroundColor": "##fff5bf",
+        "permissions": [
+          "READ_EXTERNAL_STORAGE",
+          "WRITE_EXTERNAL_STORAGE",
+          "CAMERA"
+        ]
       }
     },
     "web": {

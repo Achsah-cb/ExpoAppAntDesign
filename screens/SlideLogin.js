@@ -113,7 +113,7 @@ export default CupidArrowScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '##fff5bf',
+    backgroundColor: '#F9FBE7',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 20,

@@ -6,7 +6,7 @@ const scale = (size) => (width / 375) * size;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '##fff5bf',
+    backgroundColor: '#F9FBE7',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: scale(40),
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(10),
   },
   LoginwithPhoneContainer: {
-    backgroundColor: '#FFD700',
+    backgroundColor: '#FFB200',
     flexDirection: 'row',
     flexBasis: '8%',
     width: '100%',
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: '5%',
-    borderRadius: 6,
+    borderRadius: 15,
   },
   iconView:{
     borderRadius: '50%',
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   signUpText: {
-    color: '#FFD700',
+    color: '#FFB200',
     fontWeight: 'bold',
     fontSize: scale(18),
   },

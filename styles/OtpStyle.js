@@ -6,26 +6,33 @@ const scale = (size) => (width / 375) * size;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '##fff5bf',
+    backgroundColor: '#F9FBE7',
     paddingHorizontal: scale(20),
     paddingTop: scale(40),
   },
   backButton: {
     marginBottom: scale(20),
+    
+  },
+  header:{
+    flexDirection:'row',
+    marginTop:25
   },
   progressBarContainer: {
-    width: '80%',
-    height: scale(5),
-    backgroundColor: '#ffee90',
+    width: 180,
+    height:8,
+    backgroundColor: '#FFEC9E',
     alignSelf: 'center',
-    borderRadius: scale(2.5),
+    borderRadius: scale(50),
     marginBottom: scale(30),
+    marginTop:10,
+    marginLeft:60
   },
   progressBar: {
-    width: '50%',
-    height: '100%',
-    backgroundColor: '#FFD700',
-    borderRadius: scale(2.5),
+    width: 22.5,
+    height: 8,
+    backgroundColor: '#FFB200',
+    borderRadius: scale(50),
   },
   title: {
     fontSize: scale(24),
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
     width: scale(50),
     height: scale(50),
     backgroundColor: '#FFF',
-    borderRadius: scale(6),
+    borderRadius: scale(10),
     textAlign: 'center',
     fontSize: scale(20),
     shadowColor: '#000',
@@ -75,14 +82,14 @@ const styles = StyleSheet.create({
   },
   resendButton: {
     fontSize: scale(18),
-    color: '#FFD700',
+    color: '#FFB200',
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: scale(30),
   },
   verifyButton: {
-    backgroundColor: '#FFD700',
-    borderRadius: scale(6),
+    backgroundColor: '#FFB200',
+    borderRadius: scale(15),
     paddingVertical: scale(15),
     alignItems: 'center',
     justifyContent: 'center',

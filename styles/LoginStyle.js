@@ -6,7 +6,7 @@ const scale = (size) => (width / 375) * size;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '##fff5bf',
+    backgroundColor: '#F9FBE7',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: scale(20),
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
       marginBottom: scale(20),
       width: '100%',
       backgroundColor: '#fff',
-      borderRadius: 6,
+      borderRadius: 15,
       paddingHorizontal: scale(5),
       paddingVertical: scale(6),
       shadowColor: '#000',
@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
     continueButton: {
       width: '100%',
       height: scale(50),
-      borderRadius: 6,
+      borderRadius: 15,
       marginBottom: scale(20),
-      backgroundColor: '#FFD700',
+      backgroundColor: '#FFB200',
       paddingVertical: scale(10),
       alignItems: 'center',
     },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'left',
       width: '100%',
-      borderRadius: 6,
+      borderRadius: 15,
       paddingVertical: scale(12),
       marginVertical: scale(10),
       backgroundColor: '#FFF',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
       color: '#333',
     },
     signUpText: {
-      color: '#FFD700',
+      color: '#FFB200',
       fontSize: scale(18),
       fontWeight: 'bold',
     },

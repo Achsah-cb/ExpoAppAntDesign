@@ -33,7 +33,7 @@ const SignUpScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.LoginwithPhoneContainer} onPress={() => navigation.navigate('LoginScreen')}>
                 <View style={styles.iconView}>
                     <Icon name='phone' size={20} 
-                            color='#FFD700' 
+                            color='#FFB200' 
                             style={styles.phoneIcon} />
                 </View>
                     <View style={styles.buttonView}>
