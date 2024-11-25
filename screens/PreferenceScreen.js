@@ -35,27 +35,27 @@ const PreferenceScreen = ({ navigation }) => {
       </Text>
 
       <View style={styles.optionsContainer}>
-        {options.map((option, index) => (
-          <Radio.RadioItem
-            key={index}
-            checked={selectedOption === option}
-            onChange={() => setSelectedOption(option)}
-            style={[
-              styles.radioItem,
-              selectedOption === option && styles.selectedOption,
-            ]}
-          >
-            <Text
-              style={[
-                styles.optionText,
-                selectedOption === option && styles.selectedOptionText,
-              ]}
-            >
-              {option}
-            </Text>
-          </Radio.RadioItem>
-        ))}
-      </View>
+  {options.map((option, index) => (
+    <TouchableOpacity
+      key={index}
+      style={[
+        styles.radioItem,
+        selectedOption === option && styles.selectedOption,
+      ]}
+      onPress={() => setSelectedOption(option)}
+    >
+      <Text
+        style={[
+          styles.optionText,
+          selectedOption === option && styles.selectedOptionText,
+        ]}
+      >
+        {option}
+      </Text>
+    </TouchableOpacity>
+  ))}
+</View>
+
 
       <View style={styles.backgroundimg}>
         <PreferenceBg width={200} height={200} />

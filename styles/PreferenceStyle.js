@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   },
   selectedOption: {
     borderColor: '#FFD700',
+    backgroundColor: '#FFF5CC',
   },
   optionText: {
     fontSize: scale(18),

@@ -14,9 +14,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen name="Splash" component={SplashScreen} styles={styles.container} options={{ headerShown: false }} />
-      {/* <Stack.Screen name="SignUpScreen" component={SignUpScreen} styles={styles.container} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUpScreen" component={SignUpScreen} styles={styles.container} options={{ headerShown: false }} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} styles={styles.container} options={{ headerShown: false }} />
-      <Stack.Screen name="OtpScreen" component={OtpScreen} styles={styles.container} options={{ headerShown: false }} /> */}
+      <Stack.Screen name="OtpScreen" component={OtpScreen} styles={styles.container} options={{ headerShown: false }} />
       <Stack.Screen name="PreferenceScreen" component={PreferenceScreen} styles={styles.container} options={{ headerShown: false }} />
       </Stack.Navigator>
       </NavigationContainer>
