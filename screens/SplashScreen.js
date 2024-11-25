@@ -9,7 +9,7 @@ const SplashScreen = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('PreferenceScreen');
+            navigation.navigate('SignUpScreen');
         }, 3000);
     }, []);
 
