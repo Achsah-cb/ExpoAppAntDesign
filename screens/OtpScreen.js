@@ -34,7 +34,6 @@ const OtpScreen = ({ navigation }) => {
   };
 
   const handleVerify = () => {
-    navigation.navigate('Name');
     console.log('OTP Entered:', otp.join(''));
   };
 

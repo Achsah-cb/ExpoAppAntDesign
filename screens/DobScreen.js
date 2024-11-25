@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFB200',
         borderColor: '#FFB200',
         position:'relative',
-        ...Platform.select({android:{top:-60}, ios:{top:45}})
+        ...Platform.select({android:{top:-30}, ios:{top:45}})
     },
     buttonText:{
         color:'white',
@@ -150,12 +150,12 @@ const styles = StyleSheet.create({
         paddingBottom:30
     },
     flatListStyle: {
-        height:280,
-        marginTop: 80,
+        ...Platform.select({ ios: {height:280, marginTop: 80,}, android:{height:280, marginTop: 75,}})
     },
     listContainer: {
         alignItems: 'center',
-        paddingVertical: 100, 
+        ...Platform.select({ ios:{paddingVertical: 100, },  android:{paddingVertical: 90, }})
+        
     },
     backBtn:{
         margin:20,

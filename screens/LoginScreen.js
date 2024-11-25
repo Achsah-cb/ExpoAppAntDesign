@@ -65,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
             </View>
             <View style={styles.footer}>
                 <Text style={styles.footerText}>Don't have an account?
-                    <Text style={styles.signUpText} onPress={() => navigation.navigate("SignUpScreen")}> Sign up</Text>
+                    <Text style={styles.signUpText} onPress={() => navigation.navigate("Name")}> Sign up</Text>
                 </Text>
             </View>
         </View>
