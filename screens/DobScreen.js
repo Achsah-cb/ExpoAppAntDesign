@@ -48,7 +48,7 @@ export default function DobScreen({ navigation }) {
             Alert.alert("Select your age.");
         } else {
             updateUserData('age',selectAge)
-            navigation.navigate("Gender");
+            navigation.navigate("GenderScreen");
         }
     };
 

@@ -21,7 +21,7 @@ export default function EmailScreen({navigation}){
         Alert.alert("Invalid Email", "Please enter a valid email address.");
       } else {
         updateUserData('email',email)
-        navigation.navigate('DoB')
+        navigation.navigate('DoBScreen')
       }
     };
 
