@@ -13,7 +13,7 @@ export default function YourNameScreen({navigation}){
             Alert.alert("Please enter the username.")
         }else{
             updateUserData('username', userName);
-            navigation.navigate('Email')
+            navigation.navigate('EmailScreen')
         }
     }
     

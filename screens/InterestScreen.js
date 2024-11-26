@@ -36,7 +36,7 @@ export default function InterestScreen({ navigation }) {
             Alert.alert("Select at least 3 interests.");
         } else {
             updateUserData('Interests',selected)
-            navigation.navigate("Upload");
+            navigation.navigate("UploadPhotoScreen");
         }
     };
 

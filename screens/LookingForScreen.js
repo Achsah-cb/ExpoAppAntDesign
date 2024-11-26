@@ -37,7 +37,7 @@ export default function LookingForScreen({ navigation }) {
             Alert.alert("Select your preferences.");
         } else {
             updateUserData('preferences', selectItem)
-            navigation.navigate("Interest");
+            navigation.navigate("InterestScreen");
         }
     };
     return (

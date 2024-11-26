@@ -27,13 +27,13 @@ export default function App() {
           <Stack.Screen name="SignUpScreen" component={SignUpScreen} styles={styles.container} options={{ headerShown: false }} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} styles={styles.container} options={{ headerShown: false }} />
           <Stack.Screen name="OtpScreen" component={OtpScreen} styles={styles.container} options={{ headerShown: false }} />
-          <Stack.Screen name='Name' component={YourNameScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='Email' component={EmailScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='DoB' component={DobScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='Gender' component={GenderScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='LookingFor' component={LookingForScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='Interest' component={InterestScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='Upload' component={UploadScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='YourNameScreen' component={YourNameScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='EmailScreen' component={EmailScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='DoBScreen' component={DobScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='GenderScreen' component={GenderScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='LookingForScreen' component={LookingForScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='InterestScreen' component={InterestScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='UploadPhotoScreen' component={UploadScreen} options={{headerShown: false}}/>
           {/* <Stack.Screen name="PreferenceScreen" component={PreferenceScreen} styles={styles.container} options={{ headerShown: false }} /> */}
           </Stack.Navigator>
        </NavigationContainer>

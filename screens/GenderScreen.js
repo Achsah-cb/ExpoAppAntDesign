@@ -15,7 +15,7 @@ export default function GenderScreen({navigation}){
         } else {
             const gender = isActive === 'button1' ? 'Male' : 'Female';
             updateUserData('gender', gender)
-            navigation.navigate("LookingFor");
+            navigation.navigate("LookingForScreen");
         }
     };
     return(
