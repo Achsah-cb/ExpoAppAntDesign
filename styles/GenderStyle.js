@@ -1,44 +1,56 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform , Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+export const responsiveHeight = (percentage) => (height * percentage) / 100;
+const buttonSize = responsiveWidth(40);
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#F9FBE7'
-        
+        backgroundColor:'#F9FBE7',  
     },
     itemContainer:{
-       alignItems:'center' ,
-       margin:20,
-       marginTop:10
-       
-    },
-    Button:{
-        width: 325,
-        height: 56,
-        borderRadius:20,
-        backgroundColor:'#FFB200',
-        borderColor:'#FFB200',
-        position:'relative',
-        ...Platform.select({android:{top:50}, ios:{top:135}})
-    },
-    buttonText:{
-        color:'white',
-        fontWeight:'700',
-        fontSize:18
-    },
-    mainText:{
-        fontSize:24,
-        fontWeight:'500',
-        padding:10,
-    },
-    text:{
-        fontSize:14,
-        marginBottom:40
-    },
+        alignItems:'center' ,
+        margin:20,
+        marginTop:responsiveWidth(4),
+           
+     },
+     continuebtn:{
+        alignItems:'center',
+        flex:1,
+        justifyContent:'flex-end',
+        padding:15
+     },
+     Button:{
+         width: responsiveWidth(90),
+         height: responsiveHeight(7),
+         borderRadius:responsiveWidth(3),
+         backgroundColor:'#FFB200',
+         borderColor:'#FFB200',
+        
+     },
+     buttonText:{
+         color:'white',
+         fontWeight:'700',
+ 
+         fontSize: responsiveWidth(4)
+     },
+     mainText:{
+         fontSize: responsiveWidth(6),
+ 
+         fontWeight:'500',
+         padding:10,
+     },
+     text:{
+         fontSize: responsiveWidth(3),
+         marginBottom:responsiveWidth(5)
+     },
+   
     genderButton:{
-        width:160,
-        height:160,
-        borderRadius:100,
+        width: buttonSize, 
+        height: buttonSize, 
+        borderRadius: buttonSize / 2,
         margin:20,
         backgroundColor:'white',
         justifyContent:'center',
@@ -47,27 +59,26 @@ const styles = StyleSheet.create({
     activeBtn:{
         backgroundColor:'#FFB200',
     },
-    backBtn:{
-        margin:20,
-        width:40,
-        height:40,
-        
-    },
     header:{
         flexDirection:'row',
-        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}})
+        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
+    },
+    backBtn:{
+        margin:responsiveWidth(6),
+        width:responsiveWidth(10),
+        height:responsiveHeight(5),
     },
     progressBar:{
         backgroundColor:'#FFEC9E',
-        width:180,
-        height:8,
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
         borderRadius:50,
-        margin:30
+        margin:responsiveWidth(7.5),
     },
     progress:{
         backgroundColor:'#FFB200',
-        width:112.5,
-        height:8,
+        width:responsiveWidth(19),
+        height:responsiveHeight(1),
         borderRadius:50
     }
 })

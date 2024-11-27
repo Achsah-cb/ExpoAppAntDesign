@@ -1,31 +1,39 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform , Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+export const responsiveHeight = (percentage) => (height * percentage) / 100;
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#F9FBE7'
-        
+        backgroundColor:'#F9FBE7'   
     },
     itemContainer:{
        alignItems:'center' ,
        margin:20,
-       marginTop:10
-       
+       marginTop:responsiveWidth(4),
+          
     },
     Input:{
-        width:325,
-        height:56,
-        borderRadius:20,
+        width: responsiveWidth(90),
+        height: responsiveHeight(7),
+        fontSize: responsiveWidth(3.5),
+        borderRadius:responsiveWidth(3),
+        padding:responsiveWidth(3),
+
         backgroundColor:'white',
         borderColor:'#FFB200',
         borderWidth:1,
-        marginTop:30,
-        padding:10
+
+        marginTop: responsiveWidth(7),
+        
     },
     Button:{
-        width: 325,
-        height: 56,
-        borderRadius:20,
+        width: responsiveWidth(90),
+        height: responsiveHeight(7),
+        borderRadius:responsiveWidth(3),
+        
         backgroundColor:'#FFB200',
         borderColor:'#FFB200',
         marginTop:25,
@@ -33,38 +41,38 @@ const styles = StyleSheet.create({
     buttonText:{
         color:'white',
         fontWeight:'700',
-        fontSize:18
+
+        fontSize: responsiveWidth(4)
     },
     mainText:{
-        fontSize:24,
+        fontSize: responsiveWidth(6),
+
         fontWeight:'500',
         padding:10,
     },
     text:{
-        fontSize:14,
+        fontSize: responsiveWidth(3),
     },
     header:{
         flexDirection:'row',
-        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}})
+        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
     },
     backBtn:{
-        margin:20,
-        width:40,
-        height:40,
-        
+        margin:responsiveWidth(6),
+        width:responsiveWidth(10),
+        height:responsiveHeight(5),
     },
     progressBar:{
         backgroundColor:'#FFEC9E',
-        width:180,
-        height:8,
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
         borderRadius:50,
-        margin:30,
-        
+        margin:responsiveWidth(7.5),
     },
     progress:{
         backgroundColor:'#FFB200',
-        width:45,
-        height:8,
+        width:responsiveWidth(5),
+        height:responsiveHeight(1),
         borderRadius:50
     }
 })

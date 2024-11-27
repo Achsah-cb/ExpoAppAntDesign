@@ -46,7 +46,7 @@ const SignUpScreen = ({ navigation }) => {
 
             <Text style={styles.footerText}>
                 Don't have an account?{' '}
-                <Text style={styles.signUpText} onPress={() => navigation.navigate('Name')}>
+                <Text style={styles.signUpText} onPress={() => navigation.navigate('YourNameScreen')}>
                     Sign Up
                 </Text>
             </Text>

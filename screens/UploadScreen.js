@@ -93,8 +93,9 @@ export default function UploadScreen({ navigation }) {
                         </TouchableOpacity>
                     ))}
                 </View>
-
-                <Button style={styles.button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
+            </View>
+            <View style={styles.continuebtn}>
+                <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
             </View>
         </SafeAreaView>
     );

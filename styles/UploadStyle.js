@@ -1,4 +1,9 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform , Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+export const responsiveHeight = (percentage) => (height * percentage) / 100;
+
 
 const styles = StyleSheet.create({
     container: {
@@ -10,61 +15,67 @@ const styles = StyleSheet.create({
         margin: 20,
         marginTop: 10,
     },
-    button: {
-        width: 325,
-        height: 56,
-        borderRadius: 20,
-        backgroundColor: "#FFB200",
-        borderColor: "#FFB200",
-        marginTop: 25,
-        position: 'relative',
-        ...Platform.select({ android: { top: 40 }, ios: { top: 240 } })
+    Button:{
+        width: responsiveWidth(90),
+        height: responsiveHeight(7),
+        borderRadius:responsiveWidth(3),
+        
+        backgroundColor:'#FFB200',
+        borderColor:'#FFB200',
+        marginTop:25,
     },
     buttonText:{
         color:'white',
         fontWeight:'700',
-        fontSize:18
+
+        fontSize: responsiveWidth(4)
     },
-    mainText: {
-        fontSize: 24,
-        fontWeight: "500",
-        padding: 10,
+    mainText:{
+        fontSize: responsiveWidth(6),
+
+        fontWeight:'500',
+        padding:10,
     },
-    text: {
-        fontSize: 14,
-        textAlign: "center",
+    text:{
+        fontSize: responsiveWidth(3),
     },
-    backBtn: {
-        margin: 20,
-        width: 40,
-        height: 40,
+    header:{
+        flexDirection:'row',
+        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
     },
-    header: {
-        flexDirection: "row",
-        marginTop: Platform.OS === "ios" ? 0 : 30,
+    backBtn:{
+        margin:responsiveWidth(6),
+        width:responsiveWidth(10),
+        height:responsiveHeight(5),
     },
-    progressBar: {
-        backgroundColor: "#FFEC9E",
-        width: 180,
-        height: 8,
-        borderRadius: 50,
-        margin: 30,
+    progressBar:{
+        backgroundColor:'#FFEC9E',
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
+        borderRadius:50,
+        margin:responsiveWidth(7.5),
     },
-    progress: {
-        backgroundColor: "#FFB200",
-        width: 180,
-        height: 8,
-        borderRadius: 50,
+    progress:{
+        backgroundColor:'#FFB200',
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
+        borderRadius:50
+    },
+    continuebtn:{
+        alignItems:'center',
+        flex:1,
+        justifyContent:'flex-end',
+        padding:15
     },
     uploadContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "center",
-        marginTop: 50,
+        marginTop: responsiveWidth(2),
     },
     addButton: {
-        width: 100,
-        height: 100,
+        width: responsiveWidth(38),
+        height: responsiveHeight(18),
         margin: 10,
         borderColor: "#FFB200",
         borderWidth: 2,
@@ -74,8 +85,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     thumbnail: {
-        width: 90,
-        height: 90,
+        width: responsiveWidth(36),
+        height: responsiveHeight(17),
         borderRadius: 10,
     },
 });

@@ -1,62 +1,72 @@
-import { StyleSheet, Platform} from "react-native";
+import { StyleSheet, Platform , Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+export const responsiveHeight = (percentage) => (height * percentage) / 100;
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBE7',
     },
-    itemContainer: {
-        alignItems: 'center',
-        margin: 20,
-        marginTop: 10,
-        
+    itemContainer:{
+        alignItems:'center' ,
+        margin:20,
+        marginTop:responsiveWidth(4), 
     },
-    button: {
-        width: 325,
-        height: 56,
-        borderRadius: 20,
-        backgroundColor: '#FFB200',
-        borderColor: '#FFB200',
-        marginTop: 25,
-        position: 'relative',
-        ...Platform.select({ android: { top: 55 }, ios: { top: 145 } })
+    button:{
+        width: responsiveWidth(90),
+        height: responsiveHeight(7),
+        borderRadius:responsiveWidth(3),
+        
+        backgroundColor:'#FFB200',
+        borderColor:'#FFB200',
+        marginTop:25,
     },
     buttonText:{
         color:'white',
         fontWeight:'700',
-        fontSize:18
-    },
-    mainText: {
-        fontSize: 24,
-        fontWeight: '500',
-        padding: 10,
-    },
-    text: {
-        fontSize: 14,
-    },
-    backBtn: {
-        margin: 20,
-        width: 40,
-        height: 40,
 
+        fontSize: responsiveWidth(4)
     },
-    header: {
-        flexDirection: 'row',
-        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } })
+    mainText:{
+        fontSize: responsiveWidth(6),
+
+        fontWeight:'500',
+        padding:10,
     },
-    progressBar: {
-        backgroundColor: '#FFEC9E',
-        width: 180,
-        height: 8,
-        borderRadius: 50,
-        margin: 30
+    text:{
+        fontSize: responsiveWidth(3),
     },
-    progress: {
-        backgroundColor: '#FFB200',
-        width: 160,
-        height: 8,
-        borderRadius: 50
+    header:{
+        flexDirection:'row',
+        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
     },
+    backBtn:{
+        margin:responsiveWidth(6),
+        width:responsiveWidth(10),
+        height:responsiveHeight(5),
+    },
+    progressBar:{
+        backgroundColor:'#FFEC9E',
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
+        borderRadius:50,
+        margin:responsiveWidth(7.5),
+    },
+    progress:{
+        backgroundColor:'#FFB200',
+        width:responsiveWidth(32),
+        height:responsiveHeight(1),
+        borderRadius:50
+    },
+    continuebtn:{
+        alignItems:'center',
+        flex:1,
+        justifyContent:'flex-end',
+        padding:15
+     },
     grid: { 
         flexDirection: "row", 
         flexWrap: "wrap", 
@@ -64,15 +74,15 @@ const styles = StyleSheet.create({
     },
     interest: {
         backgroundColor:'white',
-        borderRadius: 10,
+        borderRadius: responsiveWidth(3),
         padding: 15,
-        margin: 5,
-        width: "30%",
+        margin:responsiveWidth(1),
         alignItems: "center",
         flexDirection:'row',
-        width: 150,
-        alignItems:'center'
-        
+        width:responsiveWidth(40),
+        height:responsiveHeight(8),
+        alignItems:'center',
+        marginTop:responsiveWidth(2)
     },
     selected:{
         backgroundColor:'#FFB200'
@@ -82,7 +92,8 @@ const styles = StyleSheet.create({
         fontWeight:'500'
     },
     interestText:{
-        paddingLeft:10
+        paddingLeft:10,
+        fontSize:responsiveWidth(4)
     }
 })
 

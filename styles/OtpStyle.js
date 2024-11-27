@@ -1,7 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 const scale = (size) => (width / 375) * size; 
+const progressScale = (percentage) => (width * percentage) / 100;
 
 const styles = StyleSheet.create({
   container: {
@@ -16,21 +17,21 @@ const styles = StyleSheet.create({
   },
   header:{
     flexDirection:'row',
-    marginTop:25
+    ...Platform.select({ ios :{marginTop:30, }, android :{marginTop:5}}),
   },
   progressBarContainer: {
-    width: 180,
-    height:8,
+    width: progressScale(40),
+    height:progressScale(2),
     backgroundColor: '#FFEC9E',
     alignSelf: 'center',
     borderRadius: scale(50),
     marginBottom: scale(30),
     marginTop:10,
-    marginLeft:60
+    marginLeft:scale(70)
   },
   progressBar: {
-    width: 22.5,
-    height: 8,
+    width: progressScale(5),
+    height:progressScale(2),
     backgroundColor: '#FFB200',
     borderRadius: scale(50),
   },

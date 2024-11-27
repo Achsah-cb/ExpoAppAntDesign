@@ -1,11 +1,16 @@
 import { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, SafeAreaView, Alert } from "react-native";
+import { View, Text, TouchableOpacity, SafeAreaView, Alert, Dimensions } from "react-native";
 import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../UserContext";
 import styles from "../styles/GenderStyle";
 
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+
 export default function GenderScreen({navigation}){
+    
+    const iconSize = responsiveWidth(10)
 
     const [isActive, setIsActive] = useState(null);
     const { updateUserData } = useContext(UserContext);
@@ -31,15 +36,16 @@ export default function GenderScreen({navigation}){
                 <Text style={styles.text}>Tell us about your gender</Text>
         
                 <TouchableOpacity style={[styles.genderButton, isActive === 'button1' && styles.activeBtn]} onPress={()=>setIsActive('button1')}>
-                    <Ionicons name="male" size={40} padding={20}/>
-                    <Text style={{fontWeight:'500',fontSize:15}}>Male</Text>
+                    <Ionicons name="male" size={iconSize} padding={20}/>
+                    <Text style={{fontWeight:'500',fontSize:responsiveWidth(3)}}>Male</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.genderButton, isActive === 'button2' && styles.activeBtn]} onPress={()=>setIsActive('button2')}>
-                    <Ionicons name="female" size={40} padding={20}/>
-                    <Text style={{fontWeight:'500',fontSize:15}}>Female</Text>
-                    </TouchableOpacity>
-
-                    <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
+                    <Ionicons name="female" size={iconSize} padding={20}/>
+                    <Text style={{fontWeight:'500',fontSize:responsiveWidth(3)}}>Female</Text>
+                </TouchableOpacity>      
+            </View>
+            <View style={styles.continuebtn}>
+                <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
             </View>
         </SafeAreaView>
     )

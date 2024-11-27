@@ -28,7 +28,7 @@ export default function LookingForScreen({ navigation }) {
                 style={styles.itemsSection}
                 onPress={() => handleSelect(item.name)}>  
                 <Text style={[styles.itemText, selectItem === item.name && styles.selectedItem]}>{item.name}</Text>
-                <View style={[styles.itemCircle, selectItem === item.name && styles.selectedItemCircle]}></View>
+                <View style={styles.selection}><View style={[styles.itemCircle, selectItem === item.name && styles.selectedItemCircle]}></View></View>
             </TouchableOpacity>
         )
     };
@@ -51,7 +51,7 @@ export default function LookingForScreen({ navigation }) {
 
                 <Text style={styles.mainText}>I Am Looking For...</Text>
                 <Text style={styles.text}>Provide us the further insights into your </Text>
-                <Text style={styles.text}>preferences</Text>
+                <Text style={styles.text2}>preferences</Text>
 
                 <FlatList
                     data={items}
@@ -60,6 +60,9 @@ export default function LookingForScreen({ navigation }) {
                     style={styles.items}
                 />
                 
+                
+            </View>
+            <View style={styles.continuebtn}>
                 <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
             </View>
         </SafeAreaView>

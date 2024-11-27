@@ -1,11 +1,15 @@
 import { useState, useContext, useEffect } from "react";
-import { View, Text,SafeAreaView, TouchableOpacity, Alert } from "react-native";
+import { View, Text,SafeAreaView, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../UserContext";
 import styles from "../styles/InterestStyle";
 
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+
 export default function InterestScreen({ navigation }) {
+    const iconSize = responsiveWidth(7);
 
     const interests = [
         { name: "Reading", icons: "book" },
@@ -65,7 +69,7 @@ export default function InterestScreen({ navigation }) {
                         >
                             <Ionicons
                                 name={item.icons}
-                                size={24}
+                                size={iconSize}
                                 color={selected.includes(item.name) ? "white" : "#FFB200"}
                             />
                             <Text
@@ -79,6 +83,8 @@ export default function InterestScreen({ navigation }) {
                         </TouchableOpacity>
                     ))}
                 </View>
+            </View>
+            <View style={styles.continuebtn}>
                 <Button style={styles.button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
             </View>
         </SafeAreaView>

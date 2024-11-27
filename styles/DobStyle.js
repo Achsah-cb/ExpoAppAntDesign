@@ -1,45 +1,49 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform , Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+export const responsiveWidth = (percentage) => (width * percentage) / 100;
+export const responsiveHeight = (percentage) => (height * percentage) / 100;
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBE7',
     },
-    itemContainer: {
-        alignItems: 'center',
-        margin: 20,
-        marginTop:10
-    },
+    itemContainer:{
+        alignItems:'center' ,
+        marginTop:responsiveWidth(4),    
+     },
     buttonContainer: {
-        width: '100%',
-        height: 190,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
+        alignItems:'center',
+        flex:1,
+        justifyContent:'flex-end',
+        padding:15
     },
-    Button: {
-        width: 325,
-        height: 56,
-        borderRadius: 20,
-        backgroundColor: '#FFB200',
-        borderColor: '#FFB200',
-        position:'relative',
-        ...Platform.select({android:{top:-30}, ios:{top:45}})
+    Button:{
+        width: responsiveWidth(90),
+        height: responsiveHeight(7),
+        borderRadius:responsiveWidth(3),
+        backgroundColor:'#FFB200',
+        borderColor:'#FFB200',
+        
     },
     buttonText:{
         color:'white',
         fontWeight:'700',
-        fontSize:18
+
+        fontSize: responsiveWidth(4)
     },
-    mainText: {
-        fontSize: 24,
-        fontWeight: '500',
-        padding: 10,
+    mainText:{
+        fontSize: responsiveWidth(6),
+        fontWeight:'500',
+        padding:10,
     },
-    text: {
-        fontSize: 14,
+    text:{
+        fontSize: responsiveWidth(3),
     },
     ageItem: {
-        height: 50,
+        height: 80,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -57,44 +61,43 @@ const styles = StyleSheet.create({
         borderBlockColor:'#FFB200', 
     },
     selectAgeItem:{
-        padding:40,
-        paddingBottom:30
+        padding:40
     },
     flatListStyle: {
-        ...Platform.select({ ios: {height:280, marginTop: 80,}, android:{height:280, marginTop: 75,}})
+        height:400,
+        marginTop: responsiveWidth(10),
+        marginBottom:responsiveWidth(20)
     },
     listContainer: {
         alignItems: 'center',
-        ...Platform.select({ ios:{paddingVertical: 100, },  android:{paddingVertical: 90, }})
-        
-    },
-    backBtn:{
-        margin:20,
-        width:40,
-        height:40, 
+        paddingVertical: 150, 
     },
     header:{
         flexDirection:'row',
-        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}})
+        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
+    },
+    backBtn:{
+        margin:responsiveWidth(6),
+        width:responsiveWidth(10),
+        height:responsiveHeight(5),
     },
     progressBar:{
         backgroundColor:'#FFEC9E',
-        width:180,
-        height:8,
+        width:responsiveWidth(40),
+        height:responsiveHeight(1),
         borderRadius:50,
-        margin:30
+        margin:responsiveWidth(7.5),
     },
     progress:{
         backgroundColor:'#FFB200',
-        width:90,
-        height:8,
+        width:responsiveWidth(13),
+        height:responsiveHeight(1),
         borderRadius:50
     },
     selectionArrow:{
         position:'relative',
-        top:235,
+        top:"40%",
         right:60,
-
     }
   
 });

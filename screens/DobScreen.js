@@ -11,7 +11,7 @@ export default function DobScreen({ navigation }) {
     const [selectAge, setSelectAge] = useState(18);
     const ages = Array.from({ length: 70 - 18 + 1 }, (_, i) => i + 18);
     const flatListRef = useRef(null);
-    const ITEM_HEIGHT = 50;
+    const ITEM_HEIGHT = 80;
 
 
     const handleSelectAge = (age) => {
@@ -80,12 +80,13 @@ export default function DobScreen({ navigation }) {
                     snapToInterval={ITEM_HEIGHT}
                     decelerationRate="fast"
                     style={styles.flatListStyle}
-                />
-
-                <View style={styles.buttonContainer}>
-                <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
-                </View>
+                /> 
             </View>
+
+            <View style={styles.buttonContainer}>
+                <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
+            </View>
+
         </SafeAreaView>
     );
 }

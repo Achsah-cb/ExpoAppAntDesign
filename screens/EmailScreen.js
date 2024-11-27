@@ -1,6 +1,6 @@
 import React, { useState, useContext} from "react";
-import { View, Text, SafeAreaView, TouchableOpacity, Alert } from "react-native";
-import { Input, Button } from '@ant-design/react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Alert, TextInput } from "react-native";
+import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../UserContext";
 import styles from '../styles/EmailStyle';
@@ -36,7 +36,7 @@ export default function EmailScreen({navigation}){
                 <Text style={styles.mainText}>Email Address</Text>
                 <Text style={styles.text}>We'll need your email to stay in touch</Text>
         
-                <Input placeholder="Enter your email" 
+                <TextInput placeholder="Enter your email" 
                 type="email" style={styles.Input} value={email}
                 onChangeText={(text) => setEmail(text)}/>
 

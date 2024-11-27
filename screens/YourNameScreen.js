@@ -1,6 +1,6 @@
 import React, { useState, useContext} from "react";
-import { View, Text, SafeAreaView, TouchableOpacity, Alert } from "react-native";
-import { Input, Button } from '@ant-design/react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Alert, TextInput } from "react-native";
+import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../UserContext";
 import styles from "../styles/YourNameStyle";
@@ -31,7 +31,7 @@ export default function YourNameScreen({navigation}){
                 <Text style={styles.mainText}>What's Your Name?</Text>
                 <Text style={styles.text}>Let's Go To Know Each other</Text>
         
-                <Input placeholder="Enter your name" 
+                <TextInput placeholder="Enter your name" 
                 style={styles.Input}
                 value={userName}
                 onChangeText={setUserName}/>
