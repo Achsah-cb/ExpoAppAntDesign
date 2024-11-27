@@ -6,8 +6,8 @@ export const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
     // State to manage the theme colors
     const [theme, setTheme] = useState({
-        primaryColor: '#FF6B6B', // Default Primary Color
-        secondaryColor: '#FFEFF1', // Default Secondary Color
+        primaryColor: '#FFB200', // Default Primary Color
+        secondaryColor: '#F9FBE7', // Default Secondary Color
     });
 
     // Function to update the theme colors

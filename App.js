@@ -13,6 +13,7 @@ import GenderScreen from './screens/GenderScreen';
 import LookingForScreen from './screens/LookingForScreen';
 import InterestScreen from './screens/InterestScreen';
 import UploadScreen from './screens/UploadScreen';
+import { ThemeProvider } from './context/ThemeContext';
 import { UserProvider } from './UserContext';
 
 
@@ -20,24 +21,25 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-     <UserProvider>
+    <ThemeProvider>
+      <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Splash">
-          <Stack.Screen name="Splash" component={SplashScreen} styles={styles.container} options={{ headerShown: false }} />
-          <Stack.Screen name="SignUpScreen" component={SignUpScreen} styles={styles.container} options={{ headerShown: false }} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} styles={styles.container} options={{ headerShown: false }} />
-          <Stack.Screen name="OtpScreen" component={OtpScreen} styles={styles.container} options={{ headerShown: false }} />
-          <Stack.Screen name='YourNameScreen' component={YourNameScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='EmailScreen' component={EmailScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='DoBScreen' component={DobScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='GenderScreen' component={GenderScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='LookingForScreen' component={LookingForScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='InterestScreen' component={InterestScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='UploadPhotoScreen' component={UploadScreen} options={{headerShown: false}}/>
-          {/* <Stack.Screen name="PreferenceScreen" component={PreferenceScreen} styles={styles.container} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="Splash" component={SplashScreen} styles={styles.container} options={{ headerShown: false }} />
+            <Stack.Screen name="SignUpScreen" component={SignUpScreen} styles={styles.container} options={{ headerShown: false }} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} styles={styles.container} options={{ headerShown: false }} />
+            <Stack.Screen name="OtpScreen" component={OtpScreen} styles={styles.container} options={{ headerShown: false }} />
+            <Stack.Screen name='YourNameScreen' component={YourNameScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='EmailScreen' component={EmailScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='DoBScreen' component={DobScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='GenderScreen' component={GenderScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='LookingForScreen' component={LookingForScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='InterestScreen' component={InterestScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='UploadPhotoScreen' component={UploadScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
-       </NavigationContainer>
+        </NavigationContainer>
       </UserProvider>
+    </ThemeProvider>
   );
 }
 
