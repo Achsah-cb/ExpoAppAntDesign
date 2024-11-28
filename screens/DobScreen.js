@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import { View, Text, TouchableOpacity, FlatList, SafeAreaView, Alert } from "react-native";
 import { Button, } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
-import { UserContext } from "../UserContext";
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/DobStyle";
 
 export default function DobScreen({ navigation }) {

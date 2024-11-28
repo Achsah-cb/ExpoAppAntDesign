@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { View, Text,SafeAreaView, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
-import { UserContext } from "../UserContext";
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/InterestStyle";
 
 const { width, height } = Dimensions.get('window');

@@ -13,7 +13,7 @@ import GenderScreen from './screens/GenderScreen';
 import LookingForScreen from './screens/LookingForScreen';
 import InterestScreen from './screens/InterestScreen';
 import UploadScreen from './screens/UploadScreen';
-import { UserProvider } from './UserContext';
+import { UserProvider } from './context/UserContext';
 
 
 const Stack = createStackNavigator();

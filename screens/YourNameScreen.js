@@ -2,7 +2,7 @@ import React, { useState, useContext} from "react";
 import { View, Text, SafeAreaView, TouchableOpacity, Alert, TextInput } from "react-native";
 import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
-import { UserContext } from "../UserContext";
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/YourNameStyle";
 
 export default function YourNameScreen({navigation}){

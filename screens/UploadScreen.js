@@ -3,7 +3,7 @@ import { View, SafeAreaView, TouchableOpacity, Text, Image, Alert } from "react-
 import { Button } from "@ant-design/react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/UploadStyle";
 
 export default function UploadScreen({ navigation }) {
