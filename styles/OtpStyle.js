@@ -1,57 +1,57 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-const scale = (size) => (width / 375) * size; 
+const responsiveWidth = (percentage) => (width * percentage) / 100;
+const responsiveHeight = (percentage) => (height * percentage) / 100;
+const scale = (size) => (width / 375) * size;
 const progressScale = (percentage) => (width * percentage) / 100;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FBE7',
-    paddingHorizontal: scale(20),
-    paddingTop: scale(40),
+    paddingHorizontal: responsiveWidth(5),
+    paddingTop: scale(10),
+    marginVertical: scale(2),
+    paddingVertical: responsiveHeight(2)
+  },
+  header: {
+    flexDirection: 'row',
+    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 5 } }),
   },
   backButton: {
-    marginBottom: scale(20),
-    
+    marginTop: Platform.OS === "android" ? responsiveHeight(3) : responsiveHeight(1),
+    marginBottom: responsiveHeight(2),
   },
-  header:{
-    flexDirection:'row',
-    ...Platform.select({ ios :{marginTop:30, }, android :{marginTop:5}}),
+  backButtonIconSize: responsiveWidth(8),
+  progressBarContainer: {
+    marginVertical: responsiveHeight(2),
   },
   progressBarContainer: {
-    width: progressScale(40),
-    height:progressScale(2),
-    backgroundColor: '#FFEC9E',
+    width: progressScale(65),
+    height: progressScale(2),
     alignSelf: 'center',
     borderRadius: scale(50),
-    marginBottom: scale(30),
-    marginTop:10,
-    marginLeft:scale(70)
+    marginBottom: scale(0),
+    marginTop: 10,
+    marginLeft: scale(30)
   },
   progressBar: {
     width: progressScale(5),
-    height:progressScale(2),
-    backgroundColor: '#FFB200',
+    height: progressScale(2),
     borderRadius: scale(50),
   },
+  InnerContainer: {
+    marginVertical: scale(20)
+  },
   title: {
-    fontSize: scale(24),
-    fontWeight: 'bold',
-    color: '#333',
     textAlign: 'center',
     marginBottom: scale(5),
   },
   subtitle: {
-    fontSize: scale(14),
-    color: '#888', // Gray color
     textAlign: 'center',
     marginBottom: 5,
   },
   phoneNumber: {
-    fontSize: scale(16),
-    fontWeight: 'bold',
-    color: '#333',
     textAlign: 'center',
     marginBottom: scale(30),
   },
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     height: scale(50),
     backgroundColor: '#FFF',
     borderRadius: scale(10),
+    borderColor: '#FFB200',
     textAlign: 'center',
     fontSize: scale(20),
     shadowColor: '#000',
@@ -76,21 +77,16 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   resendText: {
-    fontSize: scale(14),
-    color: '#6B7280',
     textAlign: 'center',
     marginBottom: scale(5),
   },
   resendButton: {
-    fontSize: scale(18),
-    color: '#FFB200',
     textAlign: 'center',
-    fontWeight: 'bold',
     marginBottom: scale(30),
+    textDecorationLine: 'underline'
   },
   verifyButton: {
-    backgroundColor: '#FFB200',
-    borderRadius: scale(15),
+    borderRadius: responsiveWidth(2),
     paddingVertical: scale(15),
     alignItems: 'center',
     justifyContent: 'center',
@@ -99,11 +95,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: scale(3),
     elevation: 3,
-  },
-  verifyButtonText: {
-    color: '#FFF',
-    fontSize: scale(16),
-    fontWeight: 'bold',
   },
 });
 

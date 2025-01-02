@@ -10,7 +10,7 @@
     "splash": {
       "image": "",
       "resizeMode": "contain",
-      "backgroundColor": "##fff5bf",
+      "backgroundColor": "#fff5bf",
       "plugins": [
         [
           "expo-image-picker",
@@ -29,7 +29,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
-        "backgroundColor": "##fff5bf",
+        "backgroundColor": "#fff5bf",
         "permissions": [
           "READ_EXTERNAL_STORAGE",
           "WRITE_EXTERNAL_STORAGE",
