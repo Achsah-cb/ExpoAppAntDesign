@@ -1,100 +1,136 @@
-import { StyleSheet, Platform , Dimensions } from "react-native";
+import { StyleSheet, Platform, Dimensions } from "react-native";
 
 const { width, height } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
 export const responsiveHeight = (percentage) => (height * percentage) / 100;
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FBE7',
+        backgroundColor: '#FCF2D6',
     },
-    itemContainer:{
-        alignItems:'center' ,
-        margin:20,
-        marginTop:responsiveWidth(4), 
+    itemContainer: {
+        alignItems: 'center',
+        margin: 20,
+        flex: 1,
+        paddingBottom: responsiveWidth(5),
     },
-    button:{
+    button: {
         width: responsiveWidth(90),
         height: responsiveHeight(7),
-        borderRadius:responsiveWidth(3),
-        
-        backgroundColor:'#FFB200',
-        borderColor:'#FFB200',
-        marginTop:25,
+        borderRadius: responsiveWidth(3),
+        backgroundColor: '#EDD06A',
+        borderColor: '#EDD06A',
+        marginTop: 25,
     },
-    buttonText:{
-        color:'white',
-        fontWeight:'700',
-
-        fontSize: responsiveWidth(4)
+    buttonText: {
+        color: '#0000000',
+        fontWeight: '700',
+        fontSize: responsiveWidth(3.8),
+        fontFamily: 'Montserrat',
     },
-    mainText:{
+    mainText: {
+        fontFamily: 'Montserrat',
         fontSize: responsiveWidth(6),
-
-        fontWeight:'500',
-        padding:10,
+        fontWeight: '700',
+        padding: 10,
     },
-    text:{
+    text: {
         fontSize: responsiveWidth(3),
+        fontFamily: 'Montserrat',
     },
-    header:{
-        flexDirection:'row',
-        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
+    header: {
+        flexDirection: 'row',
+        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
+        justifyContent: 'space-between',
+        width: responsiveWidth(100),
     },
-    backBtn:{
-        margin:responsiveWidth(6),
-        width:responsiveWidth(10),
-        height:responsiveHeight(5),
+    backBtn: {
+        margin: responsiveWidth(6),
+        width: responsiveWidth(9),
+        height: responsiveHeight(4.5),
+        backgroundColor: "#ffffffff",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: responsiveWidth(2)
     },
-    progressBar:{
-        backgroundColor:'#FFEC9E',
-        width:responsiveWidth(40),
-        height:responsiveHeight(1),
-        borderRadius:50,
-        margin:responsiveWidth(7.5),
+    progressContainer: {
+        alignItems: 'center'
     },
-    progress:{
-        backgroundColor:'#FFB200',
-        width:responsiveWidth(32),
-        height:responsiveHeight(1),
-        borderRadius:50
+    progressBar: {
+        backgroundColor: '#FDE869',
+        width: responsiveWidth(80),
+        height: responsiveHeight(0.8),
+        borderRadius: 50,
     },
-    continuebtn:{
-        alignItems:'center',
-        flex:1,
-        justifyContent:'flex-end',
-        padding:15
-     },
-    grid: { 
-        flexDirection: "row", 
-        flexWrap: "wrap", 
-        justifyContent: "center" 
+    progress: {
+        backgroundColor: '#C29225',
+        width: responsiveWidth(80),
+        height: responsiveHeight(0.8),
+        borderRadius: 50
+    },
+    continuebtn: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'flex-end',
+        padding: responsiveWidth(1),
+    },
+    grid: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        flex: 1,
+    },
+    interestSection: {
+        width: responsiveWidth(95),
+        height: responsiveHeight(15),
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginLeft: responsiveWidth(10),
+    },
+    titleText: {
+        fontSize: responsiveWidth(4),
+        marginTop: responsiveWidth(6),
+        fontWeight: '700',
+        fontFamily: 'Montserrat',
+        marginLeft: responsiveWidth(5),
     },
     interest: {
-        backgroundColor:'white',
-        borderRadius: responsiveWidth(3),
+        backgroundColor: 'white',
+        borderRadius: responsiveWidth(5),
         padding: 15,
-        margin:responsiveWidth(1),
+        margin: responsiveWidth(1),
         alignItems: "center",
-        flexDirection:'row',
-        width:responsiveWidth(40),
-        height:responsiveHeight(8),
-        alignItems:'center',
-        marginTop:responsiveWidth(2)
+        flexDirection: 'row',
+        height: responsiveHeight(5.5),
+        width: responsiveWidth(42),
+        marginTop: responsiveWidth(2),
+        flexWrap: 'wrap',
+        justifyContent: 'center',
     },
-    selected:{
-        backgroundColor:'#FFB200'
+    selected: {
+        backgroundColor: 'grey',
     },
-    selectedText:{
-        color:'white',
-        fontWeight:'500'
+    selectedText: {
+        color: 'white',
+        fontWeight: '700',
+        fontFamily: 'Montserrat',
     },
-    interestText:{
-        paddingLeft:10,
-        fontSize:responsiveWidth(4)
+    interestText: {
+        paddingLeft: 10,
+        fontSize: responsiveWidth(3.5),
+        fontFamily: 'Montserrat',
+        flexWrap: 'wrap',
+    },
+    scrollview: {
+        paddingBottom: responsiveWidth(120),
+        marginTop: responsiveWidth(2)
+    },
+    selectOf: {
+        position: 'relative',
+        top: responsiveWidth(60),
+        left: responsiveWidth(72)
     }
-})
+});
 
 export default styles;

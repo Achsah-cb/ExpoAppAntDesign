@@ -10,11 +10,15 @@ import YourNameScreen from './screens/YourNameScreen';
 import EmailScreen from './screens/EmailScreen';
 import DobScreen from './screens/DobScreen';
 import GenderScreen from './screens/GenderScreen';
-import LookingForScreen from './screens/LookingForScreen';
+import TimesScreen from './screens/TimesScreen';
 import InterestScreen from './screens/InterestScreen';
 import UploadScreen from './screens/UploadScreen';
+import DmScreen from './screens/DmScreen';
+import MenuScreen from './screens/MenuScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import ChatScreen from './screens/ChatScreen';
 import { UserProvider } from './context/UserContext';
-
+import VerificationScreen from './screens/VerificationScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,9 +35,14 @@ export default function App() {
           <Stack.Screen name='EmailScreen' component={EmailScreen} options={{headerShown:false}}/>
           <Stack.Screen name='DoBScreen' component={DobScreen} options={{headerShown:false}}/>
           <Stack.Screen name='GenderScreen' component={GenderScreen} options={{headerShown:false}}/>
-          <Stack.Screen name='LookingForScreen' component={LookingForScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='TimesScreen' component={TimesScreen} options={{headerShown:false}}/>
           <Stack.Screen name='InterestScreen' component={InterestScreen} options={{headerShown:false}}/>
           <Stack.Screen name='UploadPhotoScreen' component={UploadScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='ChatScreen' component={ChatScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='DmScreen' component={DmScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='MenuScreen' component={MenuScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='SettingsScreen' component={SettingsScreen} options={{headerShown: false}}/>
+          <Stack.Screen name='VerificationScreen' component={VerificationScreen} options={{headerShown: false}}/>
           {/* <Stack.Screen name="PreferenceScreen" component={PreferenceScreen} styles={styles.container} options={{ headerShown: false }} /> */}
           </Stack.Navigator>
        </NavigationContainer>

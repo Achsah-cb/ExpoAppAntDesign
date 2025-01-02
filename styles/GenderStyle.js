@@ -8,7 +8,7 @@ const buttonSize = responsiveWidth(40);
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#F9FBE7',  
+        backgroundColor:'#FCF2D6',  
     },
     itemContainer:{
         alignItems:'center' ,
@@ -26,25 +26,25 @@ const styles = StyleSheet.create({
          width: responsiveWidth(90),
          height: responsiveHeight(7),
          borderRadius:responsiveWidth(3),
-         backgroundColor:'#FFB200',
-         borderColor:'#FFB200',
-        
+         backgroundColor:'#EDD06A',
+         borderColor:'#EDD06A', 
      },
      buttonText:{
          color:'white',
          fontWeight:'700',
- 
+         fontFamily: 'Montserrat',
          fontSize: responsiveWidth(4)
      },
      mainText:{
          fontSize: responsiveWidth(6),
- 
-         fontWeight:'500',
+         fontFamily: 'Montserrat',
+         fontWeight:'700',
          padding:10,
      },
      text:{
          fontSize: responsiveWidth(3),
-         marginBottom:responsiveWidth(5)
+         marginBottom:responsiveWidth(5),
+         fontFamily: 'Montserrat',
      },
    
     genderButton:{
@@ -52,35 +52,50 @@ const styles = StyleSheet.create({
         height: buttonSize, 
         borderRadius: buttonSize / 2,
         margin:20,
-        backgroundColor:'white',
+        backgroundColor:'#EDD06A',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        shadowColor:'#000000',
+        shadowOffset:{
+            width:0,
+            height:10
+        },
+        shadowOpacity:0.2,
+        elevation:10
     },
     activeBtn:{
-        backgroundColor:'#FFB200',
+        backgroundColor:'#C29225',
     },
-    header:{
-        flexDirection:'row',
-        ...Platform.select({ ios :{marginTop:0, }, android :{marginTop:30}}),
+    header: {
+        flexDirection: 'row',
+        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
+        justifyContent: 'space-between',
+        width: responsiveWidth(100),
     },
-    backBtn:{
-        margin:responsiveWidth(6),
-        width:responsiveWidth(10),
-        height:responsiveHeight(5),
+    backBtn: {
+        margin: responsiveWidth(6),
+        width: responsiveWidth(9),
+        height: responsiveHeight(4.5),
+        backgroundColor: "#ffffffff",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: responsiveWidth(2)
     },
-    progressBar:{
-        backgroundColor:'#FFEC9E',
-        width:responsiveWidth(40),
-        height:responsiveHeight(1),
-        borderRadius:50,
-        margin:responsiveWidth(7.5),
+    progressContainer: {
+        alignItems: 'center'
     },
-    progress:{
-        backgroundColor:'#FFB200',
-        width:responsiveWidth(19),
-        height:responsiveHeight(1),
-        borderRadius:50
-    }
+    progressBar: {
+        backgroundColor: '#FDE869',
+        width: responsiveWidth(80),
+        height: responsiveHeight(0.8),
+        borderRadius: 50,
+    },
+    progress: {
+        backgroundColor: '#C29225',
+        width: responsiveWidth(80),
+        height: responsiveHeight(0.8),
+        borderRadius: 50
+    },
 })
 
 export default styles;
