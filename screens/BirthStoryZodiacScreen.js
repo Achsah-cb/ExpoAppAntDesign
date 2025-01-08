@@ -50,16 +50,16 @@ const BirthStoryZodiacScreen = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
-            </View>
-            <View style={[styles.progressBar]}>
-            <View style={[styles.progressContainer,{ backgroundColor: theme.colors.primary }]}>
-                <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
-            </View>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806" /></TouchableOpacity>
+      </View>
+      <View style={[styles.progressBar]}>
+        <View style={[styles.progressContainer, { backgroundColor: theme.colors.primary }]}>
+          <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
         </View>
-
+      </View>
+      <ScrollView>
       <View style={styles.InnerContainer}>
         <Text style={[styles.heading, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
           What's Your Birth Story?
@@ -136,7 +136,8 @@ const BirthStoryZodiacScreen = ({ navigation }) => {
             </TouchableOpacity>
           ))}
         </View>
-      </View>
+        </View>
+      </ScrollView>
 
       {/* Next Button */}
       <View style={styles.nextButtonContainer}>
@@ -144,7 +145,7 @@ const BirthStoryZodiacScreen = ({ navigation }) => {
           <Text style={[{ fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]}>Next</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

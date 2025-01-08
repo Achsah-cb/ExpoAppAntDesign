@@ -15,34 +15,34 @@ const styles = StyleSheet.create({
     paddingVertical: responsiveHeight(2),
     overflow: 'scroll'
   },
- header: {
-     flexDirection: 'row',
-     ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 30 } }),
-     justifyContent: 'space-between',
-     width: responsiveWidth(100),
-   },
-   backBtn: {
-     margin: responsiveWidth(4),
-     width: responsiveWidth(9),
-     height: responsiveHeight(4.5),
-     backgroundColor: "#ffffffff",
-     alignItems: "center",
-     justifyContent: "center",
-     borderRadius: responsiveWidth(2)
-   },
-   progressContainer: {
-     width: responsiveWidth(75),
-     height: responsiveHeight(0.8),
-     borderRadius: 50,
-   },
-   progressBar: {
-    alignItems:'center'
-   },
-   progress: {
-     width: responsiveWidth(10),
-     height: responsiveHeight(0.8),
-     borderRadius: 50
-   },
+  header: {
+    flexDirection: 'row',
+    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 30 } }),
+    justifyContent: 'space-between',
+    width: responsiveWidth(100),
+  },
+  backBtn: {
+    margin: responsiveWidth(4),
+    width: responsiveWidth(9),
+    height: responsiveHeight(4.5),
+    backgroundColor: "#ffffffff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: responsiveWidth(2)
+  },
+  progressContainer: {
+    width: responsiveWidth(75),
+    height: responsiveHeight(0.8),
+    borderRadius: 50,
+  },
+  progressBar: {
+    alignItems: 'center'
+  },
+  progress: {
+    width: responsiveWidth(10),
+    height: responsiveHeight(0.8),
+    borderRadius: 50
+  },
   InnerContainer: {
     marginVertical: scale(5)
   },
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   nextButtonContainer: {
     alignItems: 'center',
-    marginBottom: responsiveHeight(5),
+    marginBottom: responsiveHeight(1),
   },
   nextButton: {
     width: '100%',
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: scale(3),
     elevation: 3,
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'flex-end',
+    padding: responsiveWidth(1),
   },
 });
 

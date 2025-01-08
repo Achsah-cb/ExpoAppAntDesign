@@ -48,9 +48,8 @@ const styles = StyleSheet.create({
     marginVertical: scale(5)
   },
   title: {
-    fontSize: scale(20),
     textAlign: "center",
-    marginVertical: responsiveHeight(3),
+    marginVertical: responsiveHeight(5),
   },
   sliderContainer: {
     marginVertical: responsiveHeight(2),

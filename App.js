@@ -22,7 +22,6 @@ import DmScreen from './screens/DmScreen';
 import MenuScreen from './screens/MenuScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ChatScreen from './screens/ChatScreen';
-import BottomNavigation from './components/BottomNavigation';
 import { UserProvider } from './context/UserContext';
 import VerificationScreen from './screens/VerificationScreen';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -159,12 +158,6 @@ export default function App() {
                 name="PartnerLocationPreferences"
                 component={PartnerLocationPreferencesScreen}
                 options={{ headerShown: false }}
-              />
-              {/*BottomTabNavigator*/}
-              <Stack.Screen 
-                name="MainTabs" 
-                component={BottomNavigation} 
-                options={{ headerShown: false }} 
               />
             </Stack.Navigator>
           </NavigationContainer>

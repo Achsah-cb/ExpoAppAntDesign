@@ -24,7 +24,7 @@ export default function InterestScreen({ navigation }) {
         { name: "Roadtrips", icons: "Roadtrips" },
         { name: "Mountains", icons: "Mountains" },
     ];
-    const fiteness = [
+    const fitness = [
         { name: "Gym", icons: "Gym" },
         { name: "Swimming", icons: "Swimming" },
         { name: "Cycling", icons: "Cycling" },
@@ -92,7 +92,7 @@ export default function InterestScreen({ navigation }) {
 
     const [selected, setSelected] = useState({
         travelAndAdventure: [],
-        fiteness: [],
+        fitness: [],
         diet: [],
         personality: [],
         relationship: [],
@@ -178,20 +178,20 @@ export default function InterestScreen({ navigation }) {
                     <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Fitness Goals</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
-                            {fiteness.map((item) => (
+                            {fitness.map((item) => (
                                 <TouchableOpacity
                                     key={item.name}
                                     style={[
                                         styles.interest,
-                                        selected.fiteness.includes(item.name) && styles.selected,
+                                        selected.fitness.includes(item.name) && styles.selected,
                                     ]}
-                                    onPress={() => toggleInterest(item.name, "fiteness")}
+                                    onPress={() => toggleInterest(item.name, "fitness")}
                                 >
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
                                             styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.fiteness.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
+                                            selected.fitness.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         margin: responsiveWidth(6),
         width: responsiveWidth(9),
         height: responsiveHeight(4.5),
-        backgroundColor: "#ffffffff",
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: responsiveWidth(2)
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     },
     interest: {
         backgroundColor: 'white',
+        paddingVertical: responsiveHeight(1.5),
         borderRadius: responsiveWidth(5),
         padding: 15,
         margin: responsiveWidth(1),

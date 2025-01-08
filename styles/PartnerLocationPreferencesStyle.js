@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     margin: responsiveWidth(4),
     width: responsiveWidth(9),
     height: responsiveHeight(4.5),
-    backgroundColor: "#ffffffff",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: responsiveWidth(2)
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveWidth(5),
     textAlign: "center",
     marginBottom: responsiveHeight(2),
-    marginTop:responsiveHeight(4)
+    marginTop:responsiveHeight(4),
+    paddingVertical: responsiveHeight(2)
   },
   sliderContainer: {
     alignItems: "center",
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     flex: 1,
+    marginVertical: responsiveHeight(4)
   },
   nextButton: {
     width: responsiveWidth(80),

@@ -103,10 +103,10 @@ const PartnerLocationPreferencesScreen = ({navigation}) => {
         >
           <Text
             style={[
-              styles.nextButtonText,
               {
-                color: theme.colors.buttonText,
-                fontFamily: theme.fontfamily.bold,
+                color: theme.colors.text,
+                fontSize: theme.fontsize.medium,
+                fontFamily: theme.fontfamily.semibold,
               },
             ]}
           >
