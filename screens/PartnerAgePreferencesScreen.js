@@ -4,8 +4,9 @@ import { ThemeContext } from '../context/ThemeContext';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from '../styles/PartnerAgePreferencesStyle';
+import { Ionicons } from "@expo/vector-icons";
 
-const PartnerAgePreferencesScreen = ({ navigation = () => {} }) => {
+const PartnerAgePreferencesScreen = ({ navigation = () => { } }) => {
   const theme = useContext(ThemeContext);
   const [ageRange, setAgeRange] = useState([18, 80]);
 
@@ -20,13 +21,12 @@ const PartnerAgePreferencesScreen = ({ navigation = () => {} }) => {
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-            <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Icon name="arrowleft" size={styles.iconSize} style={[{ color: theme.colors.secondary }]} />
-        </TouchableOpacity>
-
-        <View style={[styles.progressBar, { backgroundColor: theme.colors.primary }]}>
-          <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]} />
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806" /></TouchableOpacity>
+      </View>
+      <View style={[styles.progressBar]}>
+        <View style={[styles.progressContainer, { backgroundColor: theme.colors.primary }]}>
+          <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
         </View>
       </View>
 

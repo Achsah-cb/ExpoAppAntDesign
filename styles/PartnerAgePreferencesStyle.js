@@ -18,29 +18,31 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 5 } }),
+    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 30 } }),
+    justifyContent: 'space-between',
+    width: responsiveWidth(100),
   },
   backBtn: {
-    marginTop: Platform.OS === "android" ? responsiveHeight(3) : responsiveHeight(1),
-    marginBottom: responsiveHeight(2),
+    margin: responsiveWidth(4),
+    width: responsiveWidth(9),
+    height: responsiveHeight(4.5),
+    backgroundColor: "#ffffffff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: responsiveWidth(2)
   },
-  iconSize: scale(23),
-  progressBarContainer: {
-    marginVertical: responsiveHeight(2),
+  progressContainer: {
+    width: responsiveWidth(75),
+    height: responsiveHeight(0.8),
+    borderRadius: 50,
   },
   progressBar: {
-    width: progressScale(65),
-    height: progressScale(2),
-    alignSelf: 'center',
-    borderRadius: scale(50),
-    marginBottom: scale(0),
-    marginTop: 10,
-    marginLeft: scale(30)
+    alignItems: 'center'
   },
   progress: {
-    width: progressScale(12),
-    height: progressScale(2),
-    borderRadius: scale(50),
+    width: responsiveWidth(30),
+    height: responsiveHeight(0.8),
+    borderRadius: 50
   },
   InnerContainer: {
     marginVertical: scale(5)

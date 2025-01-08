@@ -14,14 +14,14 @@ import { Ionicons } from "@expo/vector-icons";
 
 import styles from "../styles/PartnerLocationPreferencesStyle";
 
-const PartnerLocationPreferencesScreen = () => {
+const PartnerLocationPreferencesScreen = ({navigation}) => {
   const theme = useTheme();
   const [distanceRange, setDistanceRange] = useState([5, 15]);
 
   const onValuesChange = (values) => {
     setDistanceRange(values);
   };
-}
+
 
   return (
     <ScrollView
@@ -32,14 +32,7 @@ const PartnerLocationPreferencesScreen = () => {
     >
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Icon name="arrowleft" size={styles.backButtonIconSize} style={[{ color: theme.colors.secondary }]} />
-        </TouchableOpacity>
-
-        <View style={[styles.progressBar, { backgroundColor: theme.colors.primary }]}>
-          <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]} />
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806" /></TouchableOpacity>
-      </View>
       </View>
       <View style={[styles.progressBar]}>
         <View style={[styles.progressContainer, { backgroundColor: theme.colors.primary }]}>
@@ -124,5 +117,5 @@ const PartnerLocationPreferencesScreen = () => {
     </ScrollView>
   )
 
-
+}
 export default PartnerLocationPreferencesScreen;

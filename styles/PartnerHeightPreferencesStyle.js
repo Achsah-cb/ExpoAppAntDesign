@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   progress: {
-    width: responsiveWidth(17),
+    width: responsiveWidth(25),
     height: responsiveHeight(0.8),
     borderRadius: 50
   },
