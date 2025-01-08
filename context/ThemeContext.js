@@ -1,23 +1,32 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 
-// Create the Theme Context
 export const ThemeContext = createContext();
 
+export const useTheme = () => useContext(ThemeContext);
+
 export const ThemeProvider = ({ children }) => {
-    // State to manage the theme colors
-    const [theme, setTheme] = useState({
-        primaryColor: '#FFB200', // Default Primary Color
-        secondaryColor: '#F9FBE7', // Default Secondary Color
-    });
+  const theme = {
+    colors: {
+      background: '#FCF2D6',
+      text: '#474646',
+      primary: '#EDD06A',
+      secondary: '#C29225',
+      tertiary:'#FBE497'
+    },
+    fontsize: {
+      smaller: 10,
+      small: 16,
+      medium: 18,
+      large: 24,
+    },
+    fontfamily: {
+      regular: "Montserrat-Regular",
+      bold: "Montserrat-Bold",
+      light: "Montserrat-Light",
+      medium: "Montserrat-Medium",
+      semibold: "Montserrat-SemiBold"
+    }
+  };
 
-    // Function to update the theme colors
-    const updateTheme = (newTheme) => {
-        setTheme(newTheme);
-    };
-
-    return (
-        <ThemeContext.Provider value={{ theme, updateTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };

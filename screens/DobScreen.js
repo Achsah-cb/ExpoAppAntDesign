@@ -5,11 +5,13 @@ import { Ionicons } from "react-native-vector-icons";
 import { UserContext } from "../context/UserContext";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
 import styles from "../styles/DobStyle";
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function DobScreen({ navigation }) {
     const { updateUserData } = useContext(UserContext);
     const [selectAge, setSelectAge] = useState(18);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const theme = useContext(ThemeContext);
 
     const ages = Array.from({ length: 70 - 18 + 1 }, (_, i) => i + 18);
 
@@ -27,9 +29,9 @@ export default function DobScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
@@ -37,8 +39,8 @@ export default function DobScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.itemContainer}>
-                <Text style={styles.mainText}>How Old Are You?</Text>
-                <Text style={styles.text}>Please provide your age in years</Text>
+                <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>How Old Are You?</Text>
+                <Text style={[styles.text,{ fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>Please provide your age in years</Text>
                 <View style={styles.box}></View>
                 <View style={styles.scrollpicker}>
                    
@@ -80,9 +82,9 @@ export default function DobScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <Button style={styles.Button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>Continue</Text>
-                </Button>
+            <Button style={[styles.Button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}>
+                <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue
+                    </Text></Button>
             </View>
         </SafeAreaView>
     );

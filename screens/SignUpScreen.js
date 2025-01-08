@@ -7,53 +7,52 @@ import styles from '../styles/SignUpStyle';
 import { ThemeContext } from '../context/ThemeContext';
 
 const SignUpScreen = ({ navigation }) => {
-    const { theme } = useContext(ThemeContext); // Get theme from ThemeContext
+  const theme  = useContext(ThemeContext);
 
-    return (
-        <ScrollView contentContainerStyle={[styles.container, { backgroundColor: theme.secondaryColor }]}>
-            {/* Logo */}
-            <View style={styles.logo}>
-                <AppLogo width={115} height={43} />
-            </View>
+  if (!theme) {
+    console.error('Theme context is not provided.');
+    return null;
+  }
 
-            {/* Background Image */}
-            <View style={styles.imagesContainer}>
-                <LoginBg style={styles.wave} />
-            </View>
+  return (
+    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: theme.colors.background }]}>
+      
+      <View style={styles.imagesContainer}>
+        <LoginBg style={styles.wave} />
+      </View>
 
-            {/* Title & Description */}
-            <View>
-                <Text style={styles.subTitle}>Discover Love Where Your Story Begins.</Text>
-                <Text style={styles.description}>
-                    Join us to discover your ideal partner and ignite the sparks of romance in your journey.
-                </Text>
-            </View>
+      <View>
+        <Text style={[styles.subTitle, { fontFamily: theme.fontfamily.semibold, color: theme.colors.text }]}>
+          Discover Love Where Your Story Begins.
+        </Text>
+        <Text style={[styles.description, { fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>
+          Join us to discover your ideal partner and ignite the sparks of romance in your journey.
+        </Text>
+      </View>
 
-            {/* Login with Phone Button */}
-            <TouchableOpacity
-                style={[styles.LoginwithPhoneContainer, { backgroundColor: theme.primaryColor }]}
-                onPress={() => navigation.navigate('LoginScreen')}
-            >
-                <View style={[styles.iconView, { backgroundColor: theme.secondaryColor }]}>
-                    <Icon name="phone" size={20} color={theme.primaryColor} style={styles.phoneIcon} />
-                </View>
-                <View style={styles.buttonView}>
-                    <Text style={[styles.buttonText, { color: theme.secondaryColor }]}>Login with Phone</Text>
-                </View>
-            </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.LoginwithPhoneContainer, { backgroundColor: theme.colors.primary }]}
+        onPress={() => navigation.navigate('LoginScreen')}
+      >
+          <Icon name="phone" size={20} color={theme.colors.text} style={styles.phoneIcon} />
+        <View style={styles.buttonView}>
+          <Text style={[styles.buttonText, { color: theme.colors.text, fontFamily: theme.fontfamily.semibold }]}>
+            Login with Phone
+          </Text>
+        </View>
+      </TouchableOpacity>
 
-            {/* Footer */}
-            <Text style={styles.footerText}>
-                Don't have an account?{' '}
-                <Text
-                    style={[styles.signUpText, { color: theme.primaryColor }]}
-                    onPress={() => navigation.navigate('YourNameScreen')}
-                >
-                    Sign Up
-                </Text>
-            </Text>
-        </ScrollView>
-    );
+      <Text style={[styles.footerText, { fontFamily: theme.fontfamily.regular, color: theme.colors.text, fontSize: theme.fontsize.medium }]}>
+        Don't have an account?{' '}
+        <Text
+          style={[styles.signUpText, { color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]}
+          onPress={() => navigation.navigate('YourNameScreen')}
+        >
+          Sign Up
+        </Text>
+      </Text>
+    </ScrollView>
+  );
 };
 
 export default SignUpScreen;

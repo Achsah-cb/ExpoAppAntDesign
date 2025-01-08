@@ -1,3 +1,5 @@
+import { executeOnUIRuntimeSync } from 'react-native-reanimated';
+
 // Import all your SVG files and assign them specific names
 export { default as Backpacking } from '../assets/icons-svg/backpack.svg';
 export { default as Beaches } from '../assets/icons-svg/beaches.svg';
@@ -19,3 +21,10 @@ export { default as Vegetarian} from '../assets/icons-svg/veg.svg';
 export { default as Vegan } from '../assets/icons-svg/vegan.svg';
 
 export { default as HeartMan } from '../assets/icons-svg/heartman.svg';
+export { default as Wingman } from '../assets/icons-svg/wingman.svg';
+export { default as Payment } from '../assets/icons-svg/payment.svg';
+export { default as Dollar } from '../assets/icons-svg/dollar.svg';
+
+export { default as ForYou } from '../assets/icons-svg/foryou.svg';
+export { default as Chats } from '../assets/icons-svg/chats.svg';
+export { default as ProfileIcon } from '../assets/icons-svg/profile.svg';

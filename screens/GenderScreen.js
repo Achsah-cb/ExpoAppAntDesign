@@ -4,6 +4,7 @@ import { Button } from '@ant-design/react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../context/UserContext";
 import styles from "../styles/GenderStyle";
+import { ThemeContext } from '../context/ThemeContext';
 
 const { width, height } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
@@ -11,7 +12,7 @@ export const responsiveWidth = (percentage) => (width * percentage) / 100;
 export default function GenderScreen({navigation}){
     
     const iconSize = responsiveWidth(10)
-
+    const theme = useContext(ThemeContext);
     const [isActive, setIsActive] = useState(null);
     const { updateUserData } = useContext(UserContext);
 
@@ -25,9 +26,9 @@ export default function GenderScreen({navigation}){
         }
     };
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} /></TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
@@ -36,20 +37,20 @@ export default function GenderScreen({navigation}){
             </View>
             <View style={styles.itemContainer}>
             
-                <Text style={styles.mainText}>What's Your Gender?</Text>
-                <Text style={styles.text}>Tell us about your gender</Text>
+            <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>What's Your Gender?</Text>
+            <Text style={[styles.text,{ fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>Tell us about your gender</Text>
         
-                <TouchableOpacity style={[styles.genderButton, isActive === 'button1' && styles.activeBtn]} onPress={()=>setIsActive('button1')}>
+                <TouchableOpacity style={[styles. genderButton,{ backgroundColor: theme.colors.primary }, isActive === 'button1' && { backgroundColor: theme.colors.secondary }]} onPress={()=>setIsActive('button1')}>
                     <Ionicons name="male" size={iconSize} padding={20}/>
-                    <Text style={{fontWeight:'500',fontSize:responsiveWidth(3)}}>Male</Text>
+                    <Text style={[{fontWeight:'500',fontSize:responsiveWidth(3)},{ color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Male</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.genderButton, isActive === 'button2' && styles.activeBtn]} onPress={()=>setIsActive('button2')}>
+                <TouchableOpacity style={[styles. genderButton,{ backgroundColor: theme.colors.primary }, isActive === 'button2' && { backgroundColor: theme.colors.secondary }]} onPress={()=>setIsActive('button2')}>
                     <Ionicons name="female" size={iconSize} padding={20}/>
-                    <Text style={{fontWeight:'500',fontSize:responsiveWidth(3)}}>Female</Text>
+                    <Text style={[{fontWeight:'500',fontSize:responsiveWidth(3)},{ color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Female</Text>
                 </TouchableOpacity>      
             </View>
             <View style={styles.continuebtn}>
-                <Button style={styles.Button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
+            <Button style={[styles.Button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
             </View>
         </SafeAreaView>
     )

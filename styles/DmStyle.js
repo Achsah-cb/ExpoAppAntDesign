@@ -11,9 +11,9 @@ const styles = StyleSheet.create({
   },
   messageBox: {
     width: responsiveWidth(100),
-    height: responsiveHeight(75),
+    height: responsiveHeight(65),
     marginTop: responsiveWidth(10),
-    marginBottom: responsiveWidth(10),
+    marginBottom: responsiveWidth(0),
     backgroundColor: '#F3DC98',
     borderRadius: responsiveWidth(8)
   },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveWidth(5),
     marginRight: responsiveWidth(5),
     backgroundColor: '#EDD06A',
-    maxWidth: '70%',
+    maxWidth: '80%',
 
   },
   message: {
@@ -38,9 +38,12 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
+    width: responsiveWidth(100),
     padding: responsiveWidth(5),
-    marginBottom: responsiveWidth(10),
-    left: responsiveWidth(4),
+    paddingLeft: responsiveWidth(10),
+    position: 'relative',
+    top: responsiveWidth(15),
+    backgroundColor: '#F3DC98'
   },
   input: {
     flex: 1,
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: responsiveWidth(2),
     paddingHorizontal: 10,
+
   },
   header: {
     flexDirection: 'row',

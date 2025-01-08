@@ -10,13 +10,14 @@ import {
     Cycling, Flexible, Friendship, Gym, OpenToAnything,
     Running, SeriousRelationship, Swimming, Vegan, Vegetarian
 } from "../components/icons";
+import { ThemeContext } from '../context/ThemeContext';
 
 const { width } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
 
 export default function InterestScreen({ navigation }) {
     const iconSize = responsiveWidth(5);
-
+    const theme = useContext(ThemeContext);
     const travelAndAdventure = [
         { name: "Backpacking", icons: "Backpacking" },
         { name: "Beaches", icons: "Beaches" },
@@ -40,7 +41,7 @@ export default function InterestScreen({ navigation }) {
         { name: "Extrovert", icons: "Extrovert" },
     ];
     const relationship = [
-        { name: "Casual Dating", icons: "CasualDatting" },
+        { name: "CasualDating", icons: "CasualDatting" },
         { name: "Friendship", icons: "Friendship" },
         { name: "Serious", icons: "SeriousRelationship" },
         { name: "Anything", icons: "OpenToAnything" },
@@ -129,9 +130,9 @@ export default function InterestScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} /></TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
@@ -140,14 +141,14 @@ export default function InterestScreen({ navigation }) {
             </View>
             <View style={styles.itemContainer}>
 
-                <Text style={styles.mainText}>Your Interests</Text>
-                <Text style={styles.text}>Pick 6 things you love, it will help to</Text>
-                <Text style={styles.text}>match with people who have similar</Text>
-                <Text style={styles.text}>interests</Text>
+            <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>Your Interests</Text>
+            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>Pick 6 things you love, it will help to</Text>
+            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>match with people who have similar</Text>
+            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>interests</Text>
 
                 <ScrollView style={styles.scrollview}>
                     {/* Travel & Adventure */}
-                    <Text style={styles.titleText}>Travel & Adventure</Text>
+                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Travel & Adventure</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
                             {travelAndAdventure.map((item) => (
@@ -162,8 +163,8 @@ export default function InterestScreen({ navigation }) {
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
-                                            styles.interestText,
-                                            selected.travelAndAdventure.includes(item.name) && styles.selectedText,
+                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
+                                            selected.travelAndAdventure.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}
@@ -174,7 +175,7 @@ export default function InterestScreen({ navigation }) {
                     </View>
 
                     {/* Fitness Goals */}
-                    <Text style={styles.titleText}>Fitness Goals</Text>
+                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Fitness Goals</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
                             {fiteness.map((item) => (
@@ -189,8 +190,8 @@ export default function InterestScreen({ navigation }) {
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
-                                            styles.interestText,
-                                            selected.fiteness.includes(item.name) && styles.selectedText,
+                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
+                                            selected.fiteness.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}
@@ -201,7 +202,7 @@ export default function InterestScreen({ navigation }) {
                     </View>
 
                     {/* Diet Preferences */}
-                    <Text style={styles.titleText}>Diet Preferences</Text>
+                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Diet Preferences</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
                             {diet.map((item) => (
@@ -216,8 +217,8 @@ export default function InterestScreen({ navigation }) {
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
-                                            styles.interestText,
-                                            selected.diet.includes(item.name) && styles.selectedText,
+                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
+                                            selected.diet.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}
@@ -228,7 +229,7 @@ export default function InterestScreen({ navigation }) {
                     </View>
 
                     {/* Personality Traits */}
-                    <Text style={styles.titleText}>Personality Traits</Text>
+                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Personality Traits</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
                             {personality.map((item) => (
@@ -243,8 +244,8 @@ export default function InterestScreen({ navigation }) {
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
-                                            styles.interestText,
-                                            selected.personality.includes(item.name) && styles.selectedText,
+                                            styles.interestText,styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
+                                            selected.personality.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}
@@ -255,7 +256,7 @@ export default function InterestScreen({ navigation }) {
                     </View>
 
                     {/* Relationship Preferences */}
-                    <Text style={styles.titleText}>Relationship Preferences</Text>
+                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Relationship Preferences</Text>
                     <View style={styles.grid}>
                         <View style={styles.interestSection}>
                             {relationship.map((item) => (
@@ -270,8 +271,8 @@ export default function InterestScreen({ navigation }) {
                                     {getIcon(item.icons)}
                                     <Text
                                         style={[
-                                            styles.interestText,
-                                            selected.relationship.includes(item.name) && styles.selectedText,
+                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
+                                            selected.relationship.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
                                         ]}
                                     >
                                         {item.name}
@@ -284,7 +285,7 @@ export default function InterestScreen({ navigation }) {
             </View>
             <View style={styles.selectOf}><Text style={{ fontSize: responsiveWidth(3.5), fontWeight: "700", color: "#626161" }}>{Object.values(selected).flat().length}/5 Selected</Text></View>
             <View style={styles.continuebtn}>
-                <Button style={styles.button} onPress={handleSubmit}><Text style={styles.buttonText}>Continue</Text></Button>
+            <Button style={[styles.button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
             </View>
         </SafeAreaView>
     );

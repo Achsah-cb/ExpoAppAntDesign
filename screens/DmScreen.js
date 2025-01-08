@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +11,7 @@ export default function DmScreen({ route }) {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+  const flatListRef = useRef();
 
   useEffect(() => {
     // Fetch user details and messages
@@ -41,13 +42,20 @@ export default function DmScreen({ route }) {
 
   const sendMessage = () => {
     if (text.trim()) {
-      setMessages([
-        ...messages,
-        { id: Date.now().toString(), text, sentByMe: true }, // Mark the message as sent by the user
-      ]);
+      const newMessage = {
+        id: Date.now().toString(),
+        text,
+        sentByMe: true, // Mark the message as sent by the user
+      };
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setText('');
     }
   };
+
+  useEffect(() => {
+    // Scroll to bottom when messages change
+    flatListRef.current?.scrollToEnd({ animated: true });
+  }, [messages]);
 
   if (loading) {
     return (
@@ -80,6 +88,7 @@ export default function DmScreen({ route }) {
         <Text style={styles.dayText}>Today</Text>
         <FlatList
           data={messages}
+          ref={flatListRef}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View
@@ -88,11 +97,11 @@ export default function DmScreen({ route }) {
                 {
                   alignSelf: item.sentByMe ? 'flex-end' : 'flex-start',
                   backgroundColor: item.sentByMe ? '#EDD06A' : '#EAE6E6',
-                  borderTopLeftRadius:10,
+                  borderTopLeftRadius: 10,
                   borderTopRightRadius: 10,
                   borderBottomLeftRadius: item.sentByMe ? 10 : 0,
                   borderBottomRightRadius: item.sentByMe ? 0 : 10,
-                  margin:10
+                  margin: 10,
                 },
               ]}
             >
@@ -111,6 +120,7 @@ export default function DmScreen({ route }) {
             placeholder="Type a message"
             value={text}
             onChangeText={setText}
+            onSubmitEditing={sendMessage}
           />
           <TouchableOpacity title="Send" onPress={sendMessage} style={styles.sendBtn}>
             <Ionicons name="send-sharp" size={30} color="black" />

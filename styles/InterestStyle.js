@@ -7,7 +7,6 @@ export const responsiveHeight = (percentage) => (height * percentage) / 100;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FCF2D6',
     },
     itemContainer: {
         alignItems: 'center',
@@ -19,25 +18,16 @@ const styles = StyleSheet.create({
         width: responsiveWidth(90),
         height: responsiveHeight(7),
         borderRadius: responsiveWidth(3),
-        backgroundColor: '#EDD06A',
-        borderColor: '#EDD06A',
         marginTop: 25,
-    },
-    buttonText: {
-        color: '#0000000',
-        fontWeight: '700',
-        fontSize: responsiveWidth(3.8),
-        fontFamily: 'Montserrat',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.1,
+        shadowRadius: responsiveWidth(2),
+        elevation: 5,
+        borderWidth:responsiveWidth(0)
     },
     mainText: {
-        fontFamily: 'Montserrat',
-        fontSize: responsiveWidth(6),
-        fontWeight: '700',
-        padding: 10,
-    },
-    text: {
-        fontSize: responsiveWidth(3),
-        fontFamily: 'Montserrat',
+        padding: responsiveWidth(5),
     },
     header: {
         flexDirection: 'row',
@@ -65,7 +55,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         backgroundColor: '#C29225',
-        width: responsiveWidth(80),
+        width: responsiveWidth(60),
         height: responsiveHeight(0.8),
         borderRadius: 50
     },
@@ -89,10 +79,7 @@ const styles = StyleSheet.create({
         marginLeft: responsiveWidth(10),
     },
     titleText: {
-        fontSize: responsiveWidth(4),
         marginTop: responsiveWidth(6),
-        fontWeight: '700',
-        fontFamily: 'Montserrat',
         marginLeft: responsiveWidth(5),
     },
     interest: {
@@ -109,26 +96,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selected: {
-        backgroundColor: 'grey',
-    },
-    selectedText: {
-        color: 'white',
-        fontWeight: '700',
-        fontFamily: 'Montserrat',
+        backgroundColor: '#EDD06A',
     },
     interestText: {
-        paddingLeft: 10,
-        fontSize: responsiveWidth(3.5),
-        fontFamily: 'Montserrat',
+        paddingLeft: responsiveWidth(2),
         flexWrap: 'wrap',
     },
     scrollview: {
-        paddingBottom: responsiveWidth(120),
+        ...Platform.select({ ios: { paddingBottom: responsiveWidth(110) }, android: { paddingBottom: responsiveWidth(116) } }),
         marginTop: responsiveWidth(2)
     },
     selectOf: {
         position: 'relative',
-        top: responsiveWidth(60),
+        ...Platform.select({ ios: { top: responsiveWidth(60) }, android: { top: responsiveWidth(65) } }),
         left: responsiveWidth(72)
     }
 });

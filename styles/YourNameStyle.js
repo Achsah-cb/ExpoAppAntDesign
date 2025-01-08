@@ -1,58 +1,45 @@
-import { StyleSheet, Platform , Dimensions } from "react-native";
+import { StyleSheet, Platform, Dimensions } from "react-native";
 
 const { width, height } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
 export const responsiveHeight = (percentage) => (height * percentage) / 100;
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#FCF2D6'   
+    container: {
+        flex: 1,
     },
-    itemContainer:{
-       alignItems:'center' ,
-       margin:20,
-       marginTop:responsiveWidth(4),
-          
+    itemContainer: {
+        alignItems: 'center',
+        margin: 20,
+        marginTop: responsiveWidth(4),
     },
-    Input:{
+    Input: {
         width: responsiveWidth(90),
         height: responsiveHeight(7),
-        fontSize: responsiveWidth(3.5),
-        borderRadius:responsiveWidth(3),
-        padding:responsiveWidth(3),
-        fontFamily: 'Montserrat',
-        backgroundColor:'white',
-        borderColor:'#EDD06A',
-        borderWidth:1,
-
+        borderRadius: responsiveWidth(3),
+        padding: responsiveWidth(3),
+        backgroundColor: 'white',
         marginTop: responsiveWidth(7),
-        
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.1,
+        shadowRadius: responsiveWidth(2),
+        elevation: 10,
     },
-    Button:{
+    Button: {
         width: responsiveWidth(90),
         height: responsiveHeight(7),
-        borderRadius:responsiveWidth(3),
-        
-        backgroundColor:'#EDD06A',
-        borderColor:'#EDD06A',
-        marginTop:25,
+        borderRadius: responsiveWidth(3),
+        marginTop: 25,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.1,
+        shadowRadius: responsiveWidth(2),
+        elevation: 5,
+        borderWidth:responsiveWidth(0)
     },
-    buttonText:{
-        color:'white',
-        fontWeight:'700',
-        fontFamily: 'Montserrat',
-        fontSize: responsiveWidth(4)
-    },
-    mainText:{
-        fontSize: responsiveWidth(6),
-        fontFamily: 'Montserrat',
-        fontWeight:'700',
-        padding:10,
-    },
-    text:{
-        fontSize: responsiveWidth(3),
-        fontFamily: 'Montserrat',
+    mainText: {
+        marginTop: responsiveWidth(15),
     },
     header: {
         flexDirection: 'row',
@@ -67,7 +54,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffffff",
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: responsiveWidth(2)
+        borderRadius: responsiveWidth(2),
     },
     progressContainer: {
         alignItems: 'center'
@@ -80,7 +67,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         backgroundColor: '#C29225',
-        width: responsiveWidth(80),
+        width: responsiveWidth(15),
         height: responsiveHeight(0.8),
         borderRadius: 50
     },

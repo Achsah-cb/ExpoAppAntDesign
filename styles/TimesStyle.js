@@ -1,5 +1,4 @@
 import { StyleSheet, Platform, Dimensions } from "react-native";
-import { RadioButton } from "react-native-paper";
 
 const { width, height } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
@@ -9,7 +8,6 @@ const selectSize = responsiveWidth(6);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FCF2D6',
     },
     itemContainer: {
         alignItems: 'center',
@@ -26,39 +24,24 @@ const styles = StyleSheet.create({
         width: responsiveWidth(90),
         height: responsiveHeight(7),
         borderRadius: responsiveWidth(3),
-        backgroundColor: '#EDD06A',
-        borderColor: '#EDD06A',
-
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontFamily: 'Montserrat',
-        fontSize: responsiveWidth(4)
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.1,
+        shadowRadius: responsiveWidth(2),
+        elevation: 5,
+        borderWidth:responsiveWidth(0)
     },
     mainText: {
-        fontSize: responsiveWidth(6),
-        fontFamily: 'Montserrat',
-        fontWeight: '700',
-
+        marginTop: responsiveWidth(10),
     },
     mainText2: {
         marginBottom: responsiveWidth(10),
-        fontSize: responsiveWidth(6),
-        fontFamily: 'Montserrat',
-        fontWeight: '700',
     },
     text: {
-        fontSize: responsiveWidth(4),
-        fontFamily: 'Montserrat',
         marginTop: responsiveWidth(3),
-        fontWeight: '700'
     },
     text2: {
-        fontSize: responsiveWidth(4),
         marginBottom: responsiveWidth(5),
-        fontFamily: 'Montserrat',
-        fontWeight: '700'
     },
     header: {
         flexDirection: 'row',
@@ -86,7 +69,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         backgroundColor: '#C29225',
-        width: responsiveWidth(80),
+        width: responsiveWidth(40),
         height: responsiveHeight(0.8),
         borderRadius: 50
     },
@@ -138,11 +121,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 10,
     },
-    radioText: {
-        fontSize: responsiveWidth(4),
-        fontFamily: 'Montserrat',
-        fontWeight: '690'
-    },
     radioButton: {
         height: 24,
         width: 24,
@@ -156,8 +134,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     timeLabelText: {
-        fontSize: responsiveWidth(2.5),
-        fontWeight: '600',
         marginBottom: responsiveWidth(10),
     },
     radio: {

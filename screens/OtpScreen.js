@@ -1,11 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useState, useRef, useContext } from 'react';
+import { View, Text,ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { ThemeContext } from '../context/ThemeContext';
 import styles from '../styles/OtpStyle';
+import { Ionicons } from "@expo/vector-icons";
 
 const OtpScreen = ({ navigation }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
 
+  const theme = useContext(ThemeContext);
+
+  if (!theme) {
+    console.error('Theme context is not provided.');
+    return null;
+  }
 
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -35,50 +43,49 @@ const OtpScreen = ({ navigation }) => {
 
   const handleVerify = () => {
     console.log('OTP Entered:', otp.join(''));
-    //navigation.navigate('YourNameScreen');
+    navigation.navigate('BirthStoryZodiac');
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back-outline" size={30} color="#000" />
-      </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
+            </View>
+            <View style={[styles.progressBar]}>
+            <View style={[styles.progressContainer,{ backgroundColor: theme.colors.primary }]}>
+                <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
+            </View>
+        </View>
+      <View style={styles.InnerContainer}>
+        <Text style={[styles.title, { fontFamily: theme.fontfamily.bold, color: theme.colors.text, fontSize: theme.fontsize.large }]}>Verification Code</Text>
+        <Text style={[styles.subtitle, { fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>Please enter code we just sent to</Text>
+        <Text style={styles.phoneNumber}>+91 99292 77633</Text>
 
-      <View style={styles.progressBarContainer}>
-        <View style={styles.progressBar} />
+        <View style={styles.otpContainer}>
+          {otp.map((digit, index) => (
+            <TextInput
+              key={index}
+              ref={inputRefs[index]}
+              style={styles.otpInput}
+              keyboardType="numeric"
+              maxLength={1}
+              value={digit}
+              onChangeText={(text) => handleInputChange(text, index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
+              returnKeyType={index < otp.length - 1 ? 'next' : 'done'}
+            />
+          ))}
+        </View>
       </View>
-      </View>
-      
-      <Text style={styles.title}>Verification Code</Text>
-      <Text style={styles.subtitle}>Please enter code we just sent to</Text>
-      <Text style={styles.phoneNumber}>+91 99292 77633</Text>
-
-      <View style={styles.otpContainer}>
-        {otp.map((digit, index) => (
-          <TextInput
-            key={index}
-            ref={inputRefs[index]}
-            style={styles.otpInput}
-            keyboardType="numeric"
-            maxLength={1}
-            value={digit}
-            onChangeText={(text) => handleInputChange(text, index)}
-            onKeyPress={(e) => handleKeyPress(e, index)}
-            returnKeyType={index < otp.length - 1 ? 'next' : 'done'}
-          />
-        ))}
-      </View>
-
-      <Text style={styles.resendText}>Didn’t receive OTP?</Text>
+      <Text style={[styles.resendText, { fontFamily: theme.fontfamily.semibold, color: theme.colors.text }]}>Didn't receive OTP?</Text>
       <TouchableOpacity onPress={handleResendCode}>
-        <Text style={styles.resendButton}>Resend Code</Text>
+        <Text style={[styles.resendButton, { fontFamily: theme.fontfamily.semibold, color: theme.colors.secondary }]}>Resend Code</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.verifyButton} onPress={handleVerify}>
-        <Text style={styles.verifyButtonText}>Verify</Text>
+      <TouchableOpacity style={[styles.verifyButton, { color: theme.colors.text, backgroundColor: theme.colors.primary }]} onPress={handleVerify}>
+        <Text style={[{ fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]}>Verify</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

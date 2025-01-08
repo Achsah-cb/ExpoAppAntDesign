@@ -5,16 +5,27 @@ import { Ionicons } from 'react-native-vector-icons';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { UserContext } from "../context/UserContext";
 import styles from "../styles/TimesStyle";
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function TimesScreen({ navigation }) {
     const [selectItem, setSelectItem] = useState(null);
     const [startTime, setStartTime] = useState(0);
     const [endTime, setEndTime] = useState(24);
     const { updateUserData } = useContext(UserContext);
+    const theme = useContext(ThemeContext);
 
+    // Fixed time points
+    const timeSlots = [
+        { label: "9 AM", value: 0 },
+        { label: "12 PM", value: 6 },
+        { label: "4 PM", value: 12 },
+        { label: "8 PM", value: 18 },
+        { label: "11 PM", value: 24 }
+    ];
+
+    // Define the timing slots
     const handleSelect = (value) => {
         setSelectItem(value);
-
         switch (value) {
             case "Mid-morning (9 AM - 12 PM)":
                 setStartTime(0);
@@ -42,6 +53,25 @@ export default function TimesScreen({ navigation }) {
         }
     };
 
+    // Handle slider value change
+    const handleSliderChange = (values) => {
+        setStartTime(values[0]);
+        setEndTime(values[1]);
+
+        // Automatically select the radio button based on slider values
+        if (values[0] >= 0 && values[0] < 6) {
+            setSelectItem("Mid-morning (9 AM - 12 PM)");
+        } else if (values[0] >= 6 && values[0] < 12) {
+            setSelectItem("Afternoon (12 PM - 4 PM)");
+        } else if (values[0] >= 12 && values[0] < 18) {
+            setSelectItem("Evening (4 PM - 8 PM)");
+        } else if (values[0] >= 18 && values[0] < 24) {
+            setSelectItem("Late evening (8 PM - 11 PM)");
+        } else {
+            setSelectItem("No specific preference, anytime works!");
+        }
+    };
+
     const handleSubmit = () => {
         if (!selectItem) {
             Alert.alert("Please select your preferred timing.");
@@ -52,9 +82,9 @@ export default function TimesScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806" /></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
@@ -62,22 +92,18 @@ export default function TimesScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.itemContainer}>
-                <Text style={styles.mainText}>Availability Timings</Text>
-                <Text style={styles.mainText2}>For Matchmaking</Text>
+                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>Availability Timings</Text>
+                <Text style={[styles.mainText2, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>For Matchmaking</Text>
 
                 {/* MultiSlider to select time range */}
-                <View style={{ pointerEvents: 'none' }}>
+                <View>
                     <MultiSlider
-                        values={[startTime, endTime]}
+                        values={[startTime, endTime]}  // Dynamically controlled by selected time slot
                         sliderLength={300}
                         min={0}
                         max={24}
-                        step={1}
-                        isMarkerTouchable={false}
-                        onValuesChange={(values) => {
-                            setStartTime(values[0]);
-                            setEndTime(values[1]);
-                        }}
+                        step={6}  // Fixed step to only allow values at predefined time slots
+                        onValuesChange={handleSliderChange} // Call the new function on slider change
                         selectedStyle={{ backgroundColor: "#428BC1" }}
                         unselectedStyle={{ backgroundColor: "#D4D3D0" }}
                         trackStyle={{
@@ -96,13 +122,15 @@ export default function TimesScreen({ navigation }) {
                 </View>
 
                 <View style={styles.timeText}>
-                    <Text style={styles.timeLabelText}>9 AM</Text>
-                    <Text style={styles.timeLabelText}>11 PM</Text>
+                    {timeSlots.map((slot, index) => (
+                        <Text key={index} style={[styles.timeLabelText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.smaller }]}>
+                            {slot.label}
+                        </Text>
+                    ))}
                 </View>
 
-                <Text style={styles.text}>Pick your preferred time slot</Text>
-                <Text style={styles.text2}>for you to connect?</Text>
-
+                <Text style={[styles.text, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Pick your preferred time slot</Text>
+                <Text style={[styles.text2, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>for you to connect?</Text>
 
                 <View style={styles.list}>
                     {["Mid-morning (9 AM - 12 PM)", "Afternoon (12 PM - 4 PM)", "Evening (4 PM - 8 PM)", "Late evening (8 PM - 11 PM)", "No specific preference, anytime works!"].map((option, index) => (
@@ -112,15 +140,15 @@ export default function TimesScreen({ navigation }) {
                             onPress={() => handleSelect(option)}
                         >
                             <View style={[styles.circle, selectItem === option && styles.circleSelected]} />
-                            <Text style={styles.radioText}>{option}</Text>
+                            <Text style={[styles.radioText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>{option}</Text>
                         </TouchableOpacity>
                     ))}
                 </View>
             </View>
 
             <View style={styles.continuebtn}>
-                <Button style={styles.Button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>Continue</Text>
+                <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}>
+                    <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text>
                 </Button>
             </View>
         </SafeAreaView>

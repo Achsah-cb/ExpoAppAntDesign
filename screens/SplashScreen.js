@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import SplashLogo from '../assets/image-svg/splashlogo.svg';
 
-const SplashScreen = () => {
+const CustomSplashScreen = () => {
 
     const navigation = useNavigation();
 
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#F9FBE7'
+        backgroundColor: '#FCF2D6'
     }
 })
 
-export default SplashScreen;
+export default CustomSplashScreen;

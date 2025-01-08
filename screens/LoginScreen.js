@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
-import { View , Text, TouchableOpacity,TextInput } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Button, InputItem } from "@ant-design/react-native";
 import CountryPicker from "react-native-country-picker-modal";
 import Icon from "react-native-vector-icons/FontAwesome";
-import AppLogo from "../assets/image-svg/splashlogo.svg";
+import { ThemeContext } from '../context/ThemeContext';
 import styles from "../styles/LoginStyle";
+import AppLogoSvg from "../assets/image-svg/applogo.svg";
 
 const LoginScreen = ({ navigation }) => {
     const [countryCode, setCountryCode] = React.useState("US");
     const [callingCode, setCallingCode] = React.useState("1");
     const [phoneNumber, setPhoneNumber] = React.useState("");
+
+    const theme = useContext(ThemeContext);
+
+    if (!theme) {
+        console.error('Theme context is not provided.');
+        return null;
+    }
 
     const handleContinue = () => {
         navigation.navigate("OtpScreen", {
@@ -18,58 +26,50 @@ const LoginScreen = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
             {/* Logo Section */}
-            <View style={styles.logo}><AppLogo width={115} height={43} /></View>
+            {/* <View style={styles.logo}><AppLogoSvg /></View> */}
             <View style={styles.innerContainer}>
-            <View style={styles.titleView}><Text style={styles.title}>Let's start with your phone number</Text></View>
-            <View style={styles.phoneInputContainer}>
-                <TouchableOpacity style={styles.countryPicker}>
-                <CountryPicker
-                    countryCode={countryCode}
-                    withFilter
-                    withFlag
-                    withCallingCode
-                    onSelect={(country) => {
-                        setCountryCode(country.cca2);
-                        setCallingCode(country.callingCode[0]);
-                    }}
-                    containerButtonStyle={styles.countryPicker}
-                    />
-                    <Text style={styles.callingCode}>+{callingCode}</Text>
-
+                <View style={styles.titleView}><Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>My Phone Number is</Text></View>
+                <Text style={[styles.description, { fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>
+                    We'll need your phone number to send an OTP for verification.
+                </Text>
+                <View style={styles.phoneInputContainer}>
+                    <TouchableOpacity style={styles.countryPicker}>
+                        <CountryPicker
+                            countryCode={countryCode}
+                            withFilter
+                            withFlag
+                            withCallingCode
+                            onSelect={(country) => {
+                                setCountryCode(country.cca2);
+                                setCallingCode(country.callingCode[0]);
+                            }}
+                            containerButtonStyle={styles.countryPicker}
+                        />
+                        <Text style={styles.callingCode}>+{callingCode}</Text>
                     </TouchableOpacity>
                     <Icon name="angle-down" size={16} color="#888" style={styles.downArrow} />
-                    <TextInput keyboardType="numeric" value={phoneNumber} onChange={value => setPhoneNumber(value)} placeholder="Enter phone number" style={styles.phoneInput} />
-            </View>
+                    <TextInput
+                        keyboardType="numeric"
+                        value={phoneNumber}
+                        onChangeText={setPhoneNumber}
+                        placeholder="Enter phone number"
+                        style={[styles.phoneInput, { fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}
+                    />
+                </View>
 
-            <Button style={styles.continueButton} onPress={handleContinue}>
-                <Text style={styles.continueButtonText}>Continue</Text>
-            </Button>
-
-            <View style={styles.orDivider}>
-                <View style={styles.dividerLine} />
-                <Text style={styles.orText}>or</Text>
-                <View style={styles.dividerLine} />
-            </View>
-
-            <TouchableOpacity style={styles.socialButton}>
-                <Icon name="facebook" size={20} color="#3b5998" style={styles.socialIcon} />
-                <Text style={styles.socialButtonText}>Login with Facebook</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.socialButton}>
-                <Icon name="google" size={20} color="#db4437" style={styles.socialIcon} />
-                <Text style={styles.socialButtonText}>Login with Google</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={[styles.continueButton, { backgroundColor: theme.colors.primary }]} onPress={handleContinue}>
+                    <Text style={[ { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.footer}>
-                <Text style={styles.footerText}>Don't have an account?
-                    <Text style={styles.signUpText} onPress={() => navigation.navigate("YourNameScreen")}> Sign up</Text>
+                <Text style={[styles.footerText, { fontFamily: theme.fontfamily.regular, color: theme.colors.text, fontSize: theme.fontsize.medium }]}>Don't have an account?
+                    <Text style={[styles.signUpText, { color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]} onPress={() => navigation.navigate("YourNameScreen")}> Sign up</Text>
                 </Text>
             </View>
         </View>
     );
-}
+};
 
 export default LoginScreen;

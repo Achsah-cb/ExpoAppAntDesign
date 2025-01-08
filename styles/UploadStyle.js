@@ -8,43 +8,32 @@ export const responsiveHeight = (percentage) => (height * percentage) / 100;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FCF2D6",
     },
     itemContainer: {
         alignItems: "center",
         margin: 20,
         marginTop: 10,
     },
-    Button: {
+    button: {
         width: responsiveWidth(90),
         height: responsiveHeight(7),
         borderRadius: responsiveWidth(3),
-
-        backgroundColor: '#EDD06A',
-        borderColor: '#EDD06A',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.1,
+        shadowRadius: responsiveWidth(2),
+        elevation: 5,
         marginTop: 25,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontFamily: 'Montserrat',
-        fontSize: responsiveWidth(4)
+        borderWidth: responsiveWidth(0)
     },
     mainText: {
-        fontSize: responsiveWidth(6),
-        fontFamily: 'Montserrat',
-        fontWeight: '700',
-        padding: 10,
-    },
-    text: {
-        fontSize: responsiveWidth(3),
-        fontFamily: 'Montserrat',
+        marginTop: responsiveWidth(5),
     },
     header: {
         flexDirection: 'row',
         ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
-        justifyContent:'space-between',
-        width:responsiveWidth(100),
+        justifyContent: 'space-between',
+        width: responsiveWidth(100),
     },
     backBtn: {
         margin: responsiveWidth(6),
@@ -63,17 +52,15 @@ const styles = StyleSheet.create({
         borderRadius: responsiveWidth(2),
         margin: responsiveWidth(6),
     },
-    progressContainer:{
-        alignItems:'center'
+    progressContainer: {
+        alignItems: 'center'
     },
     progressBar: {
-        backgroundColor: '#FDE869',
         width: responsiveWidth(80),
         height: responsiveHeight(0.8),
         borderRadius: 50,
     },
     progress: {
-        backgroundColor: '#C29225',
         width: responsiveWidth(80),
         height: responsiveHeight(0.8),
         borderRadius: 50
@@ -92,8 +79,8 @@ const styles = StyleSheet.create({
     },
     addButton: {
         backgroundColor: '#ffffff',
-        width: responsiveWidth(38),
-        height: responsiveHeight(18),
+        width: responsiveWidth(22),
+        height: responsiveHeight(10),
         margin: 10,
         borderColor: "#C29225",
         borderWidth: 1,
@@ -102,11 +89,38 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    BigAddButton: {
+        backgroundColor: '#ffffff',
+        width: responsiveWidth(46),
+        height: responsiveHeight(22),
+        margin: 10,
+        borderColor: "#C29225",
+        borderWidth: 1,
+        borderRadius: 15,
+        borderStyle: "none",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    rightSideBtns: {
+        marginLeft:responsiveWidth(2)
+        
+    },
+    bottomSideBtns: {
+        
+        flexDirection:'row'
+    },
     thumbnail: {
-        width: responsiveWidth(36),
-        height: responsiveHeight(17),
+        width: responsiveWidth(20),
+        height: responsiveHeight(9),
         borderRadius: 10,
     },
+    bigThumbnail: {
+        width: responsiveWidth(44),
+        height: responsiveHeight(21),
+        borderRadius: 10,
+    },
+
+
 });
 
 export default styles;
