@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import { Button, InputItem } from "@ant-design/react-native";
 import CountryPicker from "react-native-country-picker-modal";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { ThemeContext } from '../context/ThemeContext';
 import styles from "../styles/LoginStyle";
-import AppLogoSvg from "../assets/image-svg/applogo.svg";
+import AppLogoSvg from "../assets/image-svg/applogo.svg"
 
 const LoginScreen = ({ navigation }) => {
-    const [countryCode, setCountryCode] = React.useState("US");
-    const [callingCode, setCallingCode] = React.useState("1");
-    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [countryCode, setCountryCode] = useState("US");
+    const [callingCode, setCallingCode] = useState("1");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     const theme = useContext(ThemeContext);
 

@@ -110,11 +110,11 @@ export default function App() {
                 component={BirthStoryZodiacScreen}
                 options={{ headerShown: false }}
               />
-              <Stack.Screen
+              {/* <Stack.Screen
                 name="LocationAndLanguage"
                 component={LocationAndLanguagesScreen}
                 options={{ headerShown: false }}
-              />
+              /> */}
               <Stack.Screen
                 name="PartnerHeightPreferences"
                 component={PartnerHeightPreferencesScreen}
