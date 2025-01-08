@@ -1,7 +1,6 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-
 const responsiveWidth = (percentage) => (width * percentage) / 100;
 const responsiveHeight = (percentage) => (height * percentage) / 100;
 const progressScale = (percentage) => (width * percentage) / 100;
@@ -89,8 +88,6 @@ const styles = StyleSheet.create({
   },
   periodText: {
     fontSize: responsiveWidth(5),
-    fontWeight: '600',
-    color: '#FFF',
   },
   zodiacParentContainer: {
     marginVertical: scale(5)

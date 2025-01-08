@@ -1,7 +1,6 @@
-// styles.js
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 const responsiveWidth = (percentage) => (width * percentage) / 100;
 const responsiveHeight = (percentage) => (height * percentage) / 100;
 const scale = (size) => (width / 375) * size;
@@ -10,25 +9,26 @@ const progressScale = (percentage) => (width * percentage) / 100;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: responsiveWidth(4),
     paddingHorizontal: responsiveWidth(5),
     paddingTop: scale(10),
     marginVertical: scale(2),
     paddingVertical: responsiveHeight(2),
-  },
-  scrolldiv: {
-    overflow: 'scroll',
+    overflow: 'scroll'
   },
   header: {
     flexDirection: 'row',
-    marginVertical: responsiveHeight(2),
-    ...Platform.select({ ios: { marginTop: 30 }, android: { marginTop: 5 } }),
+    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 5 } }),
   },
   backBtn: {
     marginTop: Platform.OS === "android" ? responsiveHeight(3) : responsiveHeight(1),
     marginBottom: responsiveHeight(2),
   },
-  backButtonIconSize: responsiveWidth(8),
+  iconSize: scale(23),
   progressBarContainer: {
+    marginVertical: responsiveHeight(2),
+  },
+  progressBar: {
     width: progressScale(65),
     height: progressScale(2),
     alignSelf: 'center',
@@ -37,46 +37,50 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: scale(30)
   },
-  progressBar: {
-    width: progressScale(60),
+  progress: {
+    width: progressScale(12),
     height: progressScale(2),
     borderRadius: scale(50),
   },
-  itemContainer: {
-    alignItems: 'left',
-    margin: responsiveWidth(5),
-    padding: responsiveWidth(3)
+  InnerContainer: {
+    marginVertical: scale(5)
   },
-  mainText: {
-    fontSize: responsiveWidth(5),
-    fontWeight: '500',
-    paddingBottom: responsiveHeight(4),
-    textAlign: 'center',
+  title: {
+    fontSize: scale(20),
+    textAlign: "center",
+    marginVertical: responsiveHeight(3),
   },
-  radioOption: {
-    // flexDirection: 'row',
-    alignItems: 'left',
-    textAlign: 'left',
-    marginBottom: responsiveHeight(2),
+  sliderContainer: {
+    marginVertical: responsiveHeight(2),
+    alignItems: "center",
   },
-  Button: {
-    width: responsiveWidth(90),
+  sliderWidth: responsiveWidth(80),
+  sliderThumbSize: responsiveHeight(2.5),
+  ageLabels: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: responsiveWidth(80),
+    marginTop: responsiveHeight(2),
+  },
+  ageLabelText: {
+    fontSize: scale(14),
+  },
+  nextButton: {
+    width: responsiveWidth(80),
     height: responsiveHeight(7),
-    borderRadius: responsiveWidth(3),
-    backgroundColor: '#FFB200',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: responsiveHeight(4),
+    borderRadius: scale(10),
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    marginTop: responsiveHeight(3),
   },
-  buttonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: responsiveWidth(4),
+  nextButtonText: {
+    fontSize: scale(18),
   },
-  continuebtn: {
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingBottom: responsiveHeight(5),
+  footerText: {
+    fontSize: scale(16),
+    textAlign: "center",
+    marginTop: responsiveHeight(3),
   },
 });
 

@@ -1,71 +1,73 @@
-// styles.js
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
-const { width, height } = Dimensions.get('window');
-
-export const responsiveWidth = (percentage) => (width * percentage) / 100;
-export const responsiveHeight = (percentage) => (height * percentage) / 100;
+const { width, height } = Dimensions.get("window");
+const responsiveWidth = (percentage) => (width * percentage) / 100;
+const responsiveHeight = (percentage) => (height * percentage) / 100;
+const progressScale = (percentage) => (width * percentage) / 100;
+const scale = (size) => (width / 375) * size;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF8E1',
+    paddingHorizontal: responsiveWidth(10),
+    paddingVertical: responsiveHeight(2),
   },
   header: {
-    flexDirection: 'row',
-    ...Platform.select({ ios: { marginTop: 0 }, android: { marginTop: 30 } }),
+    flexDirection: "row",
+    marginTop: Platform.OS === "ios" ? responsiveHeight(5) : responsiveHeight(3),
   },
   backBtn: {
-    margin: responsiveWidth(6),
-    width: responsiveWidth(10),
-    height: responsiveHeight(5),
-  },
-  progressBar: {
-    backgroundColor: '#FFEC9E',
-    width: responsiveWidth(60),
-    height: responsiveHeight(1),
-    borderRadius: 50,
-    margin: responsiveWidth(7.5),
-  },
-  progress: {
-    backgroundColor: '#FFB200',
-    height: '100%',
-    borderRadius: 50,
-  },
-  itemContainer: {
-    alignItems: 'left',
-    margin: responsiveWidth(5),
-    paddingLeft: responsiveWidth(3)
-  },
-  mainText: {
+      marginTop: Platform.OS === "android" ? responsiveHeight(3) : responsiveHeight(1),
+      marginBottom: responsiveHeight(2),
+    },
+    backButtonIconSize: responsiveWidth(8),
+    progressBarContainer: {
+      marginVertical: responsiveHeight(4),
+    },
+    progressBar: {
+      width: progressScale(65),
+      height: progressScale(2),
+      alignSelf: 'center',
+      borderRadius: scale(50),
+      marginBottom: scale(0),
+      marginTop: 10,
+      marginLeft: scale(30)
+    },
+    progress: {
+      width: progressScale(12),
+      height: progressScale(2),
+      borderRadius: scale(50),
+    },
+  title: {
     fontSize: responsiveWidth(5),
-    fontWeight: '500',
-    paddingBottom: responsiveHeight(4),
-    textAlign: 'center',
-  },
-  radioOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    textAlign: "center",
     marginBottom: responsiveHeight(2),
   },
-  Button: {
-    width: responsiveWidth(90),
+  sliderContainer: {
+    alignItems: "center",
+    marginVertical: responsiveHeight(3),
+  },
+  distanceLabels: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: responsiveWidth(80),
+    marginTop: responsiveHeight(1),
+  },
+  distanceLabel: {
+    fontSize: responsiveWidth(3),
+    textAlign: "center",
+  },
+  footer: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flex: 1,
+  },
+  nextButton: {
+    width: responsiveWidth(80),
     height: responsiveHeight(7),
     borderRadius: responsiveWidth(3),
-    backgroundColor: '#FFB200',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: responsiveHeight(4),
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: responsiveWidth(4),
-  },
-  continuebtn: {
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingBottom: responsiveHeight(5),
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
