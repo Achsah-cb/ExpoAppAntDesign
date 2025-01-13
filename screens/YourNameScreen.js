@@ -6,6 +6,7 @@ import { UserContext } from "../context/UserContext";
 import * as Font from 'expo-font';
 import styles from "../styles/YourNameStyle";
 import { ThemeContext } from '../context/ThemeContext';
+import { Back } from "../components/icons";
 
 
 export default function YourNameScreen({ navigation }) {
@@ -38,24 +39,32 @@ export default function YourNameScreen({ navigation }) {
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back/></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
+                    <View style={[styles.progress, {backgroundColor:"#FF2A64"}]}></View>
+                    <View style={styles.progress}></View>
+                    <View style={styles.progress}></View>
+                    <View style={styles.progress}></View>
+                    <View style={styles.progress}></View>
+                    <View style={styles.progress}></View>
                     <View style={styles.progress}></View>
                 </View>
             </View>
 
             <View style={styles.itemContainer}>
-
-                <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>What's Your Name?</Text>
-                <Text style={[styles.text,{ fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>Let's Go To Know Each other</Text>
-
-                <TextInput placeholder="Enter your name"
-                    style={[styles.Input, { fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}
+                <View style={styles.textContainer}>
+                <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                    <Text style={{color: theme.colors.primary, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large}}>what </Text>should we</Text>
+                <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>call you?</Text>
+                <Text style={[styles.text,{ fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>enter your number to receive an code.</Text>
+                </View>
+                <TextInput placeholder="enter your name here"
+                    style={[styles.Input, { fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.small }]}
                     value={userName}
                     onChangeText={setUserName} />
-                <Button style={[styles.Button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
+                <Button style={[styles.Button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.btn, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>continue</Text></Button>
                 {/*just for navigation purpose*/}
                 {/*<TouchableOpacity style={{ top: 300, }} onPress={() => navigation.navigate('MainTabs')}><Text style={{ color: 'blue', fontStyle: 'italic' }}>Skip</Text></TouchableOpacity>*/}
                 

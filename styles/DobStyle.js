@@ -19,20 +19,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         padding: 15
     },
-    Button: {
-        width: responsiveWidth(90),
-        height: responsiveHeight(7),
-        borderRadius: responsiveWidth(3),
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: responsiveWidth(2) },
-        shadowOpacity: 0.1,
-        shadowRadius: responsiveWidth(2),
-        elevation: 5,
-        borderWidth:responsiveWidth(0)
-    },
-    mainText: {
-        marginTop: responsiveWidth(15),
-    },
     ageItem: {
         height: 80,
         justifyContent: 'center',
@@ -54,34 +40,51 @@ const styles = StyleSheet.create({
     selectAgeItem: {
         padding: 40
     },
+    Button: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(6),
+        borderRadius: responsiveWidth(4),
+        marginTop: 25,
+        shadowColor: '#FF2A64',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.3,
+        shadowRadius: responsiveWidth(4),
+        elevation: 10,
+        borderWidth: responsiveWidth(0)
+    },
+    textContainer: {
+        marginTop: responsiveWidth(15),
+        width: responsiveWidth(80)
+    },
     header: {
         flexDirection: 'row',
-        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
+        //...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
         justifyContent: 'space-between',
         width: responsiveWidth(100),
     },
     backBtn: {
         margin: responsiveWidth(6),
         width: responsiveWidth(9),
-        height: responsiveHeight(4.5),
-        backgroundColor: "#ffffffff",
+        height: responsiveHeight(3),
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: responsiveWidth(2)
+        borderRadius: responsiveWidth(2),
     },
     progressContainer: {
         alignItems: 'center'
     },
     progressBar: {
-        backgroundColor: '#FDE869',
+        //backgroundColor: '#FDE869',
         width: responsiveWidth(80),
-        height: responsiveHeight(0.8),
+        height: responsiveHeight(1),
         borderRadius: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     progress: {
-        backgroundColor: '#C29225',
-        width: responsiveWidth(20),
-        height: responsiveHeight(0.8),
+        backgroundColor: '#D9D9D9',
+        width: responsiveWidth(10),
+        height: responsiveHeight(1),
         borderRadius: 50
     },
     itemText: {
@@ -92,11 +95,11 @@ const styles = StyleSheet.create({
     },
     scrollpicker: {
         height: responsiveHeight(45),
-        width: responsiveWidth(25),
-        justifyContent: 'center',
-        backgroundColor: '#FCF2D6',
+        width: responsiveWidth(80),
+       // justifyContent: 'center',
+       // backgroundColor: '#FCF2D6',
         marginTop: responsiveWidth(6)
-    }
+    },
 
 });
 

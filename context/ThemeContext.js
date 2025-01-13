@@ -9,15 +9,16 @@ export const ThemeProvider = ({ children }) => {
     colors: {
       background: '#FCF2D6',
       text: '#474646',
-      primary: '#EDD06A',
+      primary: '#FF2A64',
       secondary: '#C29225',
-      tertiary:'#FBE497'
+      tertiary:'#FBE497',
+      btn:'#FFFFFF'
     },
     fontsize: {
       smaller: 10,
       small: 16,
       medium: 18,
-      large: 24,
+      large: 30,
     },
     fontfamily: {
       regular: "Montserrat-Regular",
