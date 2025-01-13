@@ -7,17 +7,17 @@ export const useTheme = () => useContext(ThemeContext);
 export const ThemeProvider = ({ children }) => {
   const theme = {
     colors: {
-      background: '#FCF2D6',
-      text: '#474646',
-      primary: '#EDD06A',
-      secondary: '#C29225',
-      tertiary:'#FBE497'
+      background: '#D9D9D9', // background light pink color
+      text: '#FFFFFF',
+      primary: '#FF2A64', // pink color
+      gold: '#E8B006',
+      cyan:'#E8B006'
     },
     fontsize: {
       smaller: 10,
-      small: 16,
-      medium: 18,
-      large: 24,
+      small: 12,
+      medium: 16,
+      large: 32,
     },
     fontfamily: {
       regular: "Montserrat-Regular",
