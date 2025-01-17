@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, SafeAreaView, TouchableOpacity, Text, Image, Alert } from "react-native";
+import { View, TouchableOpacity, Text, Image, Alert } from "react-native";
 import { Button } from "@ant-design/react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
@@ -7,6 +7,9 @@ import { UserContext } from "../context/UserContext";
 import styles from "../styles/UploadStyle";
 import axios from "axios";
 import { ThemeContext } from '../context/ThemeContext';
+import { Back } from "../components/icons";
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function UploadScreen({ navigation }) {
     const { userData } = useContext(UserContext);
@@ -17,25 +20,25 @@ export default function UploadScreen({ navigation }) {
 
     const handleChooseImage = async () => {
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      
+
         if (!permissionResult.granted) {
-          alert("Permission to access the media library is required!");
-          return;
+            alert("Permission to access the media library is required!");
+            return;
         }
-      
+
         const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ["images"], // Only select images
-          allowsMultipleSelection: true, // Enable multi-selection
-          selectionLimit: 6, // Limit the number of images to 6
-          quality: 1, // High quality
+            mediaTypes: ["images"], // Only select images
+            allowsMultipleSelection: true, // Enable multi-selection
+            selectionLimit: 6, // Limit the number of images to 6
+            quality: 1, // High quality
         });
-      
+
         if (!result.canceled) {
-          const selectedURIs = result.assets.map((asset) => asset.uri);
-          setSelectedImages(selectedURIs);
+            const selectedURIs = result.assets.map((asset) => asset.uri);
+            setSelectedImages(selectedURIs);
         }
-      };
-      
+    };
+
 
     const handleSubmit = async () => {
         if (selectedImages.some((image) => image === null)) {
@@ -79,23 +82,38 @@ export default function UploadScreen({ navigation }) {
 
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+         // linear gradient
+         <LinearGradient
+         colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+         locations={[0, 0.48, 1]}
+         start={{ x: 0, y: 0 }}
+         end={{ x: 1, y: 1 }}
+         style={{ flex: 1 }} 
+     >
+         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} /></TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.skipBtn}>
-                    <Text>Skip</Text>
-                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Text>skip</Text></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
-                <View style={[styles.progressBar, { backgroundColor: theme.colors.primary }]}>
-                    <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
+                <View style={styles.progressBar}>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.gold }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.blue }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.orange }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.pink }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.blueGreen }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
                 </View>
             </View>
-            <View style={styles.itemContainer}>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>Upload Your Photo</Text>
-                <Text style={[styles.text, { color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>Upload photos for your profile.</Text>
 
+            <View style={styles.itemContainer}>
+                <View style={styles.textContainer}>
+                    <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                    <Text style={{ color: theme.colors.primary, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }}>upload </Text>your photos</Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, marginTop:8, opacity:0.8 }]}>upload at least 4 photos to get </Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, opacity:0.8 }]}>more matches.</Text>
+                </View>
                 <View style={styles.uploadContainer}>
                     {/* First larger container */}
                     <TouchableOpacity
@@ -105,7 +123,7 @@ export default function UploadScreen({ navigation }) {
                         {selectedImages[0] ? (
                             <Image source={{ uri: selectedImages[0] }} style={styles.bigThumbnail} />
                         ) : (
-                            <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                            <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                         )}
                     </TouchableOpacity>
                     <View style={styles.rightSideBtns}>
@@ -117,7 +135,7 @@ export default function UploadScreen({ navigation }) {
                             {selectedImages[1] ? (
                                 <Image source={{ uri: selectedImages[1] }} style={styles.thumbnail} />
                             ) : (
-                                <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                                <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                             )}
                         </TouchableOpacity>
 
@@ -129,7 +147,7 @@ export default function UploadScreen({ navigation }) {
                             {selectedImages[2] ? (
                                 <Image source={{ uri: selectedImages[2] }} style={styles.thumbnail} />
                             ) : (
-                                <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                                <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                             )}
                         </TouchableOpacity>
                     </View>
@@ -142,7 +160,7 @@ export default function UploadScreen({ navigation }) {
                             {selectedImages[3] ? (
                                 <Image source={{ uri: selectedImages[3] }} style={styles.thumbnail} />
                             ) : (
-                                <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                                <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                             )}
                         </TouchableOpacity>
 
@@ -154,7 +172,7 @@ export default function UploadScreen({ navigation }) {
                             {selectedImages[4] ? (
                                 <Image source={{ uri: selectedImages[4] }} style={styles.thumbnail} />
                             ) : (
-                                <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                                <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                             )}
                         </TouchableOpacity>
 
@@ -166,7 +184,7 @@ export default function UploadScreen({ navigation }) {
                             {selectedImages[5] ? (
                                 <Image source={{ uri: selectedImages[5] }} style={styles.thumbnail} />
                             ) : (
-                                <Ionicons name="add-circle" size={50} color="#EDD06A" />
+                                <Text style={{fontSize:20, color:'#FF2A64'}}>+</Text>
                             )}
                         </TouchableOpacity>
                     </View>
@@ -174,9 +192,9 @@ export default function UploadScreen({ navigation }) {
 
             </View>
             <View style={styles.continuebtn}>
-                <Button style={[styles.button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
-
+                <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
             </View>
         </SafeAreaView>
+        </LinearGradient>
     );
 }

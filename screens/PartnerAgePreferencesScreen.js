@@ -34,7 +34,7 @@ const PartnerAgePreferencesScreen = ({ navigation = () => { } }) => {
       <Text
         style={[
           styles.title,
-          { color: theme.colors.text, fontFamily: theme.fontfamily.semibold },
+          { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large },
         ]}
       >
         What Are Your Ideal{'\n'}Partner Age Preferences?

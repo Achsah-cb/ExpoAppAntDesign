@@ -87,20 +87,20 @@ const styles = StyleSheet.create({
         height: responsiveHeight(1),
         borderRadius: 50
     },
-    itemText: {
-        fontSize: responsiveWidth(8),
-        color: '#000',
-        textAlign: 'center',
-        fontWeight: '600',
+    datepicker:{
+        width:responsiveWidth(80),
+        height:responsiveHeight(30),
+        flexDirection:'row',
+        justifyContent:'center'
     },
-    scrollpicker: {
-        height: responsiveHeight(45),
-        width: responsiveWidth(80),
-       // justifyContent: 'center',
-       // backgroundColor: '#FCF2D6',
-        marginTop: responsiveWidth(6)
+    pickerWrapper: {
+        marginVertical: 10,
+        overflow: "hidden",
     },
-
+    picker: {
+        height: responsiveHeight(12),
+        width: responsiveWidth(30),
+    },
 });
 
 export default styles;

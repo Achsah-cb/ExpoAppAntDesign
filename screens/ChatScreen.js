@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from 'react-native-vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import styles from '../styles/ChatStyle';
 import { ThemeContext } from '../context/ThemeContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -69,19 +71,28 @@ const ChatScreen = () => {
 
     return (
 
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.tertiary }]}>
+         // linear gradient
+         <LinearGradient
+         colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+         locations={[0, 0.48, 1]}
+         start={{ x: 0, y: 0 }}
+         end={{ x: 1, y: 1 }}
+         style={{ flex: 1 }} 
+        >
+         <SafeAreaView >
             <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
            <View style={styles.ChatTextContainer}><Text style={[styles.chatTitleText,{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Chat</Text></View>
-                <TouchableOpacity onPress={() => navigation.navigate('MenuScreen')} style={styles.menuBtn}><Ionicons name="menu" size={25} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('MenuScreen')} style={styles.menuBtn}><Ionicons name="menu" size={25} /></TouchableOpacity> */}
             </View>
+
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.profileScroll}>
                 {users.map((user, item) => (
                     <TouchableOpacity key={user.id} style={styles.profileContainer} onPress={() => navigation.navigate('DmScreen', { userId: item.id })}>
                         <Image
                             source={{ uri: user.profilePic }}
                             style={
-                                styles.profilePic}
+                                [styles.profilePic,{borderColor: theme.colors.primary}]}
                         />
                         <View style={[styles.statusIndicator, { backgroundColor: user.isOnline ? '#89EB1A' : 'gray' }]}></View>
                         <Text style={{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.regular }}>
@@ -91,7 +102,8 @@ const ChatScreen = () => {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <View style={styles.messageBox}>
+            <View style={styles.container}>
+            {/* <View style={styles.messageBox}>
                 <FlatList
                     data={users}
                     keyExtractor={(item) => item.id.toString()}
@@ -111,8 +123,10 @@ const ChatScreen = () => {
                         </TouchableOpacity>
                     )}
                 />
+            </View> */}
             </View>
         </SafeAreaView>
+        </LinearGradient>
     );
 };
 

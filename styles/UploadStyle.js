@@ -14,35 +14,53 @@ const styles = StyleSheet.create({
         margin: 20,
         marginTop: 10,
     },
-    button: {
-        width: responsiveWidth(90),
-        height: responsiveHeight(7),
-        borderRadius: responsiveWidth(3),
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: responsiveWidth(2) },
-        shadowOpacity: 0.1,
-        shadowRadius: responsiveWidth(2),
-        elevation: 5,
+    Button: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(6),
+        borderRadius: responsiveWidth(4),
         marginTop: 25,
+        shadowColor: '#FF2A64',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.3,
+        shadowRadius: responsiveWidth(4),
+        elevation: 10,
         borderWidth: responsiveWidth(0)
     },
-    mainText: {
-        marginTop: responsiveWidth(5),
+    textContainer: {
+        marginTop: responsiveWidth(15),
+        width: responsiveWidth(80),
+        marginBottom: responsiveHeight(4)
     },
     header: {
         flexDirection: 'row',
-        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
+        //...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
         justifyContent: 'space-between',
         width: responsiveWidth(100),
     },
     backBtn: {
         margin: responsiveWidth(6),
         width: responsiveWidth(9),
-        height: responsiveHeight(4.5),
-        backgroundColor: "#ffffffff",
+        height: responsiveHeight(3),
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: responsiveWidth(2)
+        borderRadius: responsiveWidth(2),
+    },
+    progressContainer: {
+        alignItems: 'center'
+    },
+    progressBar: {
+        //backgroundColor: '#FDE869',
+        width: responsiveWidth(80),
+        height: responsiveHeight(1),
+        borderRadius: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    progress: {
+        backgroundColor: '#D9D9D9',
+        width: responsiveWidth(10),
+        height: responsiveHeight(1),
+        borderRadius: 50
     },
     skipBtn: {
         width: responsiveWidth(10),
@@ -54,16 +72,6 @@ const styles = StyleSheet.create({
     },
     progressContainer: {
         alignItems: 'center'
-    },
-    progressBar: {
-        width: responsiveWidth(80),
-        height: responsiveHeight(0.8),
-        borderRadius: 50,
-    },
-    progress: {
-        width: responsiveWidth(80),
-        height: responsiveHeight(0.8),
-        borderRadius: 50
     },
     continuebtn: {
         alignItems: 'center',
@@ -82,10 +90,10 @@ const styles = StyleSheet.create({
         width: responsiveWidth(22),
         height: responsiveHeight(10),
         margin: 10,
-        borderColor: "#C29225",
+        borderColor: "#FF2A64",
         borderWidth: 1,
         borderRadius: 15,
-        borderStyle: "none",
+        borderStyle: 'dashed',
         justifyContent: "center",
         alignItems: "center",
     },
@@ -94,20 +102,20 @@ const styles = StyleSheet.create({
         width: responsiveWidth(46),
         height: responsiveHeight(22),
         margin: 10,
-        borderColor: "#C29225",
+        borderColor: "#FF2A64",
         borderWidth: 1,
         borderRadius: 15,
-        borderStyle: "none",
+        borderStyle: 'dashed',
         justifyContent: "center",
         alignItems: "center",
     },
     rightSideBtns: {
-        marginLeft:responsiveWidth(2)
-        
+        marginLeft: responsiveWidth(2)
+
     },
     bottomSideBtns: {
-        
-        flexDirection:'row'
+
+        flexDirection: 'row'
     },
     thumbnail: {
         width: responsiveWidth(20),

@@ -12,7 +12,7 @@ import PartnerHeightPreferencesScreen from './screens/PartnerHeightPreferencesSc
 import PartnerLocationPreferencesScreen from './screens/PartnerLocationPreferencesScreen';
 import PartnerAgePreferencesScreen from './screens/PartnerAgePreferencesScreen';
 import YourNameScreen from './screens/YourNameScreen';
-import EmailScreen from './screens/EmailScreen';
+import HeightScreen from './screens/HeightScreen';
 import DobScreen from './screens/DobScreen';
 import GenderScreen from './screens/GenderScreen';
 import TimesScreen from './screens/TimesScreen';
@@ -22,9 +22,9 @@ import DmScreen from './screens/DmScreen';
 import MenuScreen from './screens/MenuScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ChatScreen from './screens/ChatScreen';
-import BottomNavigation from './components/BottomNavigation';
 import { UserProvider } from './context/UserContext';
 import VerificationScreen from './screens/VerificationScreen';
+import BottomNavigation from './components/BottomNavigation';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { useFonts } from 'expo-font';
 
@@ -80,8 +80,8 @@ export default function App() {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="EmailScreen"
-                component={EmailScreen}
+                name="HeightScreen"
+                component={HeightScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen
@@ -156,15 +156,14 @@ export default function App() {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
+                name="ChatLandingScreen"
+                component={BottomNavigation}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
                 name="PartnerLocationPreferences"
                 component={PartnerLocationPreferencesScreen}
                 options={{ headerShown: false }}
-              />
-              {/*BottomTabNavigator*/}
-              <Stack.Screen 
-                name="MainTabs" 
-                component={BottomNavigation} 
-                options={{ headerShown: false }} 
               />
             </Stack.Navigator>
           </NavigationContainer>
