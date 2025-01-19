@@ -10,53 +10,77 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         alignItems: 'center',
-        margin: 20,
-        flex: 1,
-        paddingBottom: responsiveWidth(5),
+        paddingBottom: responsiveWidth(0),
+        height:responsiveHeight(22),
+        //backgroundColor:'grey',
     },
-    button: {
-        width: responsiveWidth(90),
-        height: responsiveHeight(7),
+    Input: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(6),
         borderRadius: responsiveWidth(3),
-        marginTop: 25,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: responsiveWidth(2) },
-        shadowOpacity: 0.1,
-        shadowRadius: responsiveWidth(2),
-        elevation: 5,
-        borderWidth:responsiveWidth(0)
+        paddingLeft: responsiveWidth(13),
+        backgroundColor: 'white',
+        marginTop: responsiveWidth(0),
+        borderWidth: responsiveWidth(0.1),
+        borderColor: '#909090',
+        // ...Platform.select({
+        //     ios: {
+        //         shadowColor: '#000',
+        //         shadowOffset: { width: 0, height: responsiveWidth(2) },
+        //         shadowOpacity: 0.1,
+        //         shadowRadius: responsiveWidth(2),
+        //     },
+        //     android: {
+        //         elevation: 10,
+        //     }
+        // })
     },
-    mainText: {
-        padding: responsiveWidth(5),
+    Button: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(6),
+        borderRadius: responsiveWidth(4),
+        marginTop: 25,
+        shadowColor: '#FF2A64',
+        shadowOffset: { width: 0, height: responsiveWidth(2) },
+        shadowOpacity: 0.3,
+        shadowRadius: responsiveWidth(4),
+        elevation: 10,
+        borderWidth: responsiveWidth(0)
+    },
+    textContainer: {
+        marginTop: responsiveWidth(15),
+        width: responsiveWidth(80),
+        marginBottom: responsiveHeight(4)
     },
     header: {
         flexDirection: 'row',
-        ...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
+        //...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
         justifyContent: 'space-between',
         width: responsiveWidth(100),
     },
     backBtn: {
         margin: responsiveWidth(6),
         width: responsiveWidth(9),
-        height: responsiveHeight(4.5),
-        backgroundColor: "#fff",
+        height: responsiveHeight(3),
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: responsiveWidth(2)
+        borderRadius: responsiveWidth(2),
     },
     progressContainer: {
         alignItems: 'center'
     },
     progressBar: {
-        backgroundColor: '#FDE869',
+        //backgroundColor: '#FDE869',
         width: responsiveWidth(80),
-        height: responsiveHeight(0.8),
+        height: responsiveHeight(1),
         borderRadius: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     progress: {
-        backgroundColor: '#C29225',
-        width: responsiveWidth(60),
-        height: responsiveHeight(0.8),
+        backgroundColor: '#D9D9D9',
+        width: responsiveWidth(10),
+        height: responsiveHeight(1),
         borderRadius: 50
     },
     continuebtn: {
@@ -64,6 +88,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         padding: responsiveWidth(1),
+    },
+    interestContainer:{
+        alignItems:'center',
+       // backgroundColor:'grey',
+        height:responsiveHeight(50)
+    },
+    searchIcon:{
+        position:'absolute',
+        top:responsiveHeight(1.8),
+        left:responsiveWidth(5),
+        zIndex:1
     },
     grid: {
         flexDirection: "row",
@@ -111,7 +146,40 @@ const styles = StyleSheet.create({
         position: 'relative',
         ...Platform.select({ ios: { top: responsiveWidth(60) }, android: { top: responsiveWidth(65) } }),
         left: responsiveWidth(72)
-    }
+    },
+    interestsGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems:'center',
+        width:responsiveWidth(80),
+        marginTop:responsiveHeight(3)
+    },
+    interestItem: {
+        flexDirection: 'row',
+        margin: responsiveWidth(2),
+        paddingLeft:responsiveWidth(3),
+        paddingRight:responsiveWidth(3),
+        height:responsiveHeight(4.5),
+        borderRadius: responsiveWidth(2),
+        backgroundColor: '#FFFFFF',
+        justifyContent:'center',
+        alignItems:'center',
+        textAlign:'center'
+    },
+    selectedInterest: {
+        borderWidth:responsiveWidth(0.2),
+    },
+    interestText: {
+        fontSize: responsiveWidth(3),
+        color: '#818080',
+        marginLeft:responsiveWidth(1),
+        fontWeight:"700",
+        fontFamily:'Montserrat-Bold'
+    },
+    selectedText: {
+        
+    },
+    
 });
 
 export default styles;

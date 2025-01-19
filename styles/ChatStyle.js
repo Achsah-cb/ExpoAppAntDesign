@@ -5,8 +5,7 @@ export const responsiveHeight = (percentage) => (height * percentage) / 100;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#FBE497',
+       flex: 1,
     },
     userItem: {
         flexDirection: 'row',
@@ -20,6 +19,7 @@ const styles = StyleSheet.create({
         width: responsiveWidth(20),
         height: responsiveHeight(9.2),
         borderRadius: responsiveWidth(14),
+        borderWidth:responsiveWidth(1),
     },
     userProfilePic: {
         width: responsiveWidth(15),
@@ -77,12 +77,13 @@ const styles = StyleSheet.create({
     },
     profileScroll: {
         flexDirection: 'row',
-        backgroundColor: '#FBE497',
-        height: responsiveHeight(5),
+        marginTop:responsiveHeight(5),
+        height: responsiveHeight(15),
         width: responsiveWidth(100),
+       
     },
     profileContainer: {
-        marginHorizontal: responsiveWidth(1),
+        marginHorizontal: responsiveWidth(2.3),
         alignItems: 'center',
     },
     chatTitleText: {

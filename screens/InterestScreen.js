@@ -1,292 +1,208 @@
 import { useState, useContext } from "react";
-import { View, Text, SafeAreaView, TouchableOpacity, Alert, Dimensions, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, Alert, Dimensions, ScrollView, TextInput, Keyboard } from "react-native";
 import { Button } from '@ant-design/react-native';
-import { Ionicons } from 'react-native-vector-icons';
 import { UserContext } from "../context/UserContext";
 import styles from "../styles/InterestStyle";
 import {
-    Backpacking, Beaches, Roadtrips, Mountains,
-    Ambivert, Introvert, Extrovert, CasualDatting,
-    Cycling, Flexible, Friendship, Gym, OpenToAnything,
-    Running, SeriousRelationship, Swimming, Vegan, Vegetarian
+    Music, Gaming, Books, Photography, Swimming, Sports, Cycling, Gym,
+    Fashion, Running, Arts, Travel, Animals, Bikes, Business, Nature, Cars,
+    Back, Search
 } from "../components/icons";
 import { ThemeContext } from '../context/ThemeContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
 
 export default function InterestScreen({ navigation }) {
-    const iconSize = responsiveWidth(5);
+    const iconSize = responsiveWidth(4);
     const theme = useContext(ThemeContext);
-    const travelAndAdventure = [
-        { name: "Backpacking", icons: "Backpacking" },
-        { name: "Beaches", icons: "Beaches" },
-        { name: "Roadtrips", icons: "Roadtrips" },
-        { name: "Mountains", icons: "Mountains" },
+    const { updateUserData } = useContext(UserContext);
+
+    const [interest, setInterest] = useState("");
+    const [selected, setSelected] = useState({
+        allInterests: [],
+    });
+
+    const allInterests = [
+        { name: "music", icons: "Music" },
+        { name: "gaming", icons: "Gaming" },
+        { name: "book", icons: "Books" },
+        { name: "photography", icons: "Photography" },
+        { name: "swimming", icons: "Swimming" },
+        { name: "sports", icons: "Sports" },
+        { name: "cycling", icons: "Cycling" },
+        { name: "gym", icons: "Gym" },
+        { name: "fashion", icons: "Fashion" },
+        { name: "running", icons: "Running" },
+        { name: "arts", icons: "Arts" },
+        { name: "travel", icons: "Travel" },
+        { name: "animals", icons: "Animals" },
+        { name: "bikes", icons: "Bikes" },
+        { name: "business", icons: "Business" },
+        { name: "nature", icons: "Nature" },
+        { name: "cars", icons: "Cars" },
     ];
-    const fitness = [
-        { name: "Gym", icons: "Gym" },
-        { name: "Swimming", icons: "Swimming" },
-        { name: "Cycling", icons: "Cycling" },
-        { name: "Running", icons: "Running" },
-    ];
-    const diet = [
-        { name: "Vegan", icons: "Vegan" },
-        { name: "Vegetarian", icons: "Vegetarian" },
-        { name: "Flexible", icons: "Flexible" },
-    ];
-    const personality = [
-        { name: "Ambivert", icons: "Ambivert" },
-        { name: "Introvert", icons: "Introvert" },
-        { name: "Extrovert", icons: "Extrovert" },
-    ];
-    const relationship = [
-        { name: "CasualDating", icons: "CasualDatting" },
-        { name: "Friendship", icons: "Friendship" },
-        { name: "Serious", icons: "SeriousRelationship" },
-        { name: "Anything", icons: "OpenToAnything" },
-    ];
+
+    // Define an array of predefined border colors
+    const interestBorderColors = {
+        music: theme.colors.pink,
+        gaming: theme.colors.blueGreen,
+        book: theme.colors.gold,
+        photography: theme.colors.orange,
+        swimming: theme.colors.blue,
+        sports: theme.colors.cyan,
+        cycling: theme.colors.pink,
+        gym: theme.colors.gold,
+        fashion: theme.colors.blueGreen,
+        running: theme.colors.orange,
+        arts: theme.colors.pink,
+        travel: theme.colors.blueGreen,
+        animals: theme.colors.gold,
+        bikes: theme.colors.cyan,
+        business: theme.colors.pink,
+        nature: theme.colors.orange,
+        cars: theme.colors.blueGreen,
+    };
 
     const getIcon = (iconName) => {
         switch (iconName) {
-            case "Backpacking":
-                return <Backpacking width={iconSize} height={iconSize} />;
-            case "Beaches":
-                return <Beaches width={iconSize} height={iconSize} />;
-            case "Roadtrips":
-                return <Roadtrips width={iconSize} height={iconSize} />;
-            case "Mountains":
-                return <Mountains width={iconSize} height={iconSize} />;
-            case "Ambivert":
-                return <Ambivert width={iconSize} height={iconSize} />;
-            case "Introvert":
-                return <Introvert width={iconSize} height={iconSize} />;
-            case "Extrovert":
-                return <Extrovert width={iconSize} height={iconSize} />;
-            case "CasualDatting":
-                return <CasualDatting width={iconSize} height={iconSize} />;
-            case "Cycling":
-                return <Cycling width={iconSize} height={iconSize} />;
-            case "Flexible":
-                return <Flexible width={iconSize} height={iconSize} />;
-            case "Gym":
-                return <Gym width={iconSize} height={iconSize} />;
-            case "OpenToAnything":
-                return <OpenToAnything width={iconSize} height={iconSize} />;
-            case "Running":
-                return <Running width={iconSize} height={iconSize} />;
-            case "SeriousRelationship":
-                return <SeriousRelationship width={iconSize} height={iconSize} />;
+            case "Music":
+                return <Music width={iconSize} height={iconSize} />;
+            case "Gaming":
+                return <Gaming width={iconSize} height={iconSize} />;
+            case "Books":
+                return <Books width={iconSize} height={iconSize} />;
+            case "Photography":
+                return <Photography width={iconSize} height={iconSize} />;
             case "Swimming":
                 return <Swimming width={iconSize} height={iconSize} />;
-            case "Vegan":
-                return <Vegan width={iconSize} height={iconSize} />;
-            case "Vegetarian":
-                return <Vegetarian width={iconSize} height={iconSize} />;
-            case "Friendship":
-                return <Friendship width={iconSize} height={iconSize} />;
+            case "Sports":
+                return <Sports width={iconSize} height={iconSize} />;
+            case "Cycling":
+                return <Cycling width={iconSize} height={iconSize} />;
+            case "Gym":
+                return <Gym width={iconSize} height={iconSize} />;
+            case "Fashion":
+                return <Fashion width={iconSize} height={iconSize} />;
+            case "Running":
+                return <Running width={iconSize} height={iconSize} />;
+            case "Arts":
+                return <Arts width={iconSize} height={iconSize} />;
+            case "Travel":
+                return <Travel width={iconSize} height={iconSize} />;
+            case "Animals":
+                return <Animals width={iconSize} height={iconSize} />;
+            case "Bikes":
+                return <Bikes width={iconSize} height={iconSize} />;
+            case "Business":
+                return <Business width={iconSize} height={iconSize} />;
+            case "Nature":
+                return <Nature width={iconSize} height={iconSize} />;
+            case "Cars":
+                return <Cars width={iconSize} height={iconSize} />;
             default:
-                return <Ionicons name="Home" size={iconSize} />;
+                return <Text>Icon</Text>;
         }
-    };
-
-    const [selected, setSelected] = useState({
-        travelAndAdventure: [],
-        fitness: [],
-        diet: [],
-        personality: [],
-        relationship: [],
-    });
-
-    const { updateUserData } = useContext(UserContext);
-
-    const toggleInterest = (interest, section) => {
-        setSelected((prev) => {
-            const selectedList = prev[section] || [];
-            let updatedList;
-
-            if (selectedList.includes(interest)) {
-                updatedList = selectedList.filter(item => item !== interest);
-            } else {
-                updatedList = [interest];
-            }
-            return { ...prev, [section]: updatedList };
-        });
     };
 
     const handleSubmit = () => {
-
-        const allSectionsSelected = Object.values(selected).every(
-            (interest) => interest.length > 0
-        );
-
-        if (!allSectionsSelected) {
-            Alert.alert("Please select at least one interest from each section.");
-        } else {
-
-            updateUserData('Interests', selected);
-            navigation.navigate("UploadPhotoScreen");
+        if (selected.allInterests.length === 0) {
+            Alert.alert("Selection Required", "Please select at least one interest.");
+            return;
         }
+        updateUserData("Interests", selected.allInterests);
+        navigation.navigate("UploadPhotoScreen");
     };
 
+    const filteredInterests = allInterests.filter(({ name }) =>
+        name.toLowerCase().includes(interest.toLowerCase())
+    );
+
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        // linear gradient
+        <LinearGradient
+            colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+            locations={[0, 0.48, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ flex: 1 }} 
+        >
+            <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
             </View>
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.gold }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.blue }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.orange }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.pink }]}></View>
+                    <View style={[styles.progress, { backgroundColor: theme.colors.blueGreen }]}></View>
                     <View style={styles.progress}></View>
                 </View>
             </View>
+
             <View style={styles.itemContainer}>
+                <View style={styles.textContainer}>
+                    <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                        <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }}>what </Text>do you</Text>
+                    <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>love doing?</Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, marginTop:8, opacity:0.8 }]}>Select topics you’re passionate</Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, opacity:0.8 }]}>about.</Text>
+                </View>
+            </View>
+            <View style={styles.interestContainer}>
+                <View style={styles.inputContainer}>
+                    <Search style={styles.searchIcon} />
+                    <TextInput
+                        placeholder="What are you into?"
+                        style={[styles.Input, { fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small }]}
+                        value={interest}
+                        onChangeText={setInterest}
+                        onSubmitEditing={Keyboard.dismiss} // Dismiss keyboard on submit
+                    />
+                </View>
 
-            <Text style={[styles.mainText,  { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>Your Interests</Text>
-            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>Pick 6 things you love, it will help to</Text>
-            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>match with people who have similar</Text>
-            <Text style={[styles.text,{ color: theme.colors.text, fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.medium }]}>interests</Text>
+                <ScrollView contentContainerStyle={styles.interestsGrid}>
+                    {filteredInterests.map((item) => (
+                        <TouchableOpacity
+                            key={item.name}
+                            style={[
+                                styles.interestItem,
+                                selected.allInterests.includes(item.name) && {
+                                    borderColor: interestBorderColors[item.name],
+                                    borderWidth:responsiveWidth(0.5), 
+                                },
+                            ]}
+                            onPress={() => {
+                                setSelected((prev) => ({
+                                    allInterests: prev.allInterests.includes(item.name)
+                                        ? prev.allInterests.filter((i) => i !== item.name)
+                                        : [...prev.allInterests, item.name],
+                                }));
+                            }}
+                        >
 
-                <ScrollView style={styles.scrollview}>
-                    {/* Travel & Adventure */}
-                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Travel & Adventure</Text>
-                    <View style={styles.grid}>
-                        <View style={styles.interestSection}>
-                            {travelAndAdventure.map((item) => (
-                                <TouchableOpacity
-                                    key={item.name}
-                                    style={[
-                                        styles.interest,
-                                        selected.travelAndAdventure.includes(item.name) && styles.selected,
-                                    ]}
-                                    onPress={() => toggleInterest(item.name, "travelAndAdventure")}
-                                >
-                                    {getIcon(item.icons)}
-                                    <Text
-                                        style={[
-                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.travelAndAdventure.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
-                                        ]}
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* Fitness Goals */}
-                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Fitness Goals</Text>
-                    <View style={styles.grid}>
-                        <View style={styles.interestSection}>
-                            {fitness.map((item) => (
-                                <TouchableOpacity
-                                    key={item.name}
-                                    style={[
-                                        styles.interest,
-                                        selected.fitness.includes(item.name) && styles.selected,
-                                    ]}
-                                    onPress={() => toggleInterest(item.name, "fitness")}
-                                >
-                                    {getIcon(item.icons)}
-                                    <Text
-                                        style={[
-                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.fitness.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
-                                        ]}
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* Diet Preferences */}
-                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Diet Preferences</Text>
-                    <View style={styles.grid}>
-                        <View style={styles.interestSection}>
-                            {diet.map((item) => (
-                                <TouchableOpacity
-                                    key={item.name}
-                                    style={[
-                                        styles.interest,
-                                        selected.diet.includes(item.name) && styles.selected,
-                                    ]}
-                                    onPress={() => toggleInterest(item.name, "diet")}
-                                >
-                                    {getIcon(item.icons)}
-                                    <Text
-                                        style={[
-                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.diet.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
-                                        ]}
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* Personality Traits */}
-                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Personality Traits</Text>
-                    <View style={styles.grid}>
-                        <View style={styles.interestSection}>
-                            {personality.map((item) => (
-                                <TouchableOpacity
-                                    key={item.name}
-                                    style={[
-                                        styles.interest,
-                                        selected.personality.includes(item.name) && styles.selected,
-                                    ]}
-                                    onPress={() => toggleInterest(item.name, "personality")}
-                                >
-                                    {getIcon(item.icons)}
-                                    <Text
-                                        style={[
-                                            styles.interestText,styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.personality.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.small },
-                                        ]}
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* Relationship Preferences */}
-                    <Text style={[styles.titleText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Relationship Preferences</Text>
-                    <View style={styles.grid}>
-                        <View style={styles.interestSection}>
-                            {relationship.map((item) => (
-                                <TouchableOpacity
-                                    key={item.name}
-                                    style={[
-                                        styles.interest,
-                                        selected.relationship.includes(item.name) && styles.selected,
-                                    ]}
-                                    onPress={() => toggleInterest(item.name, "relationship")}
-                                >
-                                    {getIcon(item.icons)}
-                                    <Text
-                                        style={[
-                                            styles.interestText,{ color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                            selected.relationship.includes(item.name) && { color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small },
-                                        ]}
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
+                            {getIcon(item.icons)}
+                            <Text
+                                style={[
+                                    styles.interestText,
+                                    selected.allInterests.includes(item.name) && styles.selectedText,
+                                ]}
+                            >
+                                {item.name}
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
                 </ScrollView>
             </View>
-            <View style={styles.selectOf}><Text style={{ fontSize: responsiveWidth(3.5), fontWeight: "700", color: "#626161" }}>{Object.values(selected).flat().length}/5 Selected</Text></View>
             <View style={styles.continuebtn}>
-            <Button style={[styles.button,  { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
+                <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
             </View>
         </SafeAreaView>
+        </LinearGradient>
     );
 }

@@ -1,45 +1,61 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import React, { useContext, useState } from 'react'
 import styles from '../styles/VerificationStyle'
-import { Button } from "@ant-design/react-native";
-import { Dollar, HeartMan, Payment, Wingman } from '../components/icons';
-import { Ionicons } from "@expo/vector-icons";
+import { Dollar, Payment, Wingman, Verification, Back } from '../components/icons';
 import { ThemeContext } from '../context/ThemeContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function VerificationScreen({navigation}) {
+export default function VerificationScreen({ navigation }) {
 
     const theme = useContext(ThemeContext);
+    const [isActive, setIsActive] = useState('');
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        // linear gradient
+        <LinearGradient
+            colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+            locations={[0, 0.48, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ flex: 1 }} 
+        >
+            <SafeAreaView style={styles.container}>
+
             <View style={styles.header}>
-               
-                <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.skipBtn}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ChatLandingScreen')} style={styles.skipBtn}>
                     <Text>Skip</Text>
                 </TouchableOpacity>
             </View>
+
             <View style={styles.itemContainer}>
-                <HeartMan />
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Verification is in progress</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>and may take a few hours.</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}> Once complete, you'll be able</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}> to explore and meet</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>amazing people. Meanwhile,</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}> Fill more details for perfect</Text>
-                <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Match</Text>
+                <Verification />
+                <View style={styles.textContainer}>
+                    <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                    <Text style={{ color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium2, }}>verification in progress!</Text></Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.text, marginBottom:20, opacity:0.8 }]}>once done, you can meet amazing people!</Text>
+                    <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }]}>
+                    <Text style={{ color: theme.colors.primary, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>details </Text>lead to destiny.</Text>
+                    <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, marginTop:0, opacity:0.8 }]}>share your interests for a better match!</Text>
+                </View>
+                
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={[styles.button, { backgroundColor: theme.colors.primary }]}>
-                        <Payment width={30}/>
-                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.smaller, fontFamily: theme.fontfamily.bold }]}>More Details</Text></TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { backgroundColor: theme.colors.primary }]}>
-                        <Dollar width={30}/>
-                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.smaller, fontFamily: theme.fontfamily.bold}]}>Premium match </Text></TouchableOpacity>
-               
-                <TouchableOpacity style={[styles.button, { backgroundColor: theme.colors.primary }]}>
-                    <Wingman width={25}/>
-                    <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.smaller, fontFamily: theme.fontfamily.bold }]}>Add a wingman</Text></TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey, backgroundColor:theme.colors.background }, isActive === 'button1' && {borderColor: theme.colors.primary, borderWidth:2}]}  onPress={() => setIsActive('button1')}>
+                        <Payment width={40} />
+                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>more Details</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey,backgroundColor:theme.colors.background }, isActive === 'button2' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button2')}>
+                        <Wingman width={40} />
+                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>wingman</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey, backgroundColor:theme.colors.background }, isActive === 'button3' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button3')}>
+                        <Dollar width={40} />
+                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>premium</Text>
+                    </TouchableOpacity>  
                 </View>
             </View>
         </SafeAreaView>
+        </LinearGradient>
     )
 }

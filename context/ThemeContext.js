@@ -19,8 +19,7 @@ export const ThemeProvider = ({ children }) => {
       blueGreen: '#26A69A', // blue-green color for few words in a screen
       btnText:'#FFFFFF',// button text color
       white:'#D9D9D9',
-      subText:'#909090',
-      globaltext : '#000000', // black text color
+      subText:'#909090'
       // You can add other colors as well here, following the above pattern
     },
     fontsize: {
