@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'left',
+    alignItems: 'center',
     padding: responsiveWidth(5),
     // backgroundColor: '#F9F9F9',
   },
   backButton: {
-    position: 'absolute',
+    // position: 'absolute',
     top: responsiveHeight(5),
     left: responsiveWidth(5),
   },

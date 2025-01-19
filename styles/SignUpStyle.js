@@ -1,64 +1,39 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 
-const { width, height } = Dimensions.get('window');
-const scale = (size) => (width / 375) * size;
+const buttonSize = responsiveWidth(38);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: responsiveWidth(5), // 5% of screen width
     justifyContent: 'center',
-    paddingHorizontal: scale(20),
-    paddingBottom: 40,
   },
-  imagesContainer: {
-    flexGrow: 1,
+  heading: {
+    fontSize: responsiveWidth(8), // 8% of screen width
+    fontWeight: 'bold',
+    marginBottom: responsiveHeight(2), // 2% of screen height
+  },
+  input: {
     width: '100%',
-    height: height * 0.5,
+    height: responsiveHeight(7), // 7% of screen height
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: responsiveWidth(3), // 3% of screen width
+    fontSize: responsiveWidth(4.5), // 4.5% of screen width
+    marginBottom: responsiveHeight(2), // 2% of screen height
+  },
+  button: {
+    height: buttonSize,
+    width: buttonSize,
+    paddingVertical: responsiveHeight(2), // 2% of screen height
+    borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: height * 0.05,
-  },
-  subTitle: {
-    fontSize: scale(24),
-    textAlign: 'center',
-    marginVertical: scale(10),
-  },
-  description: {
-    fontSize: scale(16),
-    textAlign: 'center',
-    marginVertical: scale(20),
-    paddingHorizontal: scale(10),
-  },
-  LoginwithPhoneContainer: {
-    flexDirection: 'row',
-    flexBasis: '8%',
-    width: '100%',
-    height: '40%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: '5%',
-    borderRadius: 15,
-  },
-  phoneIcon: {
-    textAlign: 'center',
-  },
-  buttonView: {
-    paddingVertical: '5%',
-    marginHorizontal: '5%',
-    textAlign: 'center',
+    marginTop: responsiveHeight(2), // 2% of screen height
   },
   buttonText: {
-    fontSize: scale(18),
-    alignSelf: 'center',
-  },
-  footerText: {
-    fontSize: scale(14),
-    marginTop: scale(10),
-  },
-  signUpText: {
-    fontSize: scale(18),
-    marginBottom: scale(20)
+    fontSize: responsiveWidth(5), // 5% of screen width
+    fontWeight: 'bold',
   },
 });
 

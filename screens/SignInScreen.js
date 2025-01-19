@@ -5,9 +5,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import PhoneInput from 'react-native-international-phone-number';
 import axios from 'axios';
 import { ThemeContext } from '../context/ThemeContext';
-import styles from '../styles/LoginStyle';
+import styles from '../styles/SignInStyle';
 
-const LoginScreen = ({ navigation }) => {
+const SignInScreen = ({ navigation }) => {
   const theme  = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -64,12 +64,12 @@ const LoginScreen = ({ navigation }) => {
 
         <View style={styles.titleContainer}>
           <Text style={[styles.title, { color: theme.colors.gold, fontFamily: theme.fontfamily.bold }]}>
-            login
+            sign in
           </Text>
           <Text style={[styles.title, { color: theme.colors.globaltext, fontFamily: theme.fontfamily.bold }]}>
             with phone number
           </Text>
-          <Text style={[styles.description, { color: theme.colors.subText, fontFamily: theme.fontfamily.semibold }]}>
+          <Text style={[styles.description, { color: theme.colors.placeholder, fontFamily: theme.fontfamily.semibold }]}>
             enter your number to receive a code.
           </Text>
         </View>
@@ -126,4 +126,4 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default SignInScreen;

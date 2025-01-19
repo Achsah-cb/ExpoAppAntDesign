@@ -1,92 +1,101 @@
-import React, { useState, useRef, useContext } from 'react';
-import { View, Text,ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { ThemeContext } from '../context/ThemeContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios';
 import styles from '../styles/OtpStyle';
-import { Ionicons } from "@expo/vector-icons";
+import { ThemeContext } from '../context/ThemeContext';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const OtpScreen = ({ navigation }) => {
-  const [otp, setOtp] = useState(['', '', '', '']);
+const OtpScreen = () => {
+  const { theme } = useContext(ThemeContext);
+  const [code, setCode] = useState(['', '', '', '']);
+  const [timer, setTimer] = useState(75);
 
-  const theme = useContext(ThemeContext);
+  useEffect(() => {
+    const countdown = setInterval(() => {
+      setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
+    }, 1000);
+    return () => clearInterval(countdown);
+  }, []);
 
-  if (!theme) {
-    console.error('Theme context is not provided.');
-    return null;
-  }
+  const handleCodeChange = (index, value) => {
+    const newCode = [...code];
+    newCode[index] = value;
+    setCode(newCode);
+  };
 
-  const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-
-  const handleInputChange = (text, index) => {
-    if (/^\d$/.test(text) || text === '') {
-      const newOtp = [...otp];
-      newOtp[index] = text;
-      setOtp(newOtp);
-
-      if (text !== '' && index < inputRefs.length - 1) {
-        inputRefs[index + 1].current.focus();
+  const handleContinue = async () => {
+    const fullCode = code.join('');
+    try {
+      const response = await axios.post('https://your-backend-api.com/verify-code', {
+        phone: '+14151234567', // Replace with the actual phone number
+        code: fullCode,
+      });
+      if (response.data.success) {
+        Alert.alert('Success', 'Code verified successfully.');
+        // Navigate to the next screen if needed
+      } else {
+        Alert.alert('Error', response.data.message || 'Invalid code.');
       }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred. Please try again.');
     }
   };
 
-  const handleKeyPress = (e, index) => {
-    if (e.nativeEvent.key === 'Backspace' && otp[index] === '' && index > 0) {
-      inputRefs[index - 1].current.focus();
+  const handleResendCode = async () => {
+    try {
+      const response = await axios.post('https://your-backend-api.com/send-code', {
+        phone: '+14151234567', // Replace with the actual phone number
+      });
+      if (response.data.success) {
+        setTimer(75); // Reset timer
+        Alert.alert('Success', 'Verification code sent.');
+      } else {
+        Alert.alert('Error', 'Failed to send verification code.');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred. Please try again.');
     }
-  };
-
-  const handleResendCode = () => {
-    setOtp(['', '', '', '']);
-    inputRefs[0].current.focus();
-    console.log('Resend OTP Code');
-  };
-
-  const handleVerify = () => {
-    console.log('OTP Entered:', otp.join(''));
-    navigation.navigate('BirthStoryZodiac');
   };
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
-            </View>
-            <View style={[styles.progressBar]}>
-            <View style={[styles.progressContainer,{ backgroundColor: theme.colors.primary }]}>
-                <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
-            </View>
-        </View>
-      <View style={styles.InnerContainer}>
-        <Text style={[styles.title, { fontFamily: theme.fontfamily.bold, color: theme.colors.text, fontSize: theme.fontsize.large }]}>Verification Code</Text>
-        <Text style={[styles.subtitle, { fontFamily: theme.fontfamily.regular, color: theme.colors.text }]}>Please enter code we just sent to</Text>
-        <Text style={styles.phoneNumber}>+91 99292 77633</Text>
-
-        <View style={styles.otpContainer}>
-          {otp.map((digit, index) => (
-            <TextInput
-              key={index}
-              ref={inputRefs[index]}
-              style={styles.otpInput}
-              keyboardType="numeric"
-              maxLength={1}
-              value={digit}
-              onChangeText={(text) => handleInputChange(text, index)}
-              onKeyPress={(e) => handleKeyPress(e, index)}
-              returnKeyType={index < otp.length - 1 ? 'next' : 'done'}
-            />
-          ))}
-        </View>
+    <LinearGradient
+      colors={[theme.gradient.start, theme.gradient.end]}
+      style={styles.container}
+    >
+      <Text style={[styles.title, { color: theme.colors.globaltext }]}>
+        Code <Text style={styles.bold}>Verification</Text>
+      </Text>
+      <Text style={[styles.subtitle, { color: theme.colors.placeholder }]}>
+        Please enter the code we just sent to
+      </Text>
+      <Text style={[styles.phoneNumber, { color: theme.colors.primary }]}>
+        +1 415-123-4567
+      </Text>
+      <View style={styles.codeContainer}>
+        {code.map((digit, index) => (
+          <TextInput
+            key={index}
+            style={[styles.codeInput, { borderColor: theme.colors.border, color: theme.colors.globaltext }]}
+            keyboardType="numeric"
+            maxLength={1}
+            value={digit}
+            onChangeText={(value) => handleCodeChange(index, value)}
+          />
+        ))}
       </View>
-      <Text style={[styles.resendText, { fontFamily: theme.fontfamily.semibold, color: theme.colors.text }]}>Didn't receive OTP?</Text>
-      <TouchableOpacity onPress={handleResendCode}>
-        <Text style={[styles.resendButton, { fontFamily: theme.fontfamily.semibold, color: theme.colors.secondary }]}>Resend Code</Text>
+      <Text style={[styles.resendText, { color: theme.colors.placeholder }]}>
+        Resend code in {Math.floor(timer / 60)}:{('0' + (timer % 60)).slice(-2)}
+      </Text>
+      <TouchableOpacity onPress={handleResendCode} disabled={timer > 0}>
+        <Text style={[styles.resendLink, { color: theme.colors.placeholder }]}>
+          Didn't receive code? <Text style={styles.resendCode}>Resend code</Text>
+        </Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.verifyButton, { color: theme.colors.text, backgroundColor: theme.colors.primary }]} onPress={handleVerify}>
-        <Text style={[{ fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]}>Verify</Text>
+      <TouchableOpacity style={[styles.continueButton, { backgroundColor: theme.colors.primary }]} onPress={handleContinue}>
+        <Text style={[styles.continueButtonText, { color: theme.colors.buttonText }]}>Continue</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </LinearGradient>
   );
 };
 
-export default OtpScreen; 
+export default OtpScreen;

@@ -32,7 +32,7 @@ const Stack = createStackNavigator();
 const AppContainer = ({ children }) => {
   const theme = useTheme(); // Access the theme context
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.gradient }]}>
       {children}
     </View>
   );
