@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 
 const buttonSize = responsiveWidth(38);
@@ -6,34 +6,57 @@ const buttonSize = responsiveWidth(38);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: responsiveWidth(5), // 5% of screen width
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: responsiveHeight(4),
+    marginVertical: responsiveHeight(5),
   },
-  heading: {
-    fontSize: responsiveWidth(8), // 8% of screen width
-    fontWeight: 'bold',
-    marginBottom: responsiveHeight(2), // 2% of screen height
+  textContainer: {
+    alignItems: "left ",
+    marginBottom: responsiveHeight(-3),
   },
-  input: {
-    width: '100%',
-    height: responsiveHeight(7), // 7% of screen height
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: responsiveWidth(3), // 3% of screen width
-    fontSize: responsiveWidth(4.5), // 4.5% of screen width
-    marginBottom: responsiveHeight(2), // 2% of screen height
+  title: {
+    lineHeight: responsiveHeight(4),
+    textAlign: "left",
   },
-  button: {
-    height: buttonSize,
-    width: buttonSize,
-    paddingVertical: responsiveHeight(2), // 2% of screen height
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: responsiveHeight(2), // 2% of screen height
+  description: {
+    letterSpacing: 1.5,
+    textAlign: "left",
+    marginTop: responsiveHeight(2),
   },
-  buttonText: {
-    fontSize: responsiveWidth(5), // 5% of screen width
-    fontWeight: 'bold',
+  gifContainer: {
+    alignItems: "center",
+    flex:2,
+    marginVertical: responsiveHeight(5),
+  },
+  gif: {
+    width: responsiveWidth(50),
+    height: responsiveWidth(50),
+    resizeMode: "contain",
+  },
+  buttonContainer: {
+    alignItems: "center",
+    marginTop: responsiveHeight(5),
+  },
+  loginText: {
+    marginTop: responsiveHeight(2),
+    color: "#909090",
+  },
+  continuebtn: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    padding: 15
+  },
+  Button: {
+    width: responsiveWidth(80),
+    height: responsiveHeight(6),
+    shadowColor: '#FF2A64',
+    shadowOffset: { width: 0, height: responsiveWidth(4) },
+    shadowOpacity: 0.5,
+    shadowRadius: responsiveWidth(3),
+    elevation: 6,
+    borderWidth: responsiveWidth(0),
+    alignItems: 'center'
   },
 });
 

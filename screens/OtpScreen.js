@@ -6,7 +6,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const OtpScreen = () => {
-  const { theme } = useContext(ThemeContext);
+const theme = useContext(ThemeContext);
   const [code, setCode] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(75);
 
@@ -58,10 +58,8 @@ const OtpScreen = () => {
   };
 
   return (
-    <LinearGradient
-      colors={[theme.gradient.start, theme.gradient.end]}
-      style={styles.container}
-    >
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
       <Text style={[styles.title, { color: theme.colors.globaltext }]}>
         Code <Text style={styles.bold}>Verification</Text>
       </Text>
@@ -94,7 +92,8 @@ const OtpScreen = () => {
       <TouchableOpacity style={[styles.continueButton, { backgroundColor: theme.colors.primary }]} onPress={handleContinue}>
         <Text style={[styles.continueButtonText, { color: theme.colors.buttonText }]}>Continue</Text>
       </TouchableOpacity>
-    </LinearGradient>
+      </KeyboardAvoidingView>
+      </SafeAreaView>
   );
 };
 

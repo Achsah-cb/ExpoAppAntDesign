@@ -9,7 +9,7 @@ const CustomSplashScreen = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('LoginScreen');
+            navigation.navigate('SignUpScreen');
         }, 3000);
     }, []);
 
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FCF2D6'
     }
 })
 

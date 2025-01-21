@@ -19,16 +19,16 @@ export const ThemeProvider = ({ children }) => {
       blueGreen: '#26A69A', // blue-green color for few words in a screen
       btnText:'#FFFFFF',// button text color
       white:'#D9D9D9',
-      subText:'#909090'
+      subText:'#909090',
       // You can add other colors as well here, following the above pattern
     },
     fontsize: {
       smaller: 10,
-      small: 12,
+      small: 14,
       medium: 16,
       medium2: 26,
       medium3: 22,
-      large: 30,
+      large: 32,
     },
     fontfamily: {
       regular: "Montserrat-Regular",
@@ -36,6 +36,9 @@ export const ThemeProvider = ({ children }) => {
       light: "Montserrat-Light",
       medium: "Montserrat-Medium",
       semibold: "Montserrat-SemiBold"
+    },
+    border:{
+      borderradius: 14.13,
     }
   };
 
