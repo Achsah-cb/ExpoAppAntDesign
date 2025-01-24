@@ -13,7 +13,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "left ",
-    marginBottom: responsiveHeight(-3),
+    // flex:1,
+    // paddingVertical: responsiveHeight(1),
+    marginVertical: responsiveHeight(2),
+    marginLeft: responsiveWidth(2),
+  },
+  TitleContainer:{
+    paddingVertical: responsiveHeight(1),
   },
   title: {
     lineHeight: responsiveHeight(4),
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
   gifContainer: {
     alignItems: "center",
     flex:2,
-    marginVertical: responsiveHeight(5),
+    marginVertical: responsiveHeight(2),
   },
   gif: {
     width: responsiveWidth(50),
@@ -46,6 +52,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     padding: 15
+  },
+  phoneIcon:{
+    color: 'white',
+    alignItems: 'center',
   },
   Button: {
     width: responsiveWidth(80),

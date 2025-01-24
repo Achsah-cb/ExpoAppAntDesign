@@ -1,99 +1,221 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import axios from 'axios';
-import styles from '../styles/OtpStyle';
-import { ThemeContext } from '../context/ThemeContext';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from 'react-native';
+import { Back } from "../components/icons";
 import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/AntDesign';
+import ButtonComponent from '../components/Button';
+import { ThemeContext } from '../context/ThemeContext';
+import styles from '../styles/OtpStyle';
+import axios from 'axios';
 
-const OtpScreen = () => {
-const theme = useContext(ThemeContext);
-  const [code, setCode] = useState(['', '', '', '']);
-  const [timer, setTimer] = useState(75);
+const OtpScreen = ({ route, navigation }) => {
+  const theme = useContext(ThemeContext);
+  const { phoneNumber, countryCode, from } = route.params; // "from" determines navigation flow
+  const [otp, setOtp] = useState('');
+  const [timer, setTimer] = useState(120); // Timer for 2 minutes
+  const [loading, setLoading] = useState(false);
+  const inputRefs = useRef([]); // To handle input box refs for auto-focus
 
+  // Timer Logic
   useEffect(() => {
-    const countdown = setInterval(() => {
-      setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
-    }, 1000);
-    return () => clearInterval(countdown);
-  }, []);
+    if (timer > 0) {
+      const countdown = setInterval(() => setTimer((prev) => prev - 1), 1000);
+      return () => clearInterval(countdown);
+    }
+  }, [timer]);
 
-  const handleCodeChange = (index, value) => {
-    const newCode = [...code];
-    newCode[index] = value;
-    setCode(newCode);
-  };
+  const formatPhoneNumber = (phone) => phone.replace(/\s+/g, '');
 
-  const handleContinue = async () => {
-    const fullCode = code.join('');
+  // Resend OTP
+  const resendOtp = async () => {
     try {
-      const response = await axios.post('https://your-backend-api.com/verify-code', {
-        phone: '+14151234567', // Replace with the actual phone number
-        code: fullCode,
-      });
-      if (response.data.success) {
-        Alert.alert('Success', 'Code verified successfully.');
-        // Navigate to the next screen if needed
+      setLoading(true);
+  
+      const payload = {
+        phone: formatPhoneNumber(phoneNumber.trim()), // Trim and remove spaces
+        countryCode: countryCode.trim(), // Ensure countryCode is clean
+      };
+  
+      console.log('Resend OTP Payload:', payload); // Debugging payload
+  
+      const response = await axios.post('http://13.48.178.236:3000/user/resend-otp', payload);
+      console.log('Resend OTP Response:', response.data);
+  
+      if (response.status === 201) {
+        Alert.alert('Success', 'OTP resent successfully');
+        setTimer(120); // Reset the timer
       } else {
-        Alert.alert('Error', response.data.message || 'Invalid code.');
+        Alert.alert('Error', 'Failed to resend OTP');
       }
     } catch (error) {
-      Alert.alert('Error', 'An error occurred. Please try again.');
+      console.error('Error resending OTP:', error?.response?.data || error.message); // Debugging error
+      Alert.alert('Error', 'Failed to resend OTP. Try again later.');
+    } finally {
+      setLoading(false);
     }
   };
-
-  const handleResendCode = async () => {
+  
+  const verifyOtp = async () => {
+    if (otp.length !== 6) {
+      Alert.alert('Error', 'Please enter a valid 6-digit OTP');
+      return;
+    }
+  
     try {
-      const response = await axios.post('https://your-backend-api.com/send-code', {
-        phone: '+14151234567', // Replace with the actual phone number
-      });
-      if (response.data.success) {
-        setTimer(75); // Reset timer
-        Alert.alert('Success', 'Verification code sent.');
+      setLoading(true);
+  
+      const payload = {
+        phone: formatPhoneNumber(phoneNumber.trim()), // Trim and remove spaces
+        countryCode: countryCode.trim(), // Ensure countryCode is clean
+        userOtp: otp.trim(), // Ensure OTP is clean
+      };
+  
+      console.log('Verify OTP Payload:', payload); // Debugging payload
+  
+      const response = await axios.post('http://13.48.178.236:3000/user/verify-otp', payload);
+      console.log('Verify OTP Response:', response.data);
+  
+      if (response.status === 201) {
+        const { message, token } = response.data; // Destructure response fields
+  
+        if (token) {
+          Alert.alert('Success', message); // Show a success message to the user
+          console.log('Navigation Condition:', { from });
+  
+          // Navigate based on "from" and presence of the token
+          if (from === 'SignInScreen') {
+            console.log('Navigating to YourNameScreen');
+            navigation.navigate('YourNameScreen', { token }); // Pass token to NameScreen
+          } else if (from === 'LoginScreen') {
+            console.log('Navigating to MenuScreen');
+            navigation.navigate('MenuScreen', { token }); // Pass token to HomeScreen
+          }
+        } else {
+          Alert.alert('Error', 'Failed to verify OTP');
+        }
       } else {
-        Alert.alert('Error', 'Failed to send verification code.');
+        Alert.alert('Error', response.data?.message || 'Invalid OTP');
       }
     } catch (error) {
-      Alert.alert('Error', 'An error occurred. Please try again.');
+      console.error('Error verifying OTP:', error?.response?.data || error.message); // Debugging error
+      Alert.alert('Error', 'Failed to verify OTP. Try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  
+
+  // Handle OTP Input Focus and Styling
+  const handleOtpChange = (value, index) => {
+    const newOtp = otp.split('');
+    newOtp[index] = value;
+
+    if (value) {
+      if (index < 5) {
+        inputRefs.current[index + 1]?.focus(); // Move to the next input
+      }
+    } else if (!value && index > 0) {
+      inputRefs.current[index - 1]?.focus(); // Move to the previous input on backspace
+    }
+
+    setOtp(newOtp.join(''));
+  };
+
+  const handleKeyPress = (e, index) => {
+    if (e.nativeEvent.key === 'Backspace' && index > 0 && !otp[index]) {
+      inputRefs.current[index - 1]?.focus(); // Focus on previous input
     }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
-      <Text style={[styles.title, { color: theme.colors.globaltext }]}>
-        Code <Text style={styles.bold}>Verification</Text>
-      </Text>
-      <Text style={[styles.subtitle, { color: theme.colors.placeholder }]}>
-        Please enter the code we just sent to
-      </Text>
-      <Text style={[styles.phoneNumber, { color: theme.colors.primary }]}>
-        +1 415-123-4567
-      </Text>
-      <View style={styles.codeContainer}>
-        {code.map((digit, index) => (
-          <TextInput
-            key={index}
-            style={[styles.codeInput, { borderColor: theme.colors.border, color: theme.colors.globaltext }]}
-            keyboardType="numeric"
-            maxLength={1}
-            value={digit}
-            onChangeText={(value) => handleCodeChange(index, value)}
-          />
-        ))}
-      </View>
-      <Text style={[styles.resendText, { color: theme.colors.placeholder }]}>
-        Resend code in {Math.floor(timer / 60)}:{('0' + (timer % 60)).slice(-2)}
-      </Text>
-      <TouchableOpacity onPress={handleResendCode} disabled={timer > 0}>
-        <Text style={[styles.resendLink, { color: theme.colors.placeholder }]}>
-          Didn't receive code? <Text style={styles.resendCode}>Resend code</Text>
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.continueButton, { backgroundColor: theme.colors.primary }]} onPress={handleContinue}>
-        <Text style={[styles.continueButtonText, { color: theme.colors.buttonText }]}>Continue</Text>
-      </TouchableOpacity>
-      </KeyboardAvoidingView>
+    <LinearGradient
+      colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+      locations={[0, 0.48, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={{ flex: 1 }}
+    >
+      <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
+          {/* Back Button */}
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+              <Back />
+            </TouchableOpacity>
+          </View>
+
+          {/* Title Section */}
+          <View style={styles.itemContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={[styles.title, { color: theme.colors.text, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>
+                <Text style={[styles.title, { color: theme.colors.cyan, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>code</Text> verification
+              </Text>
+              <Text style={[styles.subtitle, { color: theme.colors.subText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>
+              please enter the code we just sent to
+              </Text>
+              <TouchableOpacity onPress={() => navigation.goBack()} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={[styles.phoneNumber, { color: theme.colors.cyan, fontFamily: theme.fontfamily.semibold }]}>
+                  {countryCode} {phoneNumber}
+                </Text>
+                <Icon name="edit" size={16} color='#1C1C1C' />
+              </TouchableOpacity>
+            </View>
+
+            {/* OTP Input */}
+            <View style={[styles.otpInputContainer, { fontFamily: theme.fontfamily.medium2, color: theme.colors.text, borderRadius: theme.border.borderradius }]}>
+              {[...Array(6)].map((_, index) => (
+                <TextInput
+                  key={index}
+                  style={[
+                    styles.otpInput,
+                    {
+                      borderColor: otp[index] ? theme.colors.grey : theme.colors.text, // Change border color
+                    },
+                    {borderRadius: theme.border.borderradius2 }
+                  ]}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  ref={(ref) => (inputRefs.current[index] = ref)} // Assign ref
+                  value={otp[index] || ''}
+                  onChangeText={(e) => handleOtpChange(e, index)}
+                />
+              ))}
+            </View>
+
+            {/* Timer and Resend Code */}
+            <View style={styles.timerContainer}>
+              {timer > 0 ? (
+                <Text style={[styles.timer, { color: theme.colors.subText, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold }]}>
+                  resend code in <Text style={{ color: theme.colors.primary }}>{Math.floor(timer / 60)}:{String(timer % 60).padStart(2, '0')}</Text>
+                </Text>
+              ) : (
+                <Text style={[{ color: theme.colors.text, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold }]}>
+                didn't receive code? {' '}
+                <TouchableOpacity onPress={resendOtp} disabled={loading}>
+                  <Text style={[styles.resendCode, { color: theme.colors.primary, fontFamily: theme.fontfamily.semibold }]}>resend code</Text>
+                </TouchableOpacity>
+                </Text>
+              )}
+            </View>
+          </View>
+
+          {/* Continue Button */}
+          <View style={styles.continuebtn}>
+            <ButtonComponent onPress={verifyOtp} />
+          </View>
+        </KeyboardAvoidingView>
       </SafeAreaView>
+    </LinearGradient>
   );
 };
 

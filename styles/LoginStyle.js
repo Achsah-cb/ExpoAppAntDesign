@@ -4,10 +4,11 @@ import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
+    justifyContent: 'center',
+    padding: responsiveWidth(1),
     alignItems: 'center',
     marginVertical: responsiveWidth(9),
-    marginHorizontal: responsiveWidth(5),
+    // marginHorizontal: responsiveWidth(5),
   },
   header: {
     flexDirection: 'row',
@@ -44,11 +45,13 @@ const styles = StyleSheet.create({
   titleContainer:{
     paddingVertical: responsiveHeight(2),
     marginLeft: responsiveWidth(0),
+    alignItems: "center",
+    marginBottom: responsiveHeight(0),
   },
   phoneInputContainer: {
-    // width: responsiveWidth(90),
-    // height: responsiveHeight(7),
-    // borderWidth: 1,
+    width: responsiveWidth(90),
+    height: responsiveHeight(7),
+    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: responsiveWidth(4),
@@ -69,17 +72,17 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginBottom: responsiveHeight(3),
     },
-  Button: {
-    width: responsiveWidth(80),
-    height: responsiveHeight(6),
-    shadowColor: '#FF2A64',
-    shadowOffset: { width: 0, height: responsiveWidth(4) },
-    shadowOpacity: 0.5,
-    shadowRadius: responsiveWidth(3),
-    elevation: 6,
-    borderWidth: responsiveWidth(0),
-    alignItems: 'center'
-  },
+  // Button: {
+  //   width: responsiveWidth(80),
+  //   height: responsiveHeight(6),
+  //   shadowColor: '#FF2A64',
+  //   shadowOffset: { width: 0, height: responsiveWidth(4) },
+  //   shadowOpacity: 0.5,
+  //   shadowRadius: responsiveWidth(3),
+  //   elevation: 6,
+  //   borderWidth: responsiveWidth(0),
+  //   alignItems: 'center'
+  // },
 });
 
 export default styles;

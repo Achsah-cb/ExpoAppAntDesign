@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     },
     interestContainer:{
         alignItems:'center',
-       // backgroundColor:'grey',
         height:responsiveHeight(50)
     },
     searchIcon:{

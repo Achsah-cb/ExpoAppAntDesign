@@ -41,8 +41,11 @@ export { default as Dollar } from '../assets/icons-svg/dollar.svg';
 export { default as ForYou } from '../assets/icons-svg/foryou.svg';
 export { default as Chats } from '../assets/icons-svg/chats.svg';
 export { default as ProfileIcon } from '../assets/icons-svg/profile.svg';
+
 // back navigation
 export { default as Back } from '../assets/icons-svg/back-arrow.svg';
+export { default as Phone} from '../assets/image-svg/phone.svg';
+
 // for times screen
 export { default as Morning } from '../assets/image-svg/morning.svg';
 export { default as Afternoon } from '../assets/image-svg/afternoon.svg';
