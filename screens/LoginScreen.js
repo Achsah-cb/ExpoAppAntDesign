@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }) => {
       if (response.status === 201 || response.status === 200) {
         Alert.alert('Success', 'OTP sent successfully!');
         console.log('Navigation:', navigation); // Debug navigation
-        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'SignInScreen' });
+        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'LoginScreen' });
       } else {
         Alert.alert('Error', data?.message || 'Failed to send OTP. Please try again.');
       }
