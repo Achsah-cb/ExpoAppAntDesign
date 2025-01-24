@@ -1,64 +1,72 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 
-const { width, height } = Dimensions.get('window');
-const scale = (size) => (width / 375) * size;
+const buttonSize = responsiveWidth(38);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: scale(20),
-    paddingBottom: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: responsiveHeight(4),
+    marginVertical: responsiveHeight(5),
   },
-  imagesContainer: {
-    flexGrow: 1,
-    width: '100%',
-    height: height * 0.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: height * 0.05,
+  textContainer: {
+    alignItems: "left ",
+    // flex:1,
+    // paddingVertical: responsiveHeight(1),
+    marginVertical: responsiveHeight(2),
+    marginLeft: responsiveWidth(2),
   },
-  subTitle: {
-    fontSize: scale(24),
-    textAlign: 'center',
-    marginVertical: scale(10),
+  TitleContainer:{
+    paddingVertical: responsiveHeight(1),
+  },
+  title: {
+    lineHeight: responsiveHeight(4),
+    textAlign: "left",
   },
   description: {
-    fontSize: scale(16),
-    textAlign: 'center',
-    marginVertical: scale(20),
-    paddingHorizontal: scale(10),
+    letterSpacing: 1.5,
+    textAlign: "left",
+    marginTop: responsiveHeight(2),
   },
-  LoginwithPhoneContainer: {
+  gifContainer: {
+    alignItems: "center",
+    flex:2,
+    marginVertical: responsiveHeight(2),
+  },
+  gif: {
+    width: responsiveWidth(50),
+    height: responsiveWidth(50),
+    resizeMode: "contain",
+  },
+  buttonContainer: {
+    alignItems: "center",
+    marginTop: responsiveHeight(5),
+  },
+  loginText: {
+    marginTop: responsiveHeight(2),
+    color: "#909090",
+  },
+  continuebtn: {
     flexDirection: 'row',
-    flexBasis: '8%',
-    width: '100%',
-    height: '40%',
+    alignItems: 'flex-end',
+    padding: 15
+  },
+  phoneIcon:{
+    color: 'white',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: '5%',
-    borderRadius: 15,
   },
-  phoneIcon: {
-    textAlign: 'center',
-  },
-  buttonView: {
-    paddingVertical: '5%',
-    marginHorizontal: '5%',
-    textAlign: 'center',
-  },
-  buttonText: {
-    fontSize: scale(18),
-    alignSelf: 'center',
-  },
-  footerText: {
-    fontSize: scale(14),
-    marginTop: scale(10),
-  },
-  signUpText: {
-    fontSize: scale(18),
-    marginBottom: scale(20)
+  Button: {
+    width: responsiveWidth(80),
+    height: responsiveHeight(6),
+    shadowColor: '#FF2A64',
+    shadowOffset: { width: 0, height: responsiveWidth(4) },
+    shadowOpacity: 0.5,
+    shadowRadius: responsiveWidth(3),
+    elevation: 6,
+    borderWidth: responsiveWidth(0),
+    alignItems: 'center'
   },
 });
 

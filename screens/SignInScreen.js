@@ -6,9 +6,9 @@ import PhoneInput from 'react-native-international-phone-number';
 import ButtonComponent from '../components/Button';
 import axios from 'axios';
 import { ThemeContext } from '../context/ThemeContext';
-import styles from '../styles/LoginStyle';
+import styles from '../styles/SignInStyle';
 
-const LoginScreen = ({ navigation }) => {
+const SignInScreen = ({ navigation }) => {
   const theme = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }) => {
       if (response.status === 201 || response.status === 200) {
         Alert.alert('Success', 'OTP sent successfully!');
         console.log('Navigation:', navigation); // Debug navigation
-        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'LoginScreen' });
+        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'SignInScreen' });
       } else {
         Alert.alert('Error', data?.message || 'Failed to send OTP. Please try again.');
       }
@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.itemContainer}>
               <View style={styles.titleContainer}>
                 <Text style={[styles.title, { color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-                  login {' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                  sign up{' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
                     with phone{' '}{' '}{' '} number
                   </Text>
                 </Text>
@@ -141,4 +141,4 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default SignInScreen;

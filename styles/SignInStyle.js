@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     margin: 20,
     marginTop: responsiveWidth(4),
   },
+  titleContainer: {
+    paddingVertical: responsiveHeight(2),
+    marginLeft: responsiveWidth(0),
+    alignItems: "left ",
+    marginBottom: responsiveHeight(0),
+  },
   title: {
     textAlign: 'left',
     marginBottom: responsiveHeight(1),
@@ -39,12 +45,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginTop: responsiveHeight(3),
     width: '100%',
-  },
-  titleContainer: {
-    paddingVertical: responsiveHeight(2),
-    marginLeft: responsiveWidth(0),
-    alignItems: "left ",
-    marginBottom: responsiveHeight(0),
   },
   phoneInputContainer: {
     flexDirection: 'row',

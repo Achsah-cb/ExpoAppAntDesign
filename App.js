@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CustomSplashScreen from './screens/SplashScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
+import SignInScreen from './screens/SignInScreen';
 import OtpScreen from './screens/OtpScreen';
 import BirthStoryZodiacScreen from './screens/BirthStoryZodiacScreen';
 import LocationAndLanguagesScreen from './screens/LocationLanguageScreen';
@@ -34,7 +35,7 @@ const Stack = createStackNavigator();
 const AppContainer = ({ children }) => {
   const theme = useTheme(); // Access the theme context
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View style={[styles.container]}>
       {children}
     </View>
   );
@@ -63,6 +64,11 @@ export default function App() {
               <Stack.Screen
                 name="SignUpScreen"
                 component={SignUpScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignInScreen"
+                component={SignInScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen

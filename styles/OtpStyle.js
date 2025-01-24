@@ -1,117 +1,89 @@
-import { StyleSheet, Dimensions, Platform } from 'react-native';
-
-const { width, height } = Dimensions.get('window');
-const responsiveWidth = (percentage) => (width * percentage) / 100;
-const responsiveHeight = (percentage) => (height * percentage) / 100;
-const scale = (size) => (width / 375) * size;
-const progressScale = (percentage) => (width * percentage) / 100;
+import { StyleSheet } from 'react-native';
+import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: responsiveWidth(4),
-    paddingTop: scale(10),
-    marginVertical: scale(1),
-    paddingVertical: responsiveHeight(2)
+    alignItems: 'center',
+    marginVertical: responsiveWidth(9),
+    marginHorizontal: responsiveWidth(5),
   },
   header: {
     flexDirection: 'row',
-    ...Platform.select({ ios: { marginTop: 30, }, android: { marginTop: 30 } }),
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     width: responsiveWidth(100),
   },
   backBtn: {
-    margin: responsiveWidth(4),
+    marginBottom: responsiveWidth(7),
+    marginLeft: responsiveWidth(3),
     width: responsiveWidth(9),
-    height: responsiveHeight(4.5),
-    backgroundColor: "#ffffffff",
+    height: responsiveHeight(3),
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: responsiveWidth(2)
+    borderRadius: responsiveWidth(2),
   },
-  progressContainer: {
-    width: responsiveWidth(75),
-    height: responsiveHeight(0.8),
-    borderRadius: 50,
+  itemContainer: {
+    flex: 3,
+    alignItems: 'center',
+    margin: 20,
+    marginTop: responsiveWidth(4),
   },
-  progressBar: {
-   alignItems:'center'
-  },
-  progress: {
-    width: responsiveWidth(10),
-    height: responsiveHeight(0.8),
-    borderRadius: 50
-  },
-  backButtonIconSize: responsiveWidth(8),
-  progressBarContainer: {
-    marginVertical: responsiveHeight(2),
-  },
-  progressBarContainer: {
-    width: progressScale(65),
-    height: progressScale(2),
-    alignSelf: 'center',
-    borderRadius: scale(50),
-    marginBottom: scale(0),
-    marginTop: 10,
-    marginLeft: scale(30)
-  },
-
-  InnerContainer: {
-    marginVertical: scale(20)
+  titleContainer:{
+    paddingVertical: responsiveHeight(2),
+    marginLeft: responsiveWidth(0),
+    alignItems: "center",
+    marginBottom: responsiveHeight(0),
   },
   title: {
-    textAlign: 'center',
-    marginBottom: scale(5),
+    textAlign: 'left',
+    marginBottom: responsiveHeight(1),
   },
   subtitle: {
-    textAlign: 'center',
-    marginBottom: 5,
+    textAlign: 'left',
+  },
+  OtpOuterContainer: {
+    width: responsiveWidth(90),
+    height: responsiveHeight(7),
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: responsiveWidth(4),
+    backgroundColor: '#FFF',
   },
   phoneNumber: {
     textAlign: 'center',
-    marginBottom: scale(30),
+    marginVertical: responsiveHeight(1),
+    fontSize: responsiveWidth(4.5),
   },
-  otpContainer: {
+  otpInputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: scale(20),
-    width: '80%',
-    alignSelf: 'center',
   },
   otpInput: {
-    width: scale(50),
-    height: scale(50),
-    backgroundColor: '#FFF',
-    borderRadius: scale(10),
-    borderColor: '#FFB200',
+    width: responsiveWidth(12),
+    height: responsiveWidth(12),
+    borderWidth: 1,
     textAlign: 'center',
-    fontSize: scale(20),
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: scale(2) },
-    shadowOpacity: 0.1,
-    shadowRadius: scale(3),
-    elevation: 3,
+    marginRight: responsiveHeight(1),
   },
-  resendText: {
-    textAlign: 'center',
-    marginBottom: scale(5),
-  },
-  resendButton: {
-    textAlign: 'center',
-    marginBottom: scale(30),
-    textDecorationLine: 'underline'
-  },
-  verifyButton: {
-    borderRadius: responsiveWidth(2),
-    paddingVertical: scale(15),
+  timerContainer:{
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: scale(2) },
-    shadowOpacity: 0.1,
-    shadowRadius: scale(3),
-    elevation: 3,
+    marginTop: responsiveHeight(2),
   },
+  timer: {
+    marginTop: responsiveHeight(2),
+    textAlign: 'center',
+  },
+  resendCode: {
+    textAlign: 'center',
+    marginTop: responsiveHeight(1),
+  },
+  continuebtn: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginBottom: responsiveHeight(6),
+    },
 });
 
 export default styles;

@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -11,7 +11,7 @@ export const ThemeProvider = ({ children }) => {
       text: '#1C1C1C',  // white text color
       primary: '#FF2A64', // pink color
       gold: '#E8B006', // gold color for few words in a screen
-      cyan:'#E8B006',  // cyan color for few words in a screen
+      cyan:'#23978C',  // cyan color for few words in a screen
       blue:'#2A4EA8',  // blue color for few words in a screen
       pink:'#ED4B82', // pink color for few words in a screen
       grey: '#D9D9D9', 
@@ -20,16 +20,17 @@ export const ThemeProvider = ({ children }) => {
       violet:'#5451D6', // violet color for few words in a screen
       btnText:'#FFFFFF',// button text color
       white:'#D9D9D9',
-      subText:'#909090'
+      subText:'#909090', // subtext/description color
+      lightpink: "#FEB5BD"
       // You can add other colors as well here, following the above pattern
     },
     fontsize: {
       smaller: 10,
-      small: 12,
+      small: 14,
       medium: 16,
       medium2: 26,
       medium3: 22,
-      large: 30,
+      large: 32,
     },
     fontfamily: {
       regular: "Montserrat-Regular",
@@ -37,6 +38,11 @@ export const ThemeProvider = ({ children }) => {
       light: "Montserrat-Light",
       medium: "Montserrat-Medium",
       semibold: "Montserrat-SemiBold"
+    },
+    border:{
+      borderradius: 14.13,
+      borderradius2: 9.42,
+      bordercolor: '#D9D9D9'
     }
   };
 
