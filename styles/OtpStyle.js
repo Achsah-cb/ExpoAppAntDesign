@@ -4,11 +4,9 @@ import { responsiveWidth, responsiveHeight } from './responsiveUtil';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: responsiveWidth(1),
-    justifyContent: 'center',
     alignItems: 'center',
     marginVertical: responsiveWidth(9),
-    // marginHorizontal: responsiveWidth(5),
+    marginHorizontal: responsiveWidth(5),
   },
   header: {
     flexDirection: 'row',
@@ -82,11 +80,9 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
   },
   continuebtn: {
-    flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    alignItems: 'flex-end',
-    marginBottom: responsiveHeight(3),
+    marginBottom: responsiveHeight(6),
     },
 });
 

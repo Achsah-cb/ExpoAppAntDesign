@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }) => {
       if (response.status === 201 || response.status === 200) {
         Alert.alert('Success', 'OTP sent successfully!');
         console.log('Navigation:', navigation); // Debug navigation
-        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'LoginScreen' });
+        navigation.navigate('OtpScreen', { phoneNumber, countryCode: selectedCountry.callingCode, from: 'SignInScreen' });
       } else {
         Alert.alert('Error', data?.message || 'Failed to send OTP. Please try again.');
       }
@@ -77,8 +77,8 @@ const LoginScreen = ({ navigation }) => {
         end={{ x: 1, y: 1 }}
         style={{ flex: 1 }} 
       >
-        <SafeAreaView style={styles.container} >
-          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
+        <SafeAreaView style={{ flex: 1 }} >
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
             <View style={styles.header}>
               <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
             </View>
@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.itemContainer}>
               <View style={styles.titleContainer}>
                 <Text style={[styles.title, { color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-                  login{' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                  login {' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
                     with phone{' '}{' '}{' '} number
                   </Text>
                 </Text>
@@ -98,7 +98,7 @@ const LoginScreen = ({ navigation }) => {
               </View>
 
 
-             {/* <View style={[styles.phoneInputContainer, { fontFamily: theme.fontfamily.medium2, color: theme.colors.text, borderRadius: theme.border.borderradius }]}> */}
+              <View style={[styles.phoneInputContainer, { fontFamily: theme.fontfamily.medium2, color: theme.colors.text, borderRadius: theme.border.borderradius }]}>
                 <PhoneInput
                   value={phoneNumber}
                   onChangePhoneNumber={handlePhoneNumberChange}
@@ -131,7 +131,7 @@ const LoginScreen = ({ navigation }) => {
                   }}
                 />
               </View>
-          {/* </View> */}
+            </View>
             <View style={styles.continuebtn}>
               <ButtonComponent onPress={sendOtp} />
             </View>

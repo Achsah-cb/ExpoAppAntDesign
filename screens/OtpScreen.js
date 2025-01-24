@@ -145,8 +145,8 @@ const OtpScreen = ({ route, navigation }) => {
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}
     >
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
           {/* Back Button */}
           <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
