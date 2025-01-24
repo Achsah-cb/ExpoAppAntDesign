@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useContext, useState } from 'react'
 import styles from '../styles/VerificationStyle'
-import { Dollar, Payment, Wingman, Verification, Back } from '../components/icons';
+import { Dollar, Payment, Wingman, Verification, Back, RightArrow } from '../components/icons';
 import { ThemeContext } from '../context/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -33,7 +33,7 @@ export default function VerificationScreen({ navigation }) {
                 <Verification />
                 <View style={styles.textContainer}>
                     <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-                    <Text style={{ color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium2, }}>verification in progress!</Text></Text>
+                    <Text style={{ color: theme.colors.violet, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium2, }}>verification in progress!</Text></Text>
                     <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.text, marginBottom:20, opacity:0.8 }]}>once done, you can meet amazing people!</Text>
                     <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }]}>
                     <Text style={{ color: theme.colors.primary, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>details </Text>lead to destiny.</Text>
@@ -41,17 +41,24 @@ export default function VerificationScreen({ navigation }) {
                 </View>
                 
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey, backgroundColor:theme.colors.background }, isActive === 'button1' && {borderColor: theme.colors.primary, borderWidth:2}]}  onPress={() => setIsActive('button1')}>
-                        <Payment width={40} />
-                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>more Details</Text>
+                    <View style={styles.firstContainer}>
+                    <TouchableOpacity style={[styles.button1, { borderColor: theme.colors.blueGreen, backgroundColor:theme.colors.background, borderWidth:2 }, isActive === 'button1' && {borderColor: theme.colors.blueGreen, borderWidth:2}]}  onPress={() => setIsActive('button1')}>
+                        <Payment width={30} />
+                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, opacity:0.6 , margin:8}]}>more Details</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey,backgroundColor:theme.colors.background }, isActive === 'button2' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button2')}>
-                        <Wingman width={40} />
-                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>wingman</Text>
+                    <TouchableOpacity style={[styles.button2, { borderColor: theme.colors.violet,backgroundColor:theme.colors.background, borderWidth:2 }, isActive === 'button2' && {borderColor: theme.colors.violet,borderWidth:2}]}  onPress={() => setIsActive('button2')}>
+                        <Wingman width={25} />
+                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.bold, opacity:0.6, margin:8  }]}>wingman</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { borderColor: theme.colors.grey, backgroundColor:theme.colors.background }, isActive === 'button3' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button3')}>
-                        <Dollar width={40} />
-                        <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, opacity:0.6 }]}>premium</Text>
+                    </View>
+                    <TouchableOpacity style={[styles.button, { backgroundColor:theme.colors.primary }, isActive === 'button3' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button3')}>
+                        <Dollar width={30}/>
+                        <View style={{alignItems:'flex-start'}}>
+                        <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, marginBottom:3  }]}>get premium plan</Text>
+                        <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, }]}>get all the benefits of search &</Text>
+                        <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, }]}>communication</Text>
+                        </View>
+                        < RightArrow/>
                     </TouchableOpacity>  
                 </View>
             </View>

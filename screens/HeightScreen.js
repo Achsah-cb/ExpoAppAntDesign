@@ -28,7 +28,7 @@ export default function HeightScreen({ navigation }) {
     if (!height) {
       Alert.alert("Select your height.");
     } else {
-      updateUserData('Height', height)
+      updateUserData('height', height)
       navigation.navigate("TimesScreen");
     }
   };

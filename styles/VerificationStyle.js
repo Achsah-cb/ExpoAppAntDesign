@@ -40,35 +40,81 @@ const styles = StyleSheet.create({
     textContainer: {
         width: responsiveWidth(90),
         marginBottom: responsiveHeight(4),
-        alignItems:'center',
+        alignItems: 'center',
+    },
+    firstContainer: {
+        width:responsiveWidth(80),
+        margin:responsiveWidth(3),
+        flexDirection:'row', 
+        justifyContent:'space-between'
     },
     button: {
         width: responsiveWidth(80),
-        height: responsiveHeight(6),
+        height: responsiveHeight(11),
         borderRadius: responsiveWidth(3),
         textAlign: 'center',
         margin: responsiveWidth(1),
-        // shadowColor: '#000000',
-        // shadowOffset: {
-        //     width: 10,
-        //     height: 0
-        // },
-        // shadowOpacity: 0.2,
-        // elevation: 6,
+        shadowColor: '#FF2A64',
+        shadowOffset: {
+            width: 0,
+            height: 10
+        },
+        shadowOpacity: 0.4,
+        shadowRadius:20,
+        elevation: 6,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        borderWidth: responsiveWidth(0.2),
+        borderColor: 'grey',
+        flexDirection:'row',
+        marginTop:responsiveWidth(5)
+    },
+    button1: {
+        width: responsiveWidth(36),
+        height: responsiveHeight(12),
+        borderRadius: responsiveWidth(3),
+        textAlign: 'center',
+        margin: responsiveWidth(1),
+        shadowColor: '#26A69A',
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+        shadowOpacity: 0.4,
+        elevation: 6,
+        shadowRadius:20,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection:'row',
-        borderWidth:responsiveWidth(0.2),
-        borderColor:'grey'
+        borderWidth: responsiveWidth(0.2),
+        borderColor: 'grey'
+    },
+    button2: {
+        width: responsiveWidth(36),
+        height: responsiveHeight(12),
+        borderRadius: responsiveWidth(3),
+        textAlign: 'center',
+        margin: responsiveWidth(1),
+        shadowColor: '#756EF3',
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+        shadowOpacity: 0.4,
+        elevation: 6,
+        shadowRadius:20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: responsiveWidth(0.2),
+        borderColor: 'grey'
     },
     buttonText: {
         textAlign: 'center',
-        paddingLeft:responsiveWidth(2),
+        paddingLeft: responsiveWidth(2),
     },
     buttonContainer: {
-        alignItems:'center',
+        alignItems: 'center',
         width: responsiveWidth(90),
-        height:responsiveHeight(25),
+        height: responsiveHeight(25),
         justifyContent: 'space-between',
 
     },

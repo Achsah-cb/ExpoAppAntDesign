@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: responsiveWidth(80),
         height: responsiveHeight(6),
         borderRadius: responsiveWidth(4),
-        marginTop: 25,
+        marginTop: 0,
         shadowColor: '#FF2A64',
         shadowOffset: { width: 0, height: responsiveWidth(2) },
         shadowOpacity: 0.3,
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     progressBar: {
-        //backgroundColor: '#FDE869',
         width: responsiveWidth(80),
         height: responsiveHeight(1),
         borderRadius: 50,
@@ -88,11 +87,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         padding: responsiveWidth(1),
+        
     },
     interestContainer:{
         alignItems:'center',
-       // backgroundColor:'grey',
-        height:responsiveHeight(50)
+        height:responsiveHeight(80),
+        marginTop:responsiveHeight(0)
     },
     searchIcon:{
         position:'absolute',
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems:'center',
-        width:responsiveWidth(80),
+        width:responsiveWidth(85),
         marginTop:responsiveHeight(3)
     },
     interestItem: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         margin: responsiveWidth(2),
         paddingLeft:responsiveWidth(3),
         paddingRight:responsiveWidth(3),
-        height:responsiveHeight(4.5),
+        height:responsiveHeight(4),
         borderRadius: responsiveWidth(2),
         backgroundColor: '#FFFFFF',
         justifyContent:'center',

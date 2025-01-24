@@ -6,85 +6,80 @@ export const responsiveHeight = (percentage) => (height * percentage) / 100;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FCF2D6',
     },
     header: {
         flexDirection: 'row',
-        ...Platform.select({ ios: { marginTop: 50, }, android: { marginTop: 30 } }),
+        width: responsiveWidth(100),
     },
     backBtn: {
         margin: responsiveWidth(6),
-        width: responsiveWidth(10),
-        height: responsiveHeight(5),
+        width: responsiveWidth(9),
+        height: responsiveHeight(3),
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: responsiveWidth(2),
     },
-    settingsBtn: {
-        margin: responsiveWidth(6),
-        marginLeft: responsiveWidth(65),
-        width: responsiveWidth(10),
-        height: responsiveHeight(5),
-    },
-    screen: {
-        flex: 1,
-        backgroundColor: '#FCF2D6',
+    headerTitle: {
+        width: responsiveWidth(57),
+        justifyContent: 'center',
         alignItems: 'center',
+    },
+    MainItems: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(80),
+        justifyContent: 'center',
+        alignItems: 'center',
+        //backgroundColor:'grey',
+        marginHorizontal: responsiveWidth(10)
+    },
+    profilePicture: {
+        width: responsiveWidth(80),
+        height: responsiveWidth(40),
+        alignItems: 'center',
+
     },
     profileImage: {
-        width: responsiveWidth(25),
-        height: responsiveHeight(12),
-        borderWidth: 2,
-        borderColor: '#C29225',
-        borderRadius: responsiveWidth(3)
-    },
-    nameAndAge: {
-        margin: responsiveWidth(3)
+        width: responsiveWidth(30),
+        height: responsiveWidth(30),
+        borderRadius: responsiveWidth(30) / 2,
+        margin: responsiveHeight(3),
+        resizeMode: 'cover',
+        borderWidth: responsiveWidth(0.1)
     },
     username: {
-        fontSize: responsiveWidth(8),
-        fontWeight: '600',
-        textAlign: 'center'
-    },
-    userage: {
-        fontSize: responsiveWidth(7),
-        fontWeight: '600',
-        textAlign: 'center'
-    },
-    premium: {
-        margin: responsiveWidth(3),
-        width: responsiveWidth(80),
-        height: responsiveHeight(15),
-        backgroundColor: '#EDD06A',
-        borderRadius: responsiveWidth(5),
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    heading: {
-        fontSize: responsiveWidth(6),
-        fontWeight: '600'
-    },
-    priceLabel: {
-        backgroundColor: '#4765F8',
-        color: '#ffffff',
-        fontWeight: '500'
-    },
-    containerList: {
-        width: responsiveWidth(80),
-        height: responsiveHeight(40),
-        backgroundColor: '#EAE6E6',
-        padding: responsiveWidth(3),
-        alignItems: 'center',
-        borderRadius: responsiveWidth(5)
-    },
-    contents: {
-        width: responsiveWidth(60),
-        height: responsiveHeight(8),
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    contentText: {
-        fontSize: responsiveWidth(4),
-        textAlign: 'center',
-        margin: responsiveWidth(2)
 
-    }
+    },
+    button: {
+        width: responsiveWidth(80),
+        height: responsiveHeight(11),
+        borderRadius: responsiveWidth(3),
+        textAlign: 'center',
+        margin: responsiveWidth(1),
+        shadowColor: '#FF2A64',
+        shadowOffset: {
+            width: 0,
+            height: 10
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 20,
+        elevation: 6,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
+        margin: responsiveWidth(8)
+    },
+    options: {
+        width: responsiveWidth(80),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: responsiveWidth(2),
+        paddingTop: responsiveWidth(2),
+        textAlign: 'left'
+    },
+    text: {
+        width: responsiveWidth(55),
+
+    },
+
 })
 export default styles;

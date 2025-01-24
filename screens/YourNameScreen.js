@@ -17,7 +17,7 @@ export default function YourNameScreen({ navigation }) {
         if (!userName) {
             Alert.alert("Please enter the username.");
         } else {
-            updateUserData('username', userName);
+            updateUserData('name', userName);
             navigation.navigate('DoBScreen');
         }
     };
@@ -67,7 +67,7 @@ export default function YourNameScreen({ navigation }) {
                             onSubmitEditing={Keyboard.dismiss} // Dismiss keyboard on submit
                         />
                     </View>
-
+                    <TouchableOpacity onPress={() => navigation.navigate('MenuScreen')} style={styles.skipBtn}><Text>skip</Text></TouchableOpacity>
                     {/* Continue Button */}
                     <KeyboardAvoidingView
                         style={styles.buttonContainer}

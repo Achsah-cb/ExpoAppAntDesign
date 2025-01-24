@@ -95,7 +95,7 @@ const ChatScreen = () => {
                                 [styles.profilePic,{borderColor: theme.colors.primary}]}
                         />
                         <View style={[styles.statusIndicator, { backgroundColor: user.isOnline ? '#89EB1A' : 'gray' }]}></View>
-                        <Text style={{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.regular }}>
+                        <Text style={{ fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.small }}>
                             {user.name.split(' ')[0]} {/* Display only the first name */}
                         </Text>
 

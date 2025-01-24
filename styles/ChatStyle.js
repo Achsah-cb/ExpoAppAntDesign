@@ -16,10 +16,11 @@ const styles = StyleSheet.create({
         borderRadius: responsiveWidth(3)
     },
     profilePic: {
-        width: responsiveWidth(20),
-        height: responsiveHeight(9.2),
-        borderRadius: responsiveWidth(14),
-        borderWidth:responsiveWidth(1),
+        width: responsiveWidth(18),
+        height: responsiveHeight(8.4),
+        borderRadius: responsiveWidth(18),
+        borderWidth:responsiveWidth(0.8),
+        padding:responsiveWidth(1)
     },
     userProfilePic: {
         width: responsiveWidth(15),
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
        
     },
     profileContainer: {
-        marginHorizontal: responsiveWidth(2.3),
+        marginHorizontal: responsiveWidth(3.3),
         alignItems: 'center',
     },
     chatTitleText: {
