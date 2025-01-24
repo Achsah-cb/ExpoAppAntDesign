@@ -86,7 +86,7 @@ const SignInScreen = ({ navigation }) => {
             <View style={styles.itemContainer}>
               <View style={styles.titleContainer}>
                 <Text style={[styles.title, { color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-                  sign in{' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
+                  sign up{' '}<Text style={[styles.title, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
                     with phone{' '}{' '}{' '} number
                   </Text>
                 </Text>

@@ -20,3 +20,4 @@ export const  UserProvider = ({ children }) => {
         </UserContext.Provider>
     )
 }
+// userdata are collected and posted to the backend api 

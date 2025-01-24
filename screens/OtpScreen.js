@@ -96,8 +96,8 @@ const OtpScreen = ({ route, navigation }) => {
             console.log('Navigating to YourNameScreen');
             navigation.navigate('YourNameScreen', { token }); // Pass token to NameScreen
           } else if (from === 'LoginScreen') {
-            console.log('Navigating to MenuScreen');
-            navigation.navigate('MenuScreen', { token }); // Pass token to HomeScreen
+            console.log('Navigating to ChatLandingScreen');
+            navigation.navigate('ChatLandingScreen', { token }); // Pass token to HomeScreen
           }
         } else {
           Alert.alert('Error', 'Failed to verify OTP');

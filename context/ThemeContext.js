@@ -17,6 +17,7 @@ export const ThemeProvider = ({ children }) => {
       grey: '#D9D9D9', 
       orange:'#FF8000',  // orange color for few words in a screen
       blueGreen: '#26A69A', // blue-green color for few words in a screen
+      violet:'#5451D6', // violet color for few words in a screen
       btnText:'#FFFFFF',// button text color
       white:'#D9D9D9',
       subText:'#909090', // subtext/description color

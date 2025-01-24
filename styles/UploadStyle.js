@@ -87,46 +87,35 @@ const styles = StyleSheet.create({
     },
     addButton: {
         backgroundColor: '#ffffff',
-        width: responsiveWidth(22),
-        height: responsiveHeight(10),
-        margin: 10,
-        borderColor: "#FF2A64",
-        borderWidth: 1,
+        width: responsiveWidth(80),
+        height: responsiveHeight(35),
+       // margin: 10,
         borderRadius: 15,
-        borderStyle: 'dashed',
         justifyContent: "center",
         alignItems: "center",
     },
-    BigAddButton: {
-        backgroundColor: '#ffffff',
-        width: responsiveWidth(46),
-        height: responsiveHeight(22),
-        margin: 10,
-        borderColor: "#FF2A64",
-        borderWidth: 1,
-        borderRadius: 15,
-        borderStyle: 'dashed',
+    pagination: {
+        flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
+        marginTop: 10,
+        marginBottom: 20, // Adjust the margin for better visibility
     },
-    rightSideBtns: {
-        marginLeft: responsiveWidth(2)
-
+    dot: {
+        width: responsiveWidth(2), // Size of the dots
+        height: responsiveWidth(2),
+        borderRadius: responsiveWidth(2) / 2, // Circular shape
+        marginHorizontal: responsiveWidth(1), // Space between dots
     },
-    bottomSideBtns: {
-
-        flexDirection: 'row'
+    activeDot: {
+        backgroundColor: "#FF2A64", // Active dot color
     },
-    thumbnail: {
-        width: responsiveWidth(20),
-        height: responsiveHeight(9),
-        borderRadius: 10,
+    inactiveDot: {
+        backgroundColor: "#D9D9D9", // Inactive dot color
     },
-    bigThumbnail: {
-        width: responsiveWidth(44),
-        height: responsiveHeight(21),
-        borderRadius: 10,
-    },
+    sliderItem:{
+        width:responsiveWidth(95),
+        
+    }
 
 
 });

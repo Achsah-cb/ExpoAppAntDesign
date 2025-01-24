@@ -1,60 +1,98 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from 'react-native-vector-icons';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity,Image } from 'react-native';
 import styles from '../styles/MenuStyle';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Chats, Profile, ForYou } from '../components/icons';
-import ChatScreen from './ChatScreen';
-
-
-const ProfileScreen = () => (
-  <View style={styles.screen}>
-  </View>
-);
-
+import { Back, Dollar, RightArrow, RightArrow2, YourProfile, PaymentMethod, Settings, HelpCenter, PrivayPolicy } from '../components/icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemeContext } from '../context/ThemeContext';
+import { UserContext } from "../context/UserContext";
 
 export default function MenuScreen({ navigation }) {
+
+  const theme = useContext(ThemeContext);
+  const { userData, updateUserData } = useContext(UserContext);
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+      locations={[0, 0.48, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={{ flex: 1 }}
+    >
+      <SafeAreaView style={styles.container}>
 
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="arrow-back-outline" size={30} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')} style={styles.settingsBtn}>
-          <Ionicons name="settings-outline" size={30} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.screen}>
-        <View style={styles.profileImage}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
+          <View style={styles.headerTitle}><Text style={{color: theme.colors.text, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium}}>profile</Text></View>
+        </View>
+        <View style={styles.MainItems}>
+          {/* profile picture */}
+          <View style={styles.profilePicture}>
+            {userData.images && userData.images.length > 0 ? (
+              <Image
+                source={{ uri: userData.images[0] }}
+                style={styles.profileImage}
+              />
+            ) : (
+              <View
+                style={[
+                  styles.profileImage,
+                  { justifyContent: 'center', alignItems: 'center' },
+                ]}
+              >
+                <Text style={{ color: theme.colors.subText }}>No Image</Text>
+              </View>
+            )}
+          </View>
+          
+          <View style={styles.username}><Text style={{ color:theme.colors.text, fontSize: theme.fontsize.medium3, fontFamily: theme.fontfamily.semibold, marginBottom:3  }}>esther howard</Text></View>
+          <View> 
+            <TouchableOpacity style={[styles.button, { backgroundColor:theme.colors.primary }]}>
+                <Dollar width={30}/>
+                <View style={{alignItems:'flex-start'}}>
+                  <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.bold, marginBottom:3  }]}>get premium plan</Text>
+                  <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, }]}>get all the benefits of search &</Text>
+                  <Text style={[styles.buttonText, { color:theme.colors.background, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, }]}>communication</Text>
+                </View>
+                < RightArrow/>
+              </TouchableOpacity>  
+            </View>
+          <View>
 
-        </View>
-        <View style={styles.nameAndAge}>
-          <Text style={styles.username}>Maya</Text>
-          <Text style={styles.userage}>Age 29</Text>
-        </View>
-        <View style={styles.premium}>
-          <Text style={styles.heading}>Premium</Text>
-          <Text>Get all the benefits</Text>
-          <Text style={styles.priceLabel}>Get premium of $70</Text>
-        </View>
-        <View style={styles.containerList}>
-          <View style={styles.contents}>
-            <ForYou />
-            <View>
-              <Text style={styles.contentText}>See Who Likes Me</Text>
-            </View>
-            <Ionicons name="chevron-forward-sharp" size={20} />
+            <TouchableOpacity style={[styles.options, {borderBottomWidth:1.5, borderColor:'#E0E0E0'}]} onPress={() => navigation.navigate('YourProfileScreen')}>
+              <YourProfile width={25}/>
+              <Text style={[styles.text,{ color:theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold, marginBottom:3 }]}>your profile</Text>
+              <RightArrow2 width={26}/>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={[styles.options, {borderBottomWidth:1.5, borderColor:'#E0E0E0'}]}>
+              <PaymentMethod width={25}/>
+              <Text style={[styles.text,{ color:theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold, marginBottom:3 }]}>payment method</Text>
+              <RightArrow2 width={26}/>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={[styles.options, {borderBottomWidth:1.5, borderColor:'#E0E0E0'}]}>
+              <Settings width={25}/>
+              <Text style={[styles.text,{ color:theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold, marginBottom:3 }]}>settings</Text>
+              <RightArrow2 width={26}/>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={[styles.options, {borderBottomWidth:1.5, borderColor:'#E0E0E0'}]}>
+              <HelpCenter width={25}/>
+              <Text  style={[styles.text,{ color:theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold, marginBottom:3 }]}>help center</Text>
+              <RightArrow2 width={26}/>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={[styles.options, {borderBottomWidth:1.5, borderColor:'#E0E0E0'}]}>
+              <PrivayPolicy width={25}/>
+              <Text style={[styles.text,{ color:theme.colors.text, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold, marginBottom:3 }]}>privacy policy</Text>
+              <RightArrow2 width={26}/>
+            </TouchableOpacity>
           </View>
-          <View style={styles.contents}>
-            <Ionicons name="eye-sharp" size={30} color='#C29225' />
-            <View>
-              <Text style={styles.contentText}>Who Sees You</Text>
-            </View>
-            <Ionicons name="chevron-forward-sharp" size={20} />
-          </View>
         </View>
-      </View>
-    </View>
+
+      </SafeAreaView>
+    </LinearGradient>
   );
 }

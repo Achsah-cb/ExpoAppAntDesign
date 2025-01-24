@@ -89,9 +89,11 @@ const styles = StyleSheet.create({
     },
     datepicker:{
         width:responsiveWidth(80),
-        height:responsiveHeight(30),
-        flexDirection:'row',
-        justifyContent:'center'
+        height:responsiveHeight(42),
+        marginTop:responsiveHeight(2),
+        justifyContent:'center',
+        backgroundColor:'white',
+        padding:responsiveWidth(4)
     },
     pickerWrapper: {
         marginVertical: 10,

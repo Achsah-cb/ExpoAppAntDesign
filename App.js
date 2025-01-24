@@ -23,6 +23,7 @@ import DmScreen from './screens/DmScreen';
 import MenuScreen from './screens/MenuScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ChatScreen from './screens/ChatScreen';
+import YourProfileScreen from './screens/YourProfileScreen';
 import { UserProvider } from './context/UserContext';
 import VerificationScreen from './screens/VerificationScreen';
 import BottomNavigation from './components/BottomNavigation';
@@ -170,6 +171,11 @@ export default function App() {
                 name="PartnerLocationPreferences"
                 component={PartnerLocationPreferencesScreen}
                 options={{ headerShown: false }}
+              />
+              <Stack.Screen 
+              name='YourProfileScreen'
+              component={YourProfileScreen}
+              options={{headerShown: false}}
               />
             </Stack.Navigator>
           </NavigationContainer>
