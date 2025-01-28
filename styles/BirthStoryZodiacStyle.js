@@ -48,10 +48,6 @@ const styles = StyleSheet.create({
   subtitle: {
     textAlign: 'left',
   },
-
-  itemContainer: {
-    marginBottom: 30,
-  },
   question: {
     fontSize: 22,
     fontFamily: "bold",
@@ -61,6 +57,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "regular",
     marginBottom: 15,
+  },
+  card: {
+    width: responsiveWidth(40),
+    height: responsiveHeight(20),
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: responsiveWidth(4),
+    borderWidth: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  label: {
+    marginTop: responsiveHeight(1),
+    fontSize: responsiveWidth(4),
+    textTransform: "capitalize",
   },
   continuebtn: {
     justifyContent: 'center',

@@ -62,3 +62,18 @@ export { default as HelpCenter } from '../assets/icons-svg/help-center.svg';
 export { default as PrivayPolicy } from '../assets/icons-svg/privacy-policy.svg';
 export { default as Calender } from '../assets/icons-svg/calender.svg';
 export { default as Edit } from '../assets/icons-svg/edit.svg';
+
+// for zodiac signs
+export { default as Aries } from '../assets/image-svg/zodiac/aries.svg';
+export { default as Taurus } from '../assets/image-svg/zodiac/taurus.svg';
+export { default as Gemini } from '../assets/image-svg/zodiac/gemini.svg';
+export { default as Cancer } from '../assets/image-svg/zodiac/cancer.svg';
+export { default as Leo } from '../assets/image-svg/zodiac/leo.svg';
+export { default as Virgo } from '../assets/image-svg/zodiac/virgo.svg';
+export { default as Libra } from '../assets/image-svg/zodiac/libra.svg';
+export { default as Scorpio } from '../assets/image-svg/zodiac/scorpio.svg';
+export { default as Sagittarius } from '../assets/image-svg/zodiac/sagittarius.svg';
+export { default as Capricorn } from '../assets/image-svg/zodiac/capricornus.svg';
+export { default as Aquarius } from '../assets/image-svg/zodiac/aquarius.svg';
+export { default as Pisces } from '../assets/image-svg/zodiac/pisces.svg';
+

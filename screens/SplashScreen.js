@@ -9,7 +9,7 @@ const CustomSplashScreen = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('BirthStoryZodiac');
+            navigation.navigate('SignUpScreen');
         }, 3000);
     }, []);
 
