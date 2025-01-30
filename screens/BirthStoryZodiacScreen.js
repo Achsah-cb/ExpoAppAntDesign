@@ -1,152 +1,247 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Modal, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import Icon from "react-native-vector-icons/AntDesign";
-import { Ionicons } from "@expo/vector-icons";
-import styles from '../styles/BirthStoryZodiacStyle';
-import { ThemeContext } from '../context/ThemeContext.js';
+// import React, { useContext, useState, useRef } from "react";
+// import { Dimensions } from "react-native";
+// const { width } = Dimensions.get("window");
+// import {
+//   View,
+//   Text,
+//   TouchableOpacity,
+//   SafeAreaView,
+//   KeyboardAvoidingView,
+//   Platform,
+//   Alert,
+// } from "react-native";
+// import DateTimePicker from '@react-native-community/datetimepicker';
+// import Carousel from "react-native-snap-carousel";
+// import { Back } from "../components/icons";
+// import { LinearGradient } from 'expo-linear-gradient';
+// import Icon from 'react-native-vector-icons/AntDesign';
+// import { ThemeContext } from "../context/ThemeContext";
+// import { UserContext } from "../context/UserContext";
+// import axios from 'axios';
+// import { Picker } from "@react-native-picker/picker";
+// import styles from "../styles/BirthStoryZodiacStyle";
+// import ButtonComponent from "../components/Button";
+// import { AntDesign } from '@expo/vector-icons';
 
-const zodiacData = [
-  { name: 'Aries', icon: '♈' },
-  { name: 'Taurus', icon: '♉ ' },
-  { name: 'Gemini', icon: '♊' },
-  { name: 'Cancer', icon: '♋' },
-  { name: 'Leo', icon: '♌' },
-  { name: 'Virgo', icon: '♍' },
-  { name: 'Libra', icon: '♎' },
-  { name: 'Scorpio', icon: '♏' },
-  { name: 'Sagittarius', icon: '♐' },
-  { name: 'Capricorn', icon: '♑' },
-  { name: 'Aquarius', icon: '♒' },
-  { name: 'Pisces', icon: '♓' },
-];
+// import { Aries } from '../components/icons';
+// import { Taurus } from '../components/icons';
+// import { Gemini } from '../components/icons';
+// import { Cancer } from '../components/icons';
+// import { Leo } from '../components/icons';
+// import { Virgo } from '../components/icons';
+// import { Libra } from '../components/icons';
+// import { Scorpio } from '../components/icons';
+// import { Sagittarius } from '../components/icons';
+// import { Capricorn } from '../components/icons';
+// import { Aquarius } from '../components/icons';
+// import { Pisces } from '../components/icons';
 
-const BirthStoryZodiacScreen = ({ navigation }) => {
-  const theme = useContext(ThemeContext);
-  const [selectedZodiac, setSelectedZodiac] = useState('');
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [birthTime, setBirthTime] = useState({ hour: '09', minute: '30', period: 'AM' });
+// const zodiacSigns = [
+//   { label: "Select Zodiac Sign", value: "", icon: null },
+//   { label: "Capricorn", value: "Capricorn", icon: <Capricorn /> },
+//   { label: "Aquarius", value: "Aquarius", icon: <Aquarius /> },
+//   { label: "Pisces", value: "Pisces", icon: <Pisces /> },
+//   { label: "Aries", value: "Aries", icon: <Aries /> },
+//   { label: "Taurus", value: "Taurus", icon: <Taurus /> },
+//   { label: "Gemini", value: "Gemini", icon: <Gemini /> },
+//   { label: "Cancer", value: "Cancer", icon: <Cancer /> },
+//   { label: "Leo", value: "Leo", icon: <Leo /> },
+//   { label: "Virgo", value: "Virgo", icon: <Virgo /> },
+//   { label: "Libra", value: "Libra", icon: <Libra /> },
+//   { label: "Scorpio", value: "Scorpio", icon: <Scorpio /> },
+//   { label: "Sagittarius", value: "Sagittarius", icon: <Sagittarius /> },
+// ];
 
-  if (!theme) {
-    console.error('Theme context is not provided.');
-    return null;
-  }
+// const BirthStoryZodiacScreen = ({ navigation }) => {
+//   const { updateUserData } = useContext(UserContext);
+//   const theme = useContext(ThemeContext);
+//   const carouselRef = useRef(null);
 
-  const handleTimeChange = (event, selectedTime) => {
-    setShowTimePicker(false);
-    if (selectedTime) {
-      const hours = selectedTime.getHours();
-      const minutes = selectedTime.getMinutes();
-      const period = hours >= 12 ? 'PM' : 'AM';
-      const formattedHours = hours > 12 ? hours - 12 : hours || 12; // Adjust 12-hour format
-      const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+//   const [selectedTime, setSelectedTime] = useState(null);
+//   const [showPicker, setShowPicker] = useState(false);
+//   const [loading, setLoading] = useState(false);
 
-      setBirthTime({
-        hour: formattedHours.toString(),
-        minute: formattedMinutes.toString(),
-        period,
-      });
-    }
-  };
+//   const handleConfirm = (event, selectedDate) => {
+//     setShowPicker(false);
+//     if (selectedDate) {
+//       const formattedTime = selectedDate.toLocaleTimeString([], {
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       });
+//       setSelectedTime(formattedTime);
+//       updateUserData("birth_time", formattedTime);
+//     }
+//   };
 
-  return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806" /></TouchableOpacity>
-      </View>
-      <View style={[styles.progressBar]}>
-        <View style={[styles.progressContainer, { backgroundColor: theme.colors.primary }]}>
-          <View style={[styles.progress, { backgroundColor: theme.colors.secondary }]}></View>
-        </View>
-      </View>
-      <ScrollView>
-      <View style={styles.InnerContainer}>
-        <Text style={[styles.heading, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-          What's Your Birth Story?
-        </Text>
-        <Text style={[styles.subHeading, { color: theme.colors.text, fontFamily: theme.fontfamily.light, fontSize: theme.fontsize.regular }]}>
-          Born on [date], in [place], ready to explore!
-        </Text>
+//   const handleSubmit = async () => {
+//     if (!selectedTime) {
+//       Alert.alert("Error", "Please select your birth time!");
+//       return;
+//     }
+//     setLoading(true);
 
-        {/* Time Picker */}
-        <View style={styles.timePickerContainer}>
-          <TouchableOpacity style={styles.timeBlock} onPress={() => setShowTimePicker(true)}>
-            <Text style={[styles.timeText, { color: theme.colors.text, fontFamily: theme.fontfamily.medium }]}>
-              {birthTime.hour}
-            </Text>
-          </TouchableOpacity>
-          <Text style={[styles.colon, { color: theme.colors.text }]}>:</Text>
-          <TouchableOpacity style={styles.timeBlock} onPress={() => setShowTimePicker(true)}>
-            <Text style={[styles.timeText, { color: theme.colors.text, fontFamily: theme.fontfamily.medium }]}>
-              {birthTime.minute}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.periodBlock} onPress={() => setShowTimePicker(true)}>
-            <Text style={[styles.periodText, { color: theme.colors.text, fontFamily: theme.fontfamily.medium }]}>
-              {birthTime.period}
-            </Text>
-          </TouchableOpacity>
-        </View>
+//     try {
+//       const token = "your_token_here";
+//       const payload = {
+//         birth_time: selectedTime,
+//       };
 
-        {showTimePicker && (
-          <Modal transparent={true} animationType="fade">
-            <DateTimePicker
-              mode="time"
-              value={new Date()}
-              is24Hour={false}
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-              onChange={handleTimeChange}
-            />
-          </Modal>
-        )}
-      </View>
+//       const response = await axios.post(
+//         "http://http://13.48.178.236:3000/user/user-profile",
+//         payload,
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
 
-      <View style={styles.zodiacParentContainer}>
-        <Text style={[styles.zodiacHeading, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-          Your Zodiac Sign?
-        </Text>
-        <Text style={[styles.zodiacSubHeading, { color: theme.colors.text, fontFamily: theme.fontfamily.light }]}>
-          Are you an Aries, Cancer, or Libra? Let's explore your stars!✨
-        </Text>
+//       if (response.status === 201) {
+//         Alert.alert("Success", "Birth time saved successfully!");
+//         navigation.navigate("NextScreen");
+//       } else {
+//         Alert.alert("Error", "Failed to save birth time!");
+//       }
+//     } catch (error) {
+//       console.error("Error saving birth time:", error.message);
+//       Alert.alert("Error", "An error occurred while saving birth time.");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-        <View style={styles.zodiacContainer}>
-          {zodiacData.map((zodiac) => (
-            <TouchableOpacity
-              key={zodiac.name}
-              style={[
-                styles.zodiacButton,
-                selectedZodiac === zodiac.name && { backgroundColor: theme.colors.primary, borderColor: theme.colors.secondary },
-              ]}
-              onPress={() => setSelectedZodiac(zodiac.name)}
-            >
-              <Text
-                name={zodiac.icon}
-                style={[{ fontSize: theme.fontsize.medium }]}
-                color={selectedZodiac === zodiac.name ? '#FFF' : theme.colors.text}
-              />
-              <Text
-                style={[
-                  styles.zodiacText,
-                  { fontFamily: theme.fontfamily.regular, fontSize: theme.fontsize.small },
-                  selectedZodiac === zodiac.name && { color: theme.colors.text, fontFamily: theme.fontfamily.semibold },
-                ]}
-              >
-                {zodiac.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        </View>
-      </ScrollView>
 
-      {/* Next Button */}
-      <View style={styles.nextButtonContainer}>
-        <TouchableOpacity style={[styles.nextButton, { backgroundColor: theme.colors.primary, color: theme.colors.text, }]} onPress={() => navigation.navigate('PartnerHeightPreferences')}>
-          <Text style={[{ fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.medium }]}>Next</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
+//   const renderItem = ({ item }) => {
+//     console.log("RenderItem Data:", item); // Debug log
+//     return (
+//       <View style={styles.card}>
+//         {item.icon}
+//         <Text style={styles.label}>{item.label}</Text>
+//       </View>
+//     );
+//   };
 
-export default BirthStoryZodiacScreen;
+//   console.log("Carousel Data:", zodiacSigns); // Debug log for carousel data
+//   console.log("Theme Context:", theme); // Debug log for theme context
+//   console.log("Styles Object:", styles); // Debug log for styles
+
+//   return (
+//     <LinearGradient
+//       colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
+//       locations={[0, 0.48, 1]}
+//       start={{ x: 0, y: 0 }}
+//       end={{ x: 1, y: 1 }}
+//       style={{ flex: 1 }}
+//     >
+//       <SafeAreaView style={{ flex: 1 }}>
+//         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+//           <View style={styles.header}>
+//             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+//               <Back />
+//             </TouchableOpacity>
+//           </View>
+
+//           <View style={styles.progressContainer}>
+//             <View style={styles.progressBar}>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//               <View style={[styles.progress, { backgroundColor: theme.colors.grey }]}></View>
+//             </View>
+//           </View>
+
+//           <View style={styles.itemContainer}>
+//             <View style={styles.titleContainer}>
+//               <Text style={[styles.title, { color: theme.colors.text, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>
+//                 <Text style={[styles.title, { color: theme.colors.cyan, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>what's</Text> your birth story?
+//               </Text>
+//               <Text style={[styles.subtitle, { color: theme.colors.subText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>
+//                 share your birth time to explore your stars.
+//               </Text>
+//             </View>
+
+//             <View style={styles.timeComponent}>
+//               <TouchableOpacity
+//                 style={styles.inputBox}
+//                 onPress={() => setShowPicker(true)}
+//               >
+//                 <Text
+//                   style={[
+//                     styles.input,
+//                     {
+//                       color: selectedTime
+//                         ? theme.colors.text
+//                         : theme.colors.placeholder,
+//                     },
+//                   ]}
+//                 >
+//                   {selectedTime || "Select Time"}
+//                 </Text>
+//                 <AntDesign name="clockcircleo" size={24} color={theme.colors.primary} />
+//               </TouchableOpacity>
+//             </View>
+//             {showPicker && (
+//               <DateTimePicker
+//                 value={new Date()}
+//                 mode="time"
+//                 is24Hour={false}
+//                 display="default"
+//                 onChange={handleConfirm}
+//               />
+//             )}
+//           </View>
+
+//           <View style={styles.itemContainer}>
+//             <View style={styles.titleContainer}>
+//               <Text style={[styles.title, { color: theme.colors.text, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>
+//                 <Text style={[styles.title, { color: theme.colors.cyan, fontSize: theme.fontsize.large, fontFamily: theme.fontfamily.bold }]}>what's</Text> your zodiac sign?
+//               </Text>
+//               <Text style={[styles.subtitle, { color: theme.colors.subText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>
+//                 unlock your vibe with your zodiac
+//               </Text>
+//             </View>
+
+//             <View style={styles.timeComponent}>
+//               <TouchableOpacity
+//                 style={styles.arrowContainer}
+//                 onPress={() => carouselRef.current?.snapToPrev()}
+//               >
+//                 <AntDesign name="left" size={24} color={theme.colors.text} />
+//               </TouchableOpacity>
+
+//               <Carousel
+//                 ref={carouselRef}
+//                 data={zodiacSigns}
+//                 renderItem={renderItem}
+//                 sliderWidth={width}
+//                 itemWidth={width * 0.5}
+//                 inactiveSlideOpacity={0.6}
+//                 inactiveSlideScale={0.9}
+//                 loop
+//               />
+
+//               {/* Right Arrow */}
+//               <TouchableOpacity
+//                 style={styles.arrowContainer}
+//                 onPress={() => carouselRef.current?.snapToNext()}
+//               >
+//                 <AntDesign name="right" size={24} color={theme.colors.text} />
+//               </TouchableOpacity>
+//             </View>
+//           </View>
+
+//           {/* Continue Button */}
+//           <View style={styles.continuebtn}>
+//             <ButtonComponent onPress={handleSubmit} />
+//           </View>
+//         </KeyboardAvoidingView>
+//       </SafeAreaView>
+//     </LinearGradient>
+//   );
+// };
+
+// export default BirthStoryZodiacScreen;
