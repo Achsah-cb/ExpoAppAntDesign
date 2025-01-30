@@ -45,6 +45,7 @@ export default function HeightScreen({ navigation }) {
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
       </View>
+      {/* progress bar */}
       <View style={styles.progressContainer}>
         <View style={styles.progressBar}>
           <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
@@ -78,8 +79,9 @@ export default function HeightScreen({ navigation }) {
         }}
         itemTextStyle={{fontWeight:'600', color:"#000000"}}
       />
-
       </View>
+      
+      {/* continue button */}
       <View style={styles.continuebtn}>
         <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
       </View>

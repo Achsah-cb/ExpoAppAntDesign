@@ -24,9 +24,9 @@ export default function VerificationScreen({ navigation }) {
 
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('ChatLandingScreen')} style={styles.skipBtn}>
+                {/* <TouchableOpacity onPress={() => navigation.navigate('ChatLandingScreen')} style={styles.skipBtn}>
                     <Text>Skip</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
 
             <View style={styles.itemContainer}>
@@ -42,15 +42,18 @@ export default function VerificationScreen({ navigation }) {
                 
                 <View style={styles.buttonContainer}>
                     <View style={styles.firstContainer}>
+                        {/* more details */}
                     <TouchableOpacity style={[styles.button1, { borderColor: theme.colors.blueGreen, backgroundColor:theme.colors.background, borderWidth:2 }, isActive === 'button1' && {borderColor: theme.colors.blueGreen, borderWidth:2}]}  onPress={() => setIsActive('button1')}>
                         <Payment width={30} />
                         <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.semibold, opacity:0.6 , margin:8}]}>more Details</Text>
                     </TouchableOpacity>
+                        {/* wingman */}
                     <TouchableOpacity style={[styles.button2, { borderColor: theme.colors.violet,backgroundColor:theme.colors.background, borderWidth:2 }, isActive === 'button2' && {borderColor: theme.colors.violet,borderWidth:2}]}  onPress={() => setIsActive('button2')}>
                         <Wingman width={25} />
                         <Text style={[styles.buttonText, { color: theme.colors.text, fontSize: theme.fontsize.small, fontFamily: theme.fontfamily.bold, opacity:0.6, margin:8  }]}>wingman</Text>
                     </TouchableOpacity>
                     </View>
+                        {/* premium */}
                     <TouchableOpacity style={[styles.button, { backgroundColor:theme.colors.primary }, isActive === 'button3' && {borderColor: theme.colors.primary,borderWidth:2}]}  onPress={() => setIsActive('button3')}>
                         <Dollar width={30}/>
                         <View style={{alignItems:'flex-start'}}>

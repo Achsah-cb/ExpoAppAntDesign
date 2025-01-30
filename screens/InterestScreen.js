@@ -6,28 +6,37 @@ import styles from "../styles/InterestStyle";
 import {
     Music, Gaming, Books, Photography, Swimming, Sports, Cycling, Gym,
     Fashion, Running, Arts, Travel, Animals, Bikes, Business, Nature, Cars,
-    Back, Search, Cooking, Painting, Writing, Dancing, Acting, Crafts, Camping, Programming, Politics, Robotics, Food
-} from "../components/icons";
+    Back, Cooking, Painting, Writing, Dancing, Acting, Crafts, Camping,
+    Programming, Politics, Robotics, Food, Coffee, Dinner, Outdoor, Movie, Activity,
+    MorningTime, NightTime, Dogs, Cats, Nopets, LoveAll, Friendship, Home, Tea, Cocktail,
+    Juice, Hobby,
+} from "../components/icons"; // Icons
 import { ThemeContext } from '../context/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { se } from "react-day-picker/locale";
 
 const { width } = Dimensions.get('window');
 export const responsiveWidth = (percentage) => (width * percentage) / 100;
 
 export default function InterestScreen({ navigation }) {
+    
     const iconSize = responsiveWidth(4);
     const theme = useContext(ThemeContext);
     const { updateUserData } = useContext(UserContext);
 
-    const [interest, setInterest] = useState("");
     const [selected, setSelected] = useState({
         hobbies: [],
         interests: [],
         food: [],
+        firstDate: [],
+        time: [],
+        pets: [],
+        weekend: [],
+        drink: []
     });
 
-   
+
     const hobbies = [
         { name: "gaming", icons: "Gaming" },
         { name: "travel", icons: "Travel" },
@@ -54,8 +63,37 @@ export default function InterestScreen({ navigation }) {
         { name: "french", icons: "Food" },
         { name: "mexican", icons: "Food" },
         { name: "japanese", icons: "Food" },
-
     ];
+    const firstDate = [
+        { name: "coffee", icons: "Coffee" },
+        { name: "dinner", icons: "Dinner" },
+        { name: "outdoor", icons: "Outdoor" },
+        { name: "movie", icons: "Movie" },
+        { name: "activity", icons: "Activity" },
+    ];
+    const time = [
+        { name: "morning person", icons: "MorningTime" },
+        { name: "night owl", icons: "NightTime" },
+    ];
+    const pets = [
+        { name: "dog lover", icons: "Dogs" },
+        { name: "cat lover", icons: "Cats" },
+        { name: "not a pet person", icons: "Nopets" },
+        { name: "love all animals", icons: "LoveAll" },
+    ];
+    const weekend = [
+        { name: "out with friends", icons: "Friendship" },
+        { name: "chill at home", icons: "Home" },
+        { name: "nature explorer", icons: "Nature" },
+        { name: "hobby time", icons: "Hobby" },
+    ];
+    const drink = [
+        { name: "coffee", icons: "Coffee" },
+        { name: "tea", icons: "Tea" },
+        { name: "cocktail", icons: "Cocktail" },
+        { name: "juice or soda", icons: "Juice" },
+    ]
+
 
     // Define an array of predefined border colors
     const interestBorderColors = {
@@ -79,8 +117,27 @@ export default function InterestScreen({ navigation }) {
         mexican: theme.colors.cyan,
         cooking: theme.colors.gold,
         camping: theme.colors.orange,
+        food: theme.colors.blueGreen,
+        coffee: theme.colors.orange,
+        outdoor: theme.colors.pink,
+        dinner: theme.colors.blueGreen,
+        movie: theme.colors.gold,
+        activity: theme.colors.cyan,
+        morningTime: theme.colors.pink,
+        nightTime: theme.colors.orange,
+        dogs: theme.colors.blueGreen,
+        Cats: theme.colors.cyan,
+        Nopets: theme.colors.gold,
+        LoveAll: theme.colors.orange,
+        Hobby: theme.colors.pink,
+        Friendship: theme.colors.blueGreen,
+        Hobby: theme.colors.gold,
+        tea: theme.colors.orange,
+        cocktail: theme.colors.blue,
+        juice: theme.colors.cyan,
+        home: theme.colors.pink,
     };
-
+    // for get the icons
     const getIcon = (iconName) => {
         switch (iconName) {
             case "Music":
@@ -139,6 +196,42 @@ export default function InterestScreen({ navigation }) {
                 return <Robotics width={iconSize} height={iconSize} />;
             case "Food":
                 return <Food width={iconSize} height={iconSize} />;
+            case "Coffee":
+                return <Coffee width={iconSize} height={iconSize} />;
+            case "Dinner":
+                return <Dinner width={iconSize} height={iconSize} />;
+            case "Outdoor":
+                return <Outdoor width={iconSize} height={iconSize} />;
+            case "Movie":
+                return <Movie width={iconSize} height={iconSize} />;
+            case "Activity":
+                return <Activity width={iconSize} height={iconSize} />;
+            case "MorningTime":
+                return <MorningTime width={iconSize} height={iconSize} />;
+            case "NightTime":
+                return <NightTime width={iconSize} height={iconSize} />;
+            case "Dogs":
+                return <Dogs width={iconSize} height={iconSize} />;
+            case "Cats":
+                return <Cats width={iconSize} height={iconSize} />;
+            case "Nopets":
+                return <Nopets width={iconSize} height={iconSize} />;
+            case "LoveAll":
+                return <LoveAll width={iconSize} height={iconSize} />;
+            case "Friendship":
+                return <Friendship width={iconSize} height={iconSize} />;
+            case "Hobby":
+                return <Hobby width={iconSize} height={iconSize} />;
+            case "Coffee":
+                return <Coffee width={iconSize} height={iconSize} />;
+            case "Tea":
+                return <Tea width={iconSize} height={iconSize} />;
+            case "Cocktail":
+                return <Cocktail width={iconSize} height={iconSize} />;
+            case "Juice":
+                return <Juice width={iconSize} height={iconSize} />;
+            case "Home":
+                return <Home width={iconSize} height={iconSize} />;
             default:
                 return <Text>Icon</Text>;
         }
@@ -149,17 +242,22 @@ export default function InterestScreen({ navigation }) {
             ...selected.hobbies,
             ...selected.interests,
             ...selected.food,
+            ...selected.drink,
+            ...selected.firstDate,
+            ...selected.pets,
+            ...selected.time,
+            ...selected.weekend
         ];
-    
+
         if (allSelected.length === 0) {
             Alert.alert("Selection Required", "Please select at least one interest.");
             return;
         }
-    
+
         updateUserData("interests", allSelected);
         navigation.navigate("UploadPhotoScreen");
     };
-    
+
     return (
         // linear gradient
         <LinearGradient
@@ -173,6 +271,7 @@ export default function InterestScreen({ navigation }) {
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
                 </View>
+                {/* progress bar */}
                 <View style={styles.progressContainer}>
                     <View style={styles.progressBar}>
                         <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
@@ -185,19 +284,12 @@ export default function InterestScreen({ navigation }) {
                     </View>
                 </View>
 
-                {/* <View style={styles.itemContainer}>
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>
-                            <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }}>what </Text>do you</Text>
-                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.large }]}>love doing?</Text>
-                        <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, marginTop: 8, opacity: 0.8 }]}>Select topics you’re passionate</Text>
-                        <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, opacity: 0.8 }]}>about.</Text>
-                    </View>
-                </View> */}
+                {/* interest sections */}
                 <View style={styles.interestContainer}>
 
                     <ScrollView contentContainerStyle={styles.interestsGrid}>
-                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop:responsiveWidth(5) }]}>
+                        {/* hobbies */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
                             <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what </Text>are your hobbies?</Text>
                         {hobbies.map((item) => (
                             <TouchableOpacity
@@ -229,8 +321,9 @@ export default function InterestScreen({ navigation }) {
                                 </Text>
                             </TouchableOpacity>
                         ))}
-                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop:responsiveWidth(5) }]}>
-                            <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what </Text>are your interests?</Text>
+                        {/* interests */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.primary, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what </Text>are your interests?</Text>
                         {interests.map((item) => (
                             <TouchableOpacity
                                 key={item.name}
@@ -261,8 +354,9 @@ export default function InterestScreen({ navigation }) {
                                 </Text>
                             </TouchableOpacity>
                         ))}
-                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop:responsiveWidth(5) }]}>
-                            <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what's </Text>your food prefrences?</Text>
+                        {/* Food prefernces */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.gold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what's </Text>your food prefrences?</Text>
                         {food.map((item) => (
                             <TouchableOpacity
                                 key={item.name}
@@ -293,9 +387,174 @@ export default function InterestScreen({ navigation }) {
                                 </Text>
                             </TouchableOpacity>
                         ))}
+                        {/* First date */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.violet, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what </Text>your ideal first date?</Text>
+                        {firstDate.map((item) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={[
+                                    styles.interestItem,
+                                    selected.firstDate.includes(item.name) && {
+                                        borderColor: interestBorderColors[item.name],
+                                        borderWidth: responsiveWidth(0.5),
+                                    },
+                                ]}
+                                onPress={() => {
+                                    setSelected((prev) => ({
+                                        ...prev,
+                                        firstDate: prev.firstDate.includes(item.name)
+                                            ? prev.firstDate.filter((i) => i !== item.name)
+                                            : [...prev.firstDate, item.name],
+                                    }));
+                                }}
+                            >
+                                {getIcon(item.icons)}
+                                <Text
+                                    style={[
+                                        styles.interestText,
+                                        selected.food.includes(item.name) && styles.selectedText,
+                                    ]}
+                                >
+                                    {item.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                        {/* are u a? */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.cyan, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>are </Text>you a…?                      </Text>
+                        {time.map((item) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={[
+                                    styles.interestItem,
+                                    selected.time.includes(item.name) && {
+                                        borderColor: interestBorderColors[item.name],
+                                        borderWidth: responsiveWidth(0.5),
+                                    },
+                                ]}
+                                onPress={() => {
+                                    setSelected((prev) => ({
+                                        ...prev,
+                                        time: prev.time.includes(item.name)
+                                            ? prev.time.filter((i) => i !== item.name)
+                                            : [...prev.time, item.name],
+                                    }));
+                                }}
+                            >
+                                {getIcon(item.icons)}
+                                <Text
+                                    style={[
+                                        styles.interestText,
+                                        selected.food.includes(item.name) && styles.selectedText,
+                                    ]}
+                                >
+                                    {item.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                        {/* pets */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.lightBlue, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>are </Text>you a pet person?</Text>
+                        {pets.map((item) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={[
+                                    styles.interestItem,
+                                    selected.pets.includes(item.name) && {
+                                        borderColor: interestBorderColors[item.name],
+                                        borderWidth: responsiveWidth(0.5),
+                                    },
+                                ]}
+                                onPress={() => {
+                                    setSelected((prev) => ({
+                                        ...prev,
+                                        pets: prev.pets.includes(item.name)
+                                            ? prev.pets.filter((i) => i !== item.name)
+                                            : [...prev.pets, item.name],
+                                    }));
+                                }}
+                            >
+                                {getIcon(item.icons)}
+                                <Text
+                                    style={[
+                                        styles.interestText,
+                                        selected.food.includes(item.name) && styles.selectedText,
+                                    ]}
+                                >
+                                    {item.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                        {/* weekend vibes */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.blueGreen, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what’s </Text>your Weekend vibes?</Text>
+                        {weekend.map((item) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={[
+                                    styles.interestItem,
+                                    selected.weekend.includes(item.name) && {
+                                        borderColor: interestBorderColors[item.name],
+                                        borderWidth: responsiveWidth(0.5),
+                                    },
+                                ]}
+                                onPress={() => {
+                                    setSelected((prev) => ({
+                                        ...prev,
+                                        weekend: prev.weekend.includes(item.name)
+                                            ? prev.weekend.filter((i) => i !== item.name)
+                                            : [...prev.weekend, item.name],
+                                    }));
+                                }}
+                            >
+                                {getIcon(item.icons)}
+                                <Text
+                                    style={[
+                                        styles.interestText,
+                                        selected.food.includes(item.name) && styles.selectedText,
+                                    ]}
+                                >
+                                    {item.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                        {/* drink of choice */}
+                        <Text style={[styles.mainText, { color: theme.colors.text, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3, marginTop: responsiveWidth(5) }]}>
+                            <Text style={{ color: theme.colors.darkGold, fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium3 }}>what’s </Text>your drink of choice?</Text>
+                        {drink.map((item) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={[
+                                    styles.interestItem,
+                                    selected.drink.includes(item.name) && {
+                                        borderColor: interestBorderColors[item.name],
+                                        borderWidth: responsiveWidth(0.5),
+                                    },
+                                ]}
+                                onPress={() => {
+                                    setSelected((prev) => ({
+                                        ...prev,
+                                        drink: prev.drink.includes(item.name)
+                                            ? prev.drink.filter((i) => i !== item.name)
+                                            : [...prev.drink, item.name],
+                                    }));
+                                }}
+                            >
+                                {getIcon(item.icons)}
+                                <Text
+                                    style={[
+                                        styles.interestText,
+                                        selected.food.includes(item.name) && styles.selectedText,
+                                    ]}
+                                >
+                                    {item.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
                     </ScrollView>
-
                 </View>
+                {/* continue button */}
                 <View style={styles.continuebtn}>
                     <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}><Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text></Button>
                 </View>

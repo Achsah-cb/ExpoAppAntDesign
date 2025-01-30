@@ -21,7 +21,7 @@ export default function DobScreen({ navigation }) {
             Alert.alert("Please select your complete date of birth.");
             return;
         }
-        updateUserData("dob", date.format("YYYY-MM-DD"));
+        updateUserData("dob", date.format("DD-MM-YYYY"));
         navigation.navigate("GenderScreen");
     };
 
@@ -84,9 +84,8 @@ export default function DobScreen({ navigation }) {
                             todayTextStyle={{color:'blue'}}
                             />
                     </View>
-
                 </View>
-
+                {/* continue button */}
                 <View style={styles.buttonContainer}>
                     <Button
                         style={[styles.Button, { backgroundColor: theme.colors.primary }]}

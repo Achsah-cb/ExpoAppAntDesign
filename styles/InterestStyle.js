@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
         //...Platform.select({ ios: { marginTop: 0, }, android: { marginTop: 30 } }),
         justifyContent: 'space-between',
         width: responsiveWidth(100),
+        
     },
     backBtn: {
         margin: responsiveWidth(6),
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
         borderRadius: responsiveWidth(2),
     },
     progressContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom:responsiveHeight(4)
     },
     progressBar: {
         width: responsiveWidth(80),
@@ -87,11 +89,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         padding: responsiveWidth(1),
-        
     },
     interestContainer:{
         alignItems:'center',
-        height:responsiveHeight(80),
+        height:responsiveHeight(66),
         marginTop:responsiveHeight(0)
     },
     searchIcon:{
@@ -152,7 +153,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems:'center',
         width:responsiveWidth(85),
-        marginTop:responsiveHeight(3)
+        height:responsiveHeight(145),
+        marginTop:responsiveHeight(3),
+    
     },
     interestItem: {
         flexDirection: 'row',

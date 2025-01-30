@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         justifyContent: 'flex-end',
-        padding: 15,
+        //padding: 15,
         marginBottom: responsiveHeight(10)
     },
     calenderIcon: {

@@ -37,7 +37,7 @@ export default function YourNameScreen({ navigation }) {
                         <Back />
                     </TouchableOpacity>
                 </View>
-
+                {/* Progress bar */}
                 <View style={styles.progressContainer}>
                     <View style={styles.progressBar}>
                         <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
@@ -67,7 +67,6 @@ export default function YourNameScreen({ navigation }) {
                             onSubmitEditing={Keyboard.dismiss} // Dismiss keyboard on submit
                         />
                     </View>
-                    {/* <TouchableOpacity onPress={() => navigation.navigate('MenuScreen')} style={styles.skipBtn}><Text>skip</Text></TouchableOpacity> */}
                     {/* Continue Button */}
                     <KeyboardAvoidingView
                         style={styles.buttonContainer}

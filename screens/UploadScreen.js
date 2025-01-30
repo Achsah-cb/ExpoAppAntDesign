@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, TouchableOpacity, Text, Image, Alert, ScrollView, Dimensions } from "react-native";
 import { Button } from "@ant-design/react-native";
 import * as ImagePicker from "expo-image-picker";
 import { UserContext } from "../context/UserContext";
 import styles from "../styles/UploadStyle";
-import axios from "axios";
 import { ThemeContext } from '../context/ThemeContext';
 import { Back } from "../components/icons";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -18,7 +17,13 @@ export default function UploadScreen({ navigation }) {
     const [isLoading, setIsLoading] = useState(false);
     const { updateUserData } = useContext(UserContext);
     const theme = useContext(ThemeContext);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(1);
+
+    useEffect(() => {
+        // Set the activeIndex to the center image
+        const initialIndex = Math.floor(selectedImages.length / 2);
+        setActiveIndex(initialIndex);
+    }, [selectedImages]);
 
     const handleChooseImage = async (index) => {
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -38,73 +43,61 @@ export default function UploadScreen({ navigation }) {
         if (!result.canceled) {
             const selectedURIs = result.assets.map((asset) => asset.uri);
     
-            // Make a copy of the selectedImages array
             setSelectedImages(prevImages => {
-                const updatedImages = [...prevImages];  // Create a copy of previous images
-                // Update selected images or add new ones
+                const updatedImages = [...prevImages];
                 selectedURIs.forEach((uri, idx) => {
-                    updatedImages[idx] = uri;  // Replace images at specific indexes
+                    updatedImages[idx] = uri; 
                 });
                 return updatedImages;
             });
         }
     };
 
-
     const handleSubmit = async () => {
-        // Check if any image is missing
         if (selectedImages.some((image) => image === null)) {
             Alert.alert("Incomplete Upload", "Please upload all the images before proceeding.", [
                 { text: "OK" }
             ]);
             return;
         }
-
-        // Update user data with images
-        updateUserData('images', selectedImages);
+    
+        updateUserData("images", selectedImages);
         setIsLoading(true);
-
+    
         try {
-            const response = await axios.post('http://13.48.178.236:3000/user/user-profile', userData, {
+            const apiUrl = "http://13.48.178.236:3000/user/user-profile"; 
+    
+            const response = await fetch(apiUrl, {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
+                body: JSON.stringify(userData),
             });
-
-            console.log("API response:", response);  // Log the response for debugging
-
-            setIsLoading(false);  // Set loading to false
-
-            // Check for successful response
-            if (response.status === 200) {
-                Alert.alert('Success', 'Data submitted successfully!');
-                navigation.navigate('Home');
+    
+            const result = await response.json();
+            setIsLoading(false);
+    
+            if (response.ok) {
+                Alert.alert("Success", "Data submitted successfully!");
+                navigation.navigate("Home");
             } else {
-                Alert.alert('Error', 'Submission failed, unexpected response');
+                Alert.alert("Error", result.message || "Submission failed, unexpected response.");
             }
         } catch (error) {
-            setIsLoading(false);  // Set loading to false on error
-
-            console.error("API error:", error);  // Log error details
-
-            // Handle error response properly
+            setIsLoading(false);
+    
             if (error.response) {
-                // API responded with an error
-                Alert.alert('Error', error.response.data.message || 'Failed to submit data.');
+                Alert.alert("Error", error.response.data.message || "Failed to submit data.");
             } else if (error.request) {
-                // No response received from API
-                Alert.alert('Error', 'Network error or server not reachable.');
+                Alert.alert("Error", "Network error or server not reachable.");
             } else {
-                // General error (e.g., bad request)
-                Alert.alert('Error', 'An error occurred: ' + error.message);
+                Alert.alert("Error", "An error occurred: " + error.message);
             }
         }
     };
 
-
-
     return (
-        // linear gradient
         <LinearGradient
             colors={['#EFE6FD', '#FFF9E6', '#FDE9EF']}
             locations={[0, 0.48, 1]}
@@ -115,9 +108,10 @@ export default function UploadScreen({ navigation }) {
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Text>skip</Text></TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Text>skip</Text></TouchableOpacity> */}
                 </View>
                 <View style={styles.progressContainer}>
+                    {/* progress bar */}
                     <View style={styles.progressBar}>
                         <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
                         <View style={[styles.progress, { backgroundColor: theme.colors.gold }]}></View>
@@ -136,19 +130,20 @@ export default function UploadScreen({ navigation }) {
                         <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, marginTop: 8, opacity: 0.8 }]}>upload at least 3 photos to get </Text>
                         <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, opacity: 0.8 }]}>more matches.</Text>
                     </View>
+                    {/* upload container */}
                     <View style={styles.uploadContainer}>
-                        {/* Image Slider */}
                         <ScrollView
                             horizontal
                             pagingEnabled
                             onScroll={(event) => {
                                 const currentIndex = Math.round(
-                                    event.nativeEvent.contentOffset.x / Dimensions.get("window").width
+                                    event.nativeEvent.contentOffset.x / width
                                 );
                                 setActiveIndex(currentIndex); // Update active index for dots
                             }}
                             showsHorizontalScrollIndicator={false}
                             style={styles.slider}
+                            contentOffset={{ x: activeIndex * width, y: 0 }} // Center the initial image
                         >
                             {selectedImages.map((uri, index) => (
                                 <View key={index} style={styles.sliderItem}>
@@ -168,32 +163,31 @@ export default function UploadScreen({ navigation }) {
                             ))}
                         </ScrollView>
 
-
                         {/* Pagination Dots */}
                         <View style={styles.pagination}>
                             {selectedImages.map((_, index) => (
                                 <View
                                     key={index}
-                                    style={[
-                                        styles.dot,
-                                        activeIndex === index ? styles.activeDot : styles.inactiveDot,
-                                    ]}
+                                    style={[styles.dot, activeIndex === index ? styles.activeDot : styles.inactiveDot]}
                                 />
                             ))}
-                        </View>
+                        </View>       
                     </View>
+                    <Button style={{ backgroundColor: '#756EF3',  borderRadius:10}} onPress={handleChooseImage}><Text style={{color:theme.colors.btnText, fontFamily: theme.fontfamily.semibold}}>add photos</Text></Button>
+                    {/* instruction  */}
                     <View style={styles.instructions}>
                         <Text style={{ color: theme.colors.subText, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.smaller }}>instruction for uploading image</Text>
                         <Text style={{ color: theme.colors.subText, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.smaller }}>1. select a high-quality image (JPEG, PNG, or similar formats).</Text>
                         <Text style={{ color: theme.colors.subText, fontFamily: theme.fontfamily.semibold, fontSize: theme.fontsize.smaller }}>2. ensure the image size is under 5MB.</Text>
                     </View>
                 </View>
+                {/* continue button */}
                 <View style={styles.continuebtn}>
                     <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}>
                         <Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text>
                     </Button>
                 </View>
             </SafeAreaView>
-        </LinearGradient >
+        </LinearGradient>
     );
 }

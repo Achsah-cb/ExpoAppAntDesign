@@ -80,11 +80,7 @@ const ChatScreen = () => {
          style={{ flex: 1 }} 
         >
          <SafeAreaView >
-            <View style={styles.header}>
-            {/* <TouchableOpacity onPress={() => navigation.navigate('VerificationScreen')} style={styles.backBtn}><Ionicons name="chevron-back" size={20} color="#D48806"/></TouchableOpacity>
-           <View style={styles.ChatTextContainer}><Text style={[styles.chatTitleText,{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium }]}>Chat</Text></View>
-                <TouchableOpacity onPress={() => navigation.navigate('MenuScreen')} style={styles.menuBtn}><Ionicons name="menu" size={25} /></TouchableOpacity> */}
-            </View>
+            <View style={styles.header}></View>
 
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.profileScroll}>
                 {users.map((user, item) => (
@@ -103,27 +99,7 @@ const ChatScreen = () => {
                 ))}
             </ScrollView>
             <View style={styles.container}>
-            {/* <View style={styles.messageBox}>
-                <FlatList
-                    data={users}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            style={styles.userItem}
-                            onPress={() => navigation.navigate('DmScreen', { userId: item.id })}
-                        >
-                            <Image source={{ uri: item.profilePic }} style={styles.userProfilePic} />
-                            <View>
-                                <Text style={{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.medium}}>{item.name}</Text>
-                                <Text style={[{ fontFamily: theme.fontfamily.bold, fontSize: theme.fontsize.smaller }, { color: item.isOnline ? 'green' : 'gray' }]}>
-                                    {item.isOnline ? 'Online' : 'Offline'}
-                                </Text>
-                                <View style={styles.dateContainer}><Text style={styles.dateText}>10/01/24</Text></View>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />
-            </View> */}
+           
             </View>
         </SafeAreaView>
         </LinearGradient>

@@ -55,6 +55,7 @@ export default function TimesScreen({ navigation }) {
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}><Back /></TouchableOpacity>
             </View>
+            {/* progress bar */}
             <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
                     <View style={[styles.progress, { backgroundColor: theme.colors.primary }]}></View>
@@ -76,7 +77,7 @@ export default function TimesScreen({ navigation }) {
                     <Text style={[styles.text, { fontFamily: theme.fontfamily.semibold, color: theme.colors.subText, opacity:0.8 }]}>to take the call.</Text>
                 </View>
             </View>
-
+            {/* Time slots */}
             <View style={styles.timeContainer}>
                 <View style={styles.slot1n2}>
                     {/* morning */}
@@ -99,7 +100,7 @@ export default function TimesScreen({ navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-
+            {/* continue button */}
             <View style={styles.continuebtn}>
                 <Button style={[styles.Button, { backgroundColor: theme.colors.primary }]} onPress={handleSubmit}>
                     <Text style={[styles.buttonText, { color: theme.colors.btnText, fontSize: theme.fontsize.medium, fontFamily: theme.fontfamily.semibold }]}>Continue</Text>

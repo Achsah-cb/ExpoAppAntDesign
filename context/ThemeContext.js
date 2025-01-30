@@ -21,7 +21,9 @@ export const ThemeProvider = ({ children }) => {
       btnText:'#FFFFFF',// button text color
       white:'#D9D9D9',
       subText:'#909090', // subtext/description color
-      lightpink: "#FEB5BD"
+      lightpink: "#FEB5BD",
+      darkGold: '#8C6A04',
+      lightBlue:'#007AFF'
       // You can add other colors as well here, following the above pattern
     },
     fontsize: {
